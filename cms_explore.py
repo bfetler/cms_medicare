@@ -93,6 +93,20 @@ def read_first_data(fname):
     print("df", str(type(df)), str(type(iterp)))
     print("%s shape %s" % (fname, df.shape))
 
+def getn(o1, n=3):
+    i=0
+    while i<len(o1):
+        ar = []
+        ar.append(o1[i])
+        i += 1
+        while i % n != 0:
+            if i<len(o1):
+                ar.append(o1[i])
+                i += 1
+            else:
+                break
+        yield ar
+
 def read_select_data(new_cols, fname):
     iterf = pd.read_csv(fname, sep=None, engine='python', iterator=True, chunksize=50000)
 #   df = pd.concat(chunk[new_cols] for chunk in iterf)
@@ -102,30 +116,48 @@ def read_select_data(new_cols, fname):
         df = df.append(chunk[new_cols])
 #   df = iterf.get_chunk(size=50000)     # get one line, for testing
 #   df = df[new_cols]
+
+# calc new columns
+    df['overcharge_ratio'] = df['total_submitted_chrg_amt'] / df['total_medicare_payment_amt']
+    df['pay_per_service'] = df['total_medicare_payment_amt'] / df['total_services']
+    df['pay_per_person'] = df['total_medicare_payment_amt'] / df['total_unique_benes']
     print("\ndf type", str(type(df)))
     print("%s shape %s" % (df.shape, fname))
 
     providers = list(set(df['provider_type']))
-    print('provider types: len=%d %s' % (len(providers), providers))
+#   print('provider types: len=%d %s' % (len(providers), providers))
 #   def provider_to_num(s):
 #       return providers.index(s)
-    dfgroup = df.groupby('provider_type')
-    dfdescribe = dfgroup.describe()
-    print('group describe type %s' % str(type(dfdescribe)))
-    print('group describe shape', dfdescribe.shape)
+#   dfgroup = df.groupby('provider_type')
+
+# describe statistics
+#   dfdescribe = dfgroup.describe()
+#   print('group describe type %s' % str(type(dfdescribe)))
+#   print('group describe shape', dfdescribe.shape)
 #   print(dfdescribe)
 # loop to print all provider types
-    for i in range(0, len(providers), 3):
-        px = providers[i:i+3]
-        print(dfdescribe.ix[px])
+#   for i in range(0, len(providers), 3):
+#       px = providers[i:i+3]
+#       print(dfdescribe.ix[px])
     print('provider types: len=%d %s' % (len(providers), providers))
+
+    provider_mean = df.groupby('provider_type').mean()
+    provider_mean = provider_mean.sort_values(by='pay_per_service', ascending=False)
+#   provider_mean = provider_mean.sort_values(by='total_medicare_payment_amt', ascending=False)
+#   print(provider_mean)
+#   print(provider_mean['pay_per_service'])
+    print('top mean pay per service')
+    prx = list(provider_mean.index)
+    gprx = getn(prx, 18)
+    for g in gprx:
+        print(provider_mean['pay_per_service'].ix[g])
 
 def main():
     df = read_raw_data('data/head.txt')
 #   print_all_columns(df)
     new_cols = print_select_columns(df)
 #   read_first_data('data/head.txt')
-#   read_select_data(new_cols, 'data/Medicare_Physician_and_Other_Supplier_NPI_Aggregate_CY2014.txt')
+    read_select_data(new_cols, 'data/Medicare_Physician_and_Other_Supplier_NPI_Aggregate_CY2014.txt')
 
 if __name__ == '__main__':
     main()
