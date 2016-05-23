@@ -5,7 +5,7 @@ import pandas as pd
 # to do:
 #    print top 20 pay_per_service, pay_per_person,
 #       total_payment_amt, overcharge_ratio
-#       groupby provider_type (and state?)
+#       groupby provider_type (and gender or state)
 
 # interesting questions:
 #    group_by provider_type, find:
@@ -109,12 +109,21 @@ def read_select_data(new_cols, fname, first=False):
             print('.', end='', flush=True)   # print during long read
             df = df.append(chunk[new_cols])
 
+    print(" done")
+#   shape (986677, 9)
+    print("df columns isnull sum\n%s" % df.isnull().sum())
+#   nppes_provider_gender  61330, others 0
+    print("df columns iszero sum\n%s" % (df==0).sum())
+#   total_medicare_payment_amt 3, others 0
+
+    df = df[df.total_medicare_payment_amt != 0]
+
 # calc new columns
     df['overcharge_ratio'] = df['total_submitted_chrg_amt'] / df['total_medicare_payment_amt']
     df['pay_per_service'] = df['total_medicare_payment_amt'] / df['total_services']
     df['pay_per_person'] = df['total_medicare_payment_amt'] / df['total_unique_benes']
-    print(" done")
     print("df %s shape, filename %s" % (df.shape, fname))
+#   shape (986674, 12)
 
     providers = list(set(df['provider_type']))
     print('provider types: len=%d %s' % (len(providers), providers))
