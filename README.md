@@ -1,4 +1,4 @@
-## cms_medicare
+## Center for Medicare Services Data
 
 The Center for Medicare Services (CMS) has provided public datasets for many different aspects of healthcare, in an attempt to make the U.S. healthcare system more transparent.  The most recent healthcare provider data from 2014 is available in the [Medicare Provider Utilization and Payment Data: Physician and Other Supplier Public Use File](https://www.cms.gov/Research-Statistics-Data-and-Systems/Statistics-Trends-and-Reports/Medicare-Provider-Charge-Data/Physician-and-Other-Supplier2014.html).  
 
@@ -75,6 +75,11 @@ Of the top twenty provider types by median payment per beneficiary, five are for
 
 For consumers, the payment per person is probably of most interest, since one is typically prescribed a series of treatments.
 
-There is a lot of variation in the data for each provider type.  Some have well-defined costs with little variation, while others have widely varying distributions.  Others have very few providers, for whom it is difficult to do statistics.
+There is a lot of variation in the data for each provider type.  Some have well-defined costs with little variation, while others have widely varying distributions.  Others have very few providers, for whom it is difficult to do statistics.  For example:
++ The standard error is greater than the mean or median for *Payment Per Person* for Radiation Oncology, Ambulance Service Supplier, Cardiology, Clinical Laboratory, Hematology, Medical Oncology, Nuclear Medicine and Vascular Surgery.  
++ The standard error is greater than the mean or median for *Payment Per Service* for Ambulance Service Supplier, Clinical Laboratory, Hematology/Oncology, Nuclear Medicine, Oral Surgery and Urology.  
++ There are 51 Radiation Therapy providers, while there are 4363 Radiation Oncology providers.  There is only 1 Interventional Cardiologist.  
+
+The variation in costs may be due to the type of facility (e.g. major hospital or not) or location (e.g. urban or rural area), and requires further investigation.  
 
 The costs are a sobering reminder for consumers and anyone concerned with health care costs in the U.S.
