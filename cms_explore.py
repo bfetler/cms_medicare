@@ -6,6 +6,7 @@ import pandas as pd
 #    print top 20 pay_per_service, pay_per_person,
 #       total_payment_amt, overcharge_ratio
 #       groupby provider_type (and gender or state)
+#    hist plots of each provider_type for key variables (normal dist?)
 
 # interesting questions:
 #    group_by provider_type, find:
@@ -115,30 +116,34 @@ def read_select_data(new_cols, fname, first=False):
 #   nppes_provider_gender  61330, others 0
     print("df columns iszero sum\n%s" % (df==0).sum())
 #   total_medicare_payment_amt 3, others 0
+    print("df gender set %s" % list(set(df['nppes_provider_gender'])))
+#       [nan, 'M', 'F']
 
     df = df[df.total_medicare_payment_amt != 0]
 
 # calc new columns
-    df['overcharge_ratio'] = df['total_submitted_chrg_amt'] / df['total_medicare_payment_amt']
     df['pay_per_service'] = df['total_medicare_payment_amt'] / df['total_services']
     df['pay_per_person'] = df['total_medicare_payment_amt'] / df['total_unique_benes']
+#   df['overcharge_ratio'] = df['total_submitted_chrg_amt'] / df['total_medicare_payment_amt']
     print("df %s shape, filename %s" % (df.shape, fname))
-#   shape (986674, 12)
+#   shape (986674, 11)
 
-    providers = list(set(df['provider_type']))
-    print('provider types: len=%d %s' % (len(providers), providers))
-    provider_group = df.groupby('provider_type').mean()
+#   providers = list(set(df['provider_type']))
+#   print('provider types: len=%d %s' % (len(providers), providers))
+    print_all_rows(df.groupby('provider_type').count(), ['total_services'])
+    provider_group = df.groupby('provider_type').median()
+#   provider_group = df.groupby('provider_type').agg(['count','mean','std','median','mad'])
+#   provider_gender_group = df.groupby(['provider_type','nppes_provider_gender']).mean()
+#   print_all_rows(provider_group, ['pay_per_service','pay_per_person'])
 
-#   return df
     return provider_group
 
 def filter_group_by_var(provider_group, var='pay_per_person'):
     "filter grouped data by variable var"
-#   dfdescribe = provider_group.describe()
     provider_sort = provider_group.sort_values(by=var, ascending=False)
-    print('\ntop mean %s' % var)
+    print('\ntop median %s' % var)
 #   print_all_rows(provider_mean, ['pay_per_service','pay_per_person','overcharge_ratio','total_medicare_payment_amt'])
-    print_all_rows(provider_sort, ['pay_per_service','pay_per_person','overcharge_ratio'])
+    print_all_rows(provider_sort, ['pay_per_service','pay_per_person'])
 
 def explore_initial_data(fname, new_cols):
     "explore initial data columns"
@@ -156,7 +161,6 @@ def main():
 #   provider_group = read_select_data(new_cols, fname, first=True)  # 1st block
     filter_group_by_var(provider_group, var='pay_per_service')
     filter_group_by_var(provider_group, var='pay_per_person')
-    filter_group_by_var(provider_group, var='overcharge_ratio')
 
 if __name__ == '__main__':
     main()

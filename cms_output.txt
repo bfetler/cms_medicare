@@ -21,633 +21,313 @@ total_medicare_payment_amt        3
 beneficiary_average_age           0
 Beneficiary_Average_Risk_Score    0
 dtype: int64
-df (986674, 12) shape, filename data/Medicare_Physician_and_Other_Supplier_NPI_Aggregate_CY2014.txt
-provider types: len=91 ['Independent Diagnostic Testing Facility', 'Dermatology', 'Interventional Cardiology', 'General Surgery', 'Colorectal Surgery (formerly proctology)', 'Sports Medicine', 'Mammographic Screening Center', 'Surgical Oncology', 'Pulmonary Disease', 'Thoracic Surgery', 'Medical Oncology', 'Gynecological/Oncology', 'Interventional Radiology', 'Vascular Surgery', 'Psychiatry', 'Hematology/Oncology', 'Family Practice', 'Cardiology', 'Plastic and Reconstructive Surgery', 'Radiation Therapy', 'Certified Nurse Midwife', 'Orthopedic Surgery', 'Radiation Oncology', 'Audiologist (billing independently)', 'Neurosurgery', 'Centralized Flu', 'Physician Assistant', 'Portable X-ray', 'Optometry', 'Maxillofacial Surgery', 'Hospice and Palliative Care', 'Registered Dietician/Nutrition Professional', 'Cardiac Surgery', 'Clinical Laboratory', 'Preventive Medicine', 'Podiatry', 'Slide Preparation Facility', 'Neuropsychiatry', 'Rheumatology', 'Public Health Welfare Agency', 'General Practice', 'Nuclear Medicine', 'Allergy/Immunology', 'Addiction Medicine', 'Internal Medicine', 'Clinical Psychologist', 'Otolaryngology', 'Pain Management', 'Gastroenterology', 'Pediatric Medicine', 'Pharmacy', 'Physical Medicine and Rehabilitation', 'Critical Care (Intensivists)', 'Nurse Practitioner', 'Sleep Medicine', 'Osteopathic Manipulative Medicine', 'Anesthesiology', 'Neurology', 'Unknown Supplier/Provider', 'Occupational therapist', 'Licensed Clinical Social Worker', 'Speech Language Pathologist', 'Ophthalmology', 'Cardiac Electrophysiology', 'Multispecialty Clinic/Group Practice', 'Hematology', 'Anesthesiologist Assistants', 'Ambulance Service Supplier', 'Oral Surgery (dentists only)', 'Chiropractic', 'Pathology', 'Interventional Pain Management', 'Emergency Medicine', 'Urology', 'Obstetrics/Gynecology', 'Physical Therapist', 'CRNA', 'Infectious Disease', 'Geriatric Psychiatry', 'Geriatric Medicine', 'Ambulatory Surgical Center', 'All Other Suppliers', 'Certified Clinical Nurse Specialist', 'Diagnostic Radiology', 'Nephrology', 'Endocrinology', 'Unknown Physician Specialty Code', 'Peripheral Vascular Disease', 'Mass Immunization Roster Biller', 'Psychologist (billing independently)', 'Hand Surgery']
-
-top mean pay_per_service
-                                          pay_per_service  pay_per_person  \
-provider_type                                                               
-All Other Suppliers                            648.987372    13441.982119   
-Ambulatory Surgical Center                     485.682210      935.026674   
-Cardiac Surgery                                374.344635      990.096240   
-Thoracic Surgery                               310.583393      820.597249   
-Neurosurgery                                   229.256059      594.422215   
-Surgical Oncology                              187.175757      457.504283   
-Independent Diagnostic Testing Facility        184.830982      389.003061   
-Plastic and Reconstructive Surgery             178.878657      559.411394   
-Radiation Therapy                              174.358607     8038.395988   
-Colorectal Surgery (formerly proctology)       158.115883      397.398582   
-General Surgery                                155.732115      397.249651   
-Vascular Surgery                               144.798427      545.597503   
-Anesthesiology                                 135.943374      205.106875   
-Oral Surgery (dentists only)                   131.988950      267.469239   
-CRNA                                           126.100772      134.572517   
-Unknown Supplier/Provider                      123.689592      321.317508   
-Maxillofacial Surgery                          121.640617      231.702874   
-Gynecological/Oncology                         116.576524      533.568831   
-Critical Care (Intensivists)                   114.191390      330.196583   
-Anesthesiologist Assistants                    112.528659      116.991970   
-
-                                          overcharge_ratio  
-provider_type                                               
-All Other Suppliers                               1.369227  
-Ambulatory Surgical Center                        6.298571  
-Cardiac Surgery                                   4.970502  
-Thoracic Surgery                                  5.012647  
-Neurosurgery                                      5.959877  
-Surgical Oncology                                 4.902016  
-Independent Diagnostic Testing Facility           6.545739  
-Plastic and Reconstructive Surgery                4.839095  
-Radiation Therapy                                 5.578247  
-Colorectal Surgery (formerly proctology)          4.070125  
-General Surgery                                   4.365426  
-Vascular Surgery                                  5.000366  
-Anesthesiology                                    8.386229  
-Oral Surgery (dentists only)                      2.873425  
-CRNA                                              8.162897  
-Unknown Supplier/Provider                         3.082957  
-Maxillofacial Surgery                             3.248136  
-Gynecological/Oncology                            4.265365  
-Critical Care (Intensivists)                      3.734383  
-Anesthesiologist Assistants                       9.281596  
-                                      pay_per_service  pay_per_person  \
-provider_type                                                           
-Peripheral Vascular Disease                107.435229      421.212979   
-Radiation Oncology                          99.492022     1723.687252   
-Gastroenterology                            97.490043      250.930021   
-Ophthalmology                               96.476993      440.774976   
-Sleep Medicine                              94.742519      195.240721   
-Nuclear Medicine                            93.998441      317.001697   
-Orthopedic Surgery                          92.466716      399.529245   
-Emergency Medicine                          87.159462      130.056694   
-Hospice and Palliative Care                 86.407424      210.279074   
-Psychologist (billing independently)        81.968770      999.215328   
-Hand Surgery                                79.256403      352.505129   
-Pediatric Medicine                          78.219653      515.386933   
-Nephrology                                  77.535945      475.646842   
-Otolaryngology                              77.263517      269.868935   
-Unknown Physician Specialty Code            76.472991      409.364837   
-Pulmonary Disease                           75.136316      286.684551   
-Neurology                                   73.933371      275.000045   
-Cardiac Electrophysiology                   72.478460      241.274348   
-Interventional Radiology                    72.152670      390.363200   
-Clinical Psychologist                       72.120674      760.112909   
-
-                                      overcharge_ratio  
+df gender set [nan, 'F', 'M']
+df (986674, 11) shape, filename data/Medicare_Physician_and_Other_Supplier_NPI_Aggregate_CY2014.txt
+                                          total_services
 provider_type                                           
-Peripheral Vascular Disease                   5.103147  
-Radiation Oncology                            4.992172  
-Gastroenterology                              4.401652  
-Ophthalmology                                 3.088304  
-Sleep Medicine                                3.719284  
-Nuclear Medicine                              5.221419  
-Orthopedic Surgery                            4.753223  
-Emergency Medicine                            5.785094  
-Hospice and Palliative Care                   3.047162  
-Psychologist (billing independently)          1.999162  
-Hand Surgery                                  4.568049  
-Pediatric Medicine                            3.892247  
-Nephrology                                    2.971021  
-Otolaryngology                                3.630502  
-Unknown Physician Specialty Code              3.735360  
-Pulmonary Disease                             3.112745  
-Neurology                                     3.290665  
-Cardiac Electrophysiology                     4.079444  
-Interventional Radiology                      7.729682  
-Clinical Psychologist                         2.319511  
-                                      pay_per_service  pay_per_person  \
-provider_type                                                           
-Neuropsychiatry                             71.975351      405.780064   
-Mammographic Screening Center               68.054678      120.527598   
-Geriatric Medicine                          67.872886      272.559925   
-Geriatric Psychiatry                        66.441036      306.086385   
-Infectious Disease                          65.710945      302.619497   
-Obstetrics/Gynecology                       64.459293      169.733952   
-Speech Language Pathologist                 63.454600      659.780161   
-Cardiology                                  63.421704      238.297505   
-Urology                                     62.838698      328.266141   
-Internal Medicine                           62.428107      267.455455   
-Addiction Medicine                          60.216075      408.592210   
-Psychiatry                                  59.696768      332.864792   
-Dermatology                                 58.787798      313.182395   
-Pain Management                             58.491154      481.340634   
-Hematology                                  58.389641      835.151027   
-Physical Medicine and Rehabilitation        56.965318      380.476526   
-Osteopathic Manipulative Medicine           56.939303      460.787095   
-Optometry                                   56.409809      112.712710   
-Endocrinology                               55.465260      201.661861   
-Interventional Pain Management              54.917096      553.675345   
-
-                                      overcharge_ratio  
-provider_type                                           
-Neuropsychiatry                               2.706855  
-Mammographic Screening Center                 2.845879  
-Geriatric Medicine                            2.769172  
-Geriatric Psychiatry                          2.504961  
-Infectious Disease                            2.830007  
-Obstetrics/Gynecology                         3.232778  
-Speech Language Pathologist                   2.501893  
-Cardiology                                    3.830893  
-Urology                                       3.993647  
-Internal Medicine                             2.818788  
-Addiction Medicine                            2.738394  
-Psychiatry                                    2.681429  
-Dermatology                                   2.746109  
-Pain Management                               5.448006  
-Hematology                                    3.444018  
-Physical Medicine and Rehabilitation          3.373487  
-Osteopathic Manipulative Medicine             2.880066  
-Optometry                                     1.946744  
-Endocrinology                                 2.901285  
-Interventional Pain Management                5.405844  
-                                     pay_per_service  pay_per_person  \
-provider_type                                                          
-General Practice                           54.619105      274.523158   
-Licensed Clinical Social Worker            54.589515      544.732273   
-Preventive Medicine                        53.922560      290.853876   
-Physician Assistant                        52.758670      118.809688   
-Sports Medicine                            52.459487      261.020873   
-Certified Clinical Nurse Specialist        52.142206      255.066447   
-Medical Oncology                           48.446631     1023.155564   
-Podiatry                                   46.835946      224.461094   
-Family Practice                            45.282449      210.534757   
-Nurse Practitioner                         44.936468      134.844227   
-Hematology/Oncology                        44.492669     1214.372232   
-Certified Nurse Midwife                    44.485563       91.210501   
-Portable X-ray                             43.051390      226.973526   
-Rheumatology                               38.805806      740.686107   
-Clinical Laboratory                        36.792831      221.994798   
-Ambulance Service Supplier                 36.614915     1224.114260   
-Interventional Cardiology                  36.424773      342.349823   
-Pathology                                  31.940019       98.080084   
-Diagnostic Radiology                       31.320705       86.589460   
-Slide Preparation Facility                 28.091908       59.823691   
-
-                                     overcharge_ratio  
+Addiction Medicine                                   125
+All Other Suppliers                                  665
+Allergy/Immunology                                  3315
+Ambulance Service Supplier                          9743
+Ambulatory Surgical Center                          4961
+Anesthesiologist Assistants                         1492
+Anesthesiology                                     36947
+Audiologist (billing independently)                 5851
+CRNA                                               39100
+Cardiac Electrophysiology                           1512
+Cardiac Surgery                                     1560
+Cardiology                                         22884
+Centralized Flu                                    12873
+Certified Clinical Nurse Specialist                 2042
+Certified Nurse Midwife                              753
+Chiropractic                                       36540
+Clinical Laboratory                                 2842
+Clinical Psychologist                              14650
+Colorectal Surgery (formerly proctology)            1334
+Critical Care (Intensivists)                        2545
+                                         total_services
 provider_type                                          
-General Practice                             2.641625  
-Licensed Clinical Social Worker              2.611377  
-Preventive Medicine                          2.812799  
-Physician Assistant                          6.429046  
-Sports Medicine                              4.134161  
-Certified Clinical Nurse Specialist          3.209538  
-Medical Oncology                             3.496945  
-Podiatry                                     2.443837  
-Family Practice                              2.828037  
-Nurse Practitioner                           3.752708  
-Hematology/Oncology                          3.225288  
-Certified Nurse Midwife                      2.871727  
-Portable X-ray                               2.274525  
-Rheumatology                                 2.834961  
-Clinical Laboratory                          3.215916  
-Ambulance Service Supplier                   2.556109  
-Interventional Cardiology                    5.705466  
-Pathology                                    5.371914  
-Diagnostic Radiology                         5.429039  
-Slide Preparation Facility                   2.895545  
-                                             pay_per_service  pay_per_person  \
-provider_type                                                                  
-Registered Dietician/Nutrition Professional        27.887597      141.479680   
-Chiropractic                                       26.202902      255.842618   
-Multispecialty Clinic/Group Practice               24.001695       94.782377   
-Mass Immunization Roster Biller                    23.047532       49.278513   
-Public Health Welfare Agency                       22.770305       51.334160   
-Centralized Flu                                    22.599007       48.356768   
-Audiologist (billing independently)                22.590585       50.189978   
-Occupational therapist                             22.108466      580.958056   
-Physical Therapist                                 20.791961      595.055822   
-Pharmacy                                           20.051236       42.292630   
-Allergy/Immunology                                 17.000696      392.738241   
-
-                                             overcharge_ratio  
-provider_type                                                  
-Registered Dietician/Nutrition Professional          2.105856  
-Chiropractic                                         1.910282  
-Multispecialty Clinic/Group Practice                 2.237366  
-Mass Immunization Roster Biller                      1.089670  
-Public Health Welfare Agency                         1.091387  
-Centralized Flu                                      1.043804  
-Audiologist (billing independently)                  3.952335  
-Occupational therapist                               2.828613  
-Physical Therapist                                   2.733182  
-Pharmacy                                             1.270041  
-Allergy/Immunology                                   2.512339  
-
-top mean pay_per_person
-                                      pay_per_service  pay_per_person  \
-provider_type                                                           
-All Other Suppliers                        648.987372    13441.982119   
-Radiation Therapy                          174.358607     8038.395988   
-Radiation Oncology                          99.492022     1723.687252   
-Ambulance Service Supplier                  36.614915     1224.114260   
-Hematology/Oncology                         44.492669     1214.372232   
-Medical Oncology                            48.446631     1023.155564   
-Psychologist (billing independently)        81.968770      999.215328   
-Cardiac Surgery                            374.344635      990.096240   
-Ambulatory Surgical Center                 485.682210      935.026674   
-Hematology                                  58.389641      835.151027   
-Thoracic Surgery                           310.583393      820.597249   
-Clinical Psychologist                       72.120674      760.112909   
-Rheumatology                                38.805806      740.686107   
-Speech Language Pathologist                 63.454600      659.780161   
-Physical Therapist                          20.791961      595.055822   
-Neurosurgery                               229.256059      594.422215   
-Occupational therapist                      22.108466      580.958056   
-Plastic and Reconstructive Surgery         178.878657      559.411394   
-Interventional Pain Management              54.917096      553.675345   
-Vascular Surgery                           144.798427      545.597503   
-
-                                      overcharge_ratio  
-provider_type                                           
-All Other Suppliers                           1.369227  
-Radiation Therapy                             5.578247  
-Radiation Oncology                            4.992172  
-Ambulance Service Supplier                    2.556109  
-Hematology/Oncology                           3.225288  
-Medical Oncology                              3.496945  
-Psychologist (billing independently)          1.999162  
-Cardiac Surgery                               4.970502  
-Ambulatory Surgical Center                    6.298571  
-Hematology                                    3.444018  
-Thoracic Surgery                              5.012647  
-Clinical Psychologist                         2.319511  
-Rheumatology                                  2.834961  
-Speech Language Pathologist                   2.501893  
-Physical Therapist                            2.733182  
-Neurosurgery                                  5.959877  
-Occupational therapist                        2.828613  
-Plastic and Reconstructive Surgery            4.839095  
-Interventional Pain Management                5.405844  
-Vascular Surgery                              5.000366  
-                                          pay_per_service  pay_per_person  \
-provider_type                                                               
-Licensed Clinical Social Worker                 54.589515      544.732273   
-Gynecological/Oncology                         116.576524      533.568831   
-Pediatric Medicine                              78.219653      515.386933   
-Pain Management                                 58.491154      481.340634   
-Nephrology                                      77.535945      475.646842   
-Osteopathic Manipulative Medicine               56.939303      460.787095   
-Surgical Oncology                              187.175757      457.504283   
-Ophthalmology                                   96.476993      440.774976   
-Peripheral Vascular Disease                    107.435229      421.212979   
-Unknown Physician Specialty Code                76.472991      409.364837   
-Addiction Medicine                              60.216075      408.592210   
-Neuropsychiatry                                 71.975351      405.780064   
-Orthopedic Surgery                              92.466716      399.529245   
-Colorectal Surgery (formerly proctology)       158.115883      397.398582   
-General Surgery                                155.732115      397.249651   
-Allergy/Immunology                              17.000696      392.738241   
-Interventional Radiology                        72.152670      390.363200   
-Independent Diagnostic Testing Facility        184.830982      389.003061   
-Physical Medicine and Rehabilitation            56.965318      380.476526   
-Hand Surgery                                    79.256403      352.505129   
-
-                                          overcharge_ratio  
-provider_type                                               
-Licensed Clinical Social Worker                   2.611377  
-Gynecological/Oncology                            4.265365  
-Pediatric Medicine                                3.892247  
-Pain Management                                   5.448006  
-Nephrology                                        2.971021  
-Osteopathic Manipulative Medicine                 2.880066  
-Surgical Oncology                                 4.902016  
-Ophthalmology                                     3.088304  
-Peripheral Vascular Disease                       5.103147  
-Unknown Physician Specialty Code                  3.735360  
-Addiction Medicine                                2.738394  
-Neuropsychiatry                                   2.706855  
-Orthopedic Surgery                                4.753223  
-Colorectal Surgery (formerly proctology)          4.070125  
-General Surgery                                   4.365426  
-Allergy/Immunology                                2.512339  
-Interventional Radiology                          7.729682  
-Independent Diagnostic Testing Facility           6.545739  
-Physical Medicine and Rehabilitation              3.373487  
-Hand Surgery                                      4.568049  
-                                     pay_per_service  pay_per_person  \
-provider_type                                                          
-Interventional Cardiology                  36.424773      342.349823   
-Psychiatry                                 59.696768      332.864792   
-Critical Care (Intensivists)              114.191390      330.196583   
-Urology                                    62.838698      328.266141   
-Unknown Supplier/Provider                 123.689592      321.317508   
-Nuclear Medicine                           93.998441      317.001697   
-Dermatology                                58.787798      313.182395   
-Geriatric Psychiatry                       66.441036      306.086385   
-Infectious Disease                         65.710945      302.619497   
-Preventive Medicine                        53.922560      290.853876   
-Pulmonary Disease                          75.136316      286.684551   
-Neurology                                  73.933371      275.000045   
-General Practice                           54.619105      274.523158   
-Geriatric Medicine                         67.872886      272.559925   
-Otolaryngology                             77.263517      269.868935   
-Oral Surgery (dentists only)              131.988950      267.469239   
-Internal Medicine                          62.428107      267.455455   
-Sports Medicine                            52.459487      261.020873   
-Chiropractic                               26.202902      255.842618   
-Certified Clinical Nurse Specialist        52.142206      255.066447   
-
-                                     overcharge_ratio  
-provider_type                                          
-Interventional Cardiology                    5.705466  
-Psychiatry                                   2.681429  
-Critical Care (Intensivists)                 3.734383  
-Urology                                      3.993647  
-Unknown Supplier/Provider                    3.082957  
-Nuclear Medicine                             5.221419  
-Dermatology                                  2.746109  
-Geriatric Psychiatry                         2.504961  
-Infectious Disease                           2.830007  
-Preventive Medicine                          2.812799  
-Pulmonary Disease                            3.112745  
-Neurology                                    3.290665  
-General Practice                             2.641625  
-Geriatric Medicine                           2.769172  
-Otolaryngology                               3.630502  
-Oral Surgery (dentists only)                 2.873425  
-Internal Medicine                            2.818788  
-Sports Medicine                              4.134161  
-Chiropractic                                 1.910282  
-Certified Clinical Nurse Specialist          3.209538  
-                                             pay_per_service  pay_per_person  \
-provider_type                                                                  
-Gastroenterology                                   97.490043      250.930021   
-Cardiac Electrophysiology                          72.478460      241.274348   
-Cardiology                                         63.421704      238.297505   
-Maxillofacial Surgery                             121.640617      231.702874   
-Portable X-ray                                     43.051390      226.973526   
-Podiatry                                           46.835946      224.461094   
-Clinical Laboratory                                36.792831      221.994798   
-Family Practice                                    45.282449      210.534757   
-Hospice and Palliative Care                        86.407424      210.279074   
-Anesthesiology                                    135.943374      205.106875   
-Endocrinology                                      55.465260      201.661861   
-Sleep Medicine                                     94.742519      195.240721   
-Obstetrics/Gynecology                              64.459293      169.733952   
-Registered Dietician/Nutrition Professional        27.887597      141.479680   
-Nurse Practitioner                                 44.936468      134.844227   
-CRNA                                              126.100772      134.572517   
-Emergency Medicine                                 87.159462      130.056694   
-Mammographic Screening Center                      68.054678      120.527598   
-Physician Assistant                                52.758670      118.809688   
-Anesthesiologist Assistants                       112.528659      116.991970   
-
-                                             overcharge_ratio  
-provider_type                                                  
-Gastroenterology                                     4.401652  
-Cardiac Electrophysiology                            4.079444  
-Cardiology                                           3.830893  
-Maxillofacial Surgery                                3.248136  
-Portable X-ray                                       2.274525  
-Podiatry                                             2.443837  
-Clinical Laboratory                                  3.215916  
-Family Practice                                      2.828037  
-Hospice and Palliative Care                          3.047162  
-Anesthesiology                                       8.386229  
-Endocrinology                                        2.901285  
-Sleep Medicine                                       3.719284  
-Obstetrics/Gynecology                                3.232778  
-Registered Dietician/Nutrition Professional          2.105856  
-Nurse Practitioner                                   3.752708  
-CRNA                                                 8.162897  
-Emergency Medicine                                   5.785094  
-Mammographic Screening Center                        2.845879  
-Physician Assistant                                  6.429046  
-Anesthesiologist Assistants                          9.281596  
-                                      pay_per_service  pay_per_person  \
-provider_type                                                           
-Optometry                                   56.409809      112.712710   
-Pathology                                   31.940019       98.080084   
-Multispecialty Clinic/Group Practice        24.001695       94.782377   
-Certified Nurse Midwife                     44.485563       91.210501   
-Diagnostic Radiology                        31.320705       86.589460   
-Slide Preparation Facility                  28.091908       59.823691   
-Public Health Welfare Agency                22.770305       51.334160   
-Audiologist (billing independently)         22.590585       50.189978   
-Mass Immunization Roster Biller             23.047532       49.278513   
-Centralized Flu                             22.599007       48.356768   
-Pharmacy                                    20.051236       42.292630   
-
-                                      overcharge_ratio  
-provider_type                                           
-Optometry                                     1.946744  
-Pathology                                     5.371914  
-Multispecialty Clinic/Group Practice          2.237366  
-Certified Nurse Midwife                       2.871727  
-Diagnostic Radiology                          5.429039  
-Slide Preparation Facility                    2.895545  
-Public Health Welfare Agency                  1.091387  
-Audiologist (billing independently)           3.952335  
-Mass Immunization Roster Biller               1.089670  
-Centralized Flu                               1.043804  
-Pharmacy                                      1.270041  
-
-top mean overcharge_ratio
-                                         pay_per_service  pay_per_person  \
-provider_type                                                              
-Anesthesiologist Assistants                   112.528659      116.991970   
-Anesthesiology                                135.943374      205.106875   
-CRNA                                          126.100772      134.572517   
-Interventional Radiology                       72.152670      390.363200   
-Independent Diagnostic Testing Facility       184.830982      389.003061   
-Physician Assistant                            52.758670      118.809688   
-Ambulatory Surgical Center                    485.682210      935.026674   
-Neurosurgery                                  229.256059      594.422215   
-Emergency Medicine                             87.159462      130.056694   
-Interventional Cardiology                      36.424773      342.349823   
-Radiation Therapy                             174.358607     8038.395988   
-Pain Management                                58.491154      481.340634   
-Diagnostic Radiology                           31.320705       86.589460   
-Interventional Pain Management                 54.917096      553.675345   
-Pathology                                      31.940019       98.080084   
-Nuclear Medicine                               93.998441      317.001697   
-Peripheral Vascular Disease                   107.435229      421.212979   
-Thoracic Surgery                              310.583393      820.597249   
-Vascular Surgery                              144.798427      545.597503   
-Radiation Oncology                             99.492022     1723.687252   
-
-                                         overcharge_ratio  
+Dermatology                                       11078
+Diagnostic Radiology                              29384
+Emergency Medicine                                40433
+Endocrinology                                      5241
+Family Practice                                   82268
+Gastroenterology                                  12751
+General Practice                                   6162
+General Surgery                                   19905
+Geriatric Medicine                                 1828
+Geriatric Psychiatry                                174
+Gynecological/Oncology                              932
+Hand Surgery                                       1264
+Hematology                                          725
+Hematology/Oncology                                7822
+Hospice and Palliative Care                         581
+Independent Diagnostic Testing Facility            2971
+Infectious Disease                                 5241
+Internal Medicine                                 97484
+Interventional Cardiology                             1
+Interventional Pain Management                     1852
+                                      total_services
+provider_type                                       
+Interventional Radiology                        1245
+Licensed Clinical Social Worker                16498
+Mammographic Screening Center                     19
+Mass Immunization Roster Biller                26028
+Maxillofacial Surgery                           1008
+Medical Oncology                                2849
+Multispecialty Clinic/Group Practice             580
+Nephrology                                      8037
+Neurology                                      13360
+Neuropsychiatry                                  107
+Neurosurgery                                    4487
+Nuclear Medicine                                 546
+Nurse Practitioner                             73816
+Obstetrics/Gynecology                          27648
+Occupational therapist                          4209
+Ophthalmology                                  17665
+Optometry                                      28468
+Oral Surgery (dentists only)                    1465
+Orthopedic Surgery                             21301
+Osteopathic Manipulative Medicine                612
+                                             total_services
 provider_type                                              
-Anesthesiologist Assistants                      9.281596  
-Anesthesiology                                   8.386229  
-CRNA                                             8.162897  
-Interventional Radiology                         7.729682  
-Independent Diagnostic Testing Facility          6.545739  
-Physician Assistant                              6.429046  
-Ambulatory Surgical Center                       6.298571  
-Neurosurgery                                     5.959877  
-Emergency Medicine                               5.785094  
-Interventional Cardiology                        5.705466  
-Radiation Therapy                                5.578247  
-Pain Management                                  5.448006  
-Diagnostic Radiology                             5.429039  
-Interventional Pain Management                   5.405844  
-Pathology                                        5.371914  
-Nuclear Medicine                                 5.221419  
-Peripheral Vascular Disease                      5.103147  
-Thoracic Surgery                                 5.012647  
-Vascular Surgery                                 5.000366  
-Radiation Oncology                               4.992172  
-                                          pay_per_service  pay_per_person  \
+Otolaryngology                                         8772
+Pain Management                                        1594
+Pathology                                             11586
+Pediatric Medicine                                     1910
+Peripheral Vascular Disease                              68
+Pharmacy                                                  3
+Physical Medicine and Rehabilitation                   7528
+Physical Therapist                                    41295
+Physician Assistant                                   54657
+Plastic and Reconstructive Surgery                     4479
+Podiatry                                              14950
+Portable X-ray                                          328
+Preventive Medicine                                     339
+Psychiatry                                            22609
+Psychologist (billing independently)                    255
+Public Health Welfare Agency                            395
+Pulmonary Disease                                      9350
+Radiation Oncology                                     4363
+Radiation Therapy                                        51
+Registered Dietician/Nutrition Professional            1741
+                                  total_services
+provider_type                                   
+Rheumatology                                4329
+Sleep Medicine                               192
+Slide Preparation Facility                    25
+Speech Language Pathologist                  548
+Sports Medicine                              641
+Surgical Oncology                            809
+Thoracic Surgery                            2042
+Unknown Physician Specialty Code             113
+Unknown Supplier/Provider                     27
+Urology                                     8981
+Vascular Surgery                            2915
+
+top median pay_per_service
+                                          pay_per_service  pay_per_person
+provider_type                                                            
+Ambulatory Surgical Center                     457.033585      893.198710
+Cardiac Surgery                                353.245027      933.512141
+Thoracic Surgery                               261.803840      689.114580
+Neurosurgery                                   220.810944      549.077861
+Surgical Oncology                              167.415656      406.925047
+Plastic and Reconstructive Surgery             163.857286      499.582462
+Radiation Therapy                              155.014931     7038.965077
+Colorectal Surgery (formerly proctology)       151.646725      380.250333
+General Surgery                                144.576501      353.419080
+Anesthesiology                                 131.026703      173.002862
+Vascular Surgery                               124.708455      360.204791
+Gynecological/Oncology                         118.264310      385.654485
+Critical Care (Intensivists)                   116.937742      309.321000
+CRNA                                           115.403862      121.219559
+Anesthesiologist Assistants                    108.656028      111.691955
+Maxillofacial Surgery                          105.288186      181.201264
+Independent Diagnostic Testing Facility        104.911691      242.730569
+Oral Surgery (dentists only)                    99.697442      164.483667
+Gastroenterology                                97.743808      230.548194
+Ophthalmology                                   89.907446      277.764674
+                                      pay_per_service  pay_per_person
+provider_type                                                        
+Hospice and Palliative Care                 86.663824      195.445018
+Emergency Medicine                          86.592860      125.365105
+Sleep Medicine                              83.924397      157.496298
+Psychologist (billing independently)        82.440557      867.150833
+Peripheral Vascular Disease                 81.143805      187.630668
+Unknown Supplier/Provider                   77.907287      132.107433
+Nephrology                                  77.255633      396.694498
+Neurology                                   74.930030      207.009429
+Radiation Oncology                          73.912366      829.617236
+Orthopedic Surgery                          72.890315      377.000767
+Pulmonary Disease                           71.920664      254.809224
+Hand Surgery                                70.714419      337.249720
+Clinical Psychologist                       70.699565      571.290882
+Infectious Disease                          69.647045      248.983671
+Otolaryngology                              68.715921      219.489758
+Neuropsychiatry                             68.336400      249.960988
+Geriatric Medicine                          67.808811      221.206151
+Unknown Physician Specialty Code            67.721709      187.666042
+Mammographic Screening Center               67.196491      124.364952
+Cardiac Electrophysiology                   66.631892      206.738890
+                                      pay_per_service  pay_per_person
+provider_type                                                        
+Geriatric Psychiatry                        65.063721      249.494428
+Speech Language Pathologist                 64.757890      462.771412
+Hematology                                  64.398284      277.157922
+Internal Medicine                           60.980844      215.786763
+Addiction Medicine                          60.369457      290.558667
+Psychiatry                                  58.944540      238.454605
+Optometry                                   58.605796      101.740704
+Physical Medicine and Rehabilitation        58.504621      308.312067
+Obstetrics/Gynecology                       58.320099      141.401459
+Pain Management                             57.648364      362.674656
+Cardiology                                  57.029090      177.945424
+Endocrinology                               55.770021      174.719120
+Interventional Radiology                    55.118859      144.125424
+Medical Oncology                            54.706517      303.610909
+Urology                                     54.570811      292.096215
+Interventional Pain Management              53.208307      436.912642
+Nuclear Medicine                            53.114589       69.255227
+Licensed Clinical Social Worker             52.564730      417.556812
+Osteopathic Manipulative Medicine           52.190790      307.218332
+Preventive Medicine                         52.021065      137.742459
+                                             pay_per_service  pay_per_person
 provider_type                                                               
-Cardiac Surgery                                374.344635      990.096240   
-Surgical Oncology                              187.175757      457.504283   
-Plastic and Reconstructive Surgery             178.878657      559.411394   
-Orthopedic Surgery                              92.466716      399.529245   
-Hand Surgery                                    79.256403      352.505129   
-Gastroenterology                                97.490043      250.930021   
-General Surgery                                155.732115      397.249651   
-Gynecological/Oncology                         116.576524      533.568831   
-Sports Medicine                                 52.459487      261.020873   
-Cardiac Electrophysiology                       72.478460      241.274348   
-Colorectal Surgery (formerly proctology)       158.115883      397.398582   
-Urology                                         62.838698      328.266141   
-Audiologist (billing independently)             22.590585       50.189978   
-Pediatric Medicine                              78.219653      515.386933   
-Cardiology                                      63.421704      238.297505   
-Nurse Practitioner                              44.936468      134.844227   
-Unknown Physician Specialty Code                76.472991      409.364837   
-Critical Care (Intensivists)                   114.191390      330.196583   
-Sleep Medicine                                  94.742519      195.240721   
-Otolaryngology                                  77.263517      269.868935   
+Pediatric Medicine                                 51.390989      146.285628
+Certified Clinical Nurse Specialist                50.969313      166.223317
+Physician Assistant                                48.568761       92.708596
+General Practice                                   46.835194      193.815919
+Sports Medicine                                    45.571347      239.500771
+Dermatology                                        45.530261      228.799854
+Podiatry                                           45.046419      191.358128
+Family Practice                                    43.702986      179.507998
+Nurse Practitioner                                 42.173589       91.269879
+Portable X-ray                                     41.329475      213.432690
+Certified Nurse Midwife                            39.491818       75.734392
+Interventional Cardiology                          36.424773      342.349823
+Rheumatology                                       33.800357      311.568139
+Hematology/Oncology                                31.756212      453.454411
+Pathology                                          28.724943       79.854484
+Registered Dietician/Nutrition Professional        27.920115      126.636316
+Ambulance Service Supplier                         27.349052      580.085833
+Slide Preparation Facility                         27.274695       62.907241
+Chiropractic                                       26.586417      220.188340
+Diagnostic Radiology                               23.436218       47.170835
+                                      pay_per_service  pay_per_person
+provider_type                                                        
+All Other Suppliers                         23.343738       49.935455
+Mass Immunization Roster Biller             23.038750       48.268359
+Centralized Flu                             22.238837       47.138327
+Public Health Welfare Agency                21.971917       43.910000
+Occupational therapist                      21.639449      447.779667
+Audiologist (billing independently)         21.548352       41.285313
+Physical Therapist                          20.643570      528.878151
+Pharmacy                                    20.142520       44.721718
+Allergy/Immunology                          13.527731      286.279556
+Clinical Laboratory                         11.407012      129.340414
+Multispecialty Clinic/Group Practice         3.430000       33.883293
 
-                                          overcharge_ratio  
-provider_type                                               
-Cardiac Surgery                                   4.970502  
-Surgical Oncology                                 4.902016  
-Plastic and Reconstructive Surgery                4.839095  
-Orthopedic Surgery                                4.753223  
-Hand Surgery                                      4.568049  
-Gastroenterology                                  4.401652  
-General Surgery                                   4.365426  
-Gynecological/Oncology                            4.265365  
-Sports Medicine                                   4.134161  
-Cardiac Electrophysiology                         4.079444  
-Colorectal Surgery (formerly proctology)          4.070125  
-Urology                                           3.993647  
-Audiologist (billing independently)               3.952335  
-Pediatric Medicine                                3.892247  
-Cardiology                                        3.830893  
-Nurse Practitioner                                3.752708  
-Unknown Physician Specialty Code                  3.735360  
-Critical Care (Intensivists)                      3.734383  
-Sleep Medicine                                    3.719284  
-Otolaryngology                                    3.630502  
-                                      pay_per_service  pay_per_person  \
+top median pay_per_person
+                                          pay_per_service  pay_per_person
+provider_type                                                            
+Radiation Therapy                              155.014931     7038.965077
+Cardiac Surgery                                353.245027      933.512141
+Ambulatory Surgical Center                     457.033585      893.198710
+Psychologist (billing independently)            82.440557      867.150833
+Radiation Oncology                              73.912366      829.617236
+Thoracic Surgery                               261.803840      689.114580
+Ambulance Service Supplier                      27.349052      580.085833
+Clinical Psychologist                           70.699565      571.290882
+Neurosurgery                                   220.810944      549.077861
+Physical Therapist                              20.643570      528.878151
+Plastic and Reconstructive Surgery             163.857286      499.582462
+Speech Language Pathologist                     64.757890      462.771412
+Hematology/Oncology                             31.756212      453.454411
+Occupational therapist                          21.639449      447.779667
+Interventional Pain Management                  53.208307      436.912642
+Licensed Clinical Social Worker                 52.564730      417.556812
+Surgical Oncology                              167.415656      406.925047
+Nephrology                                      77.255633      396.694498
+Gynecological/Oncology                         118.264310      385.654485
+Colorectal Surgery (formerly proctology)       151.646725      380.250333
+                                      pay_per_service  pay_per_person
+provider_type                                                        
+Orthopedic Surgery                          72.890315      377.000767
+Pain Management                             57.648364      362.674656
+Vascular Surgery                           124.708455      360.204791
+General Surgery                            144.576501      353.419080
+Interventional Cardiology                   36.424773      342.349823
+Hand Surgery                                70.714419      337.249720
+Rheumatology                                33.800357      311.568139
+Critical Care (Intensivists)               116.937742      309.321000
+Physical Medicine and Rehabilitation        58.504621      308.312067
+Osteopathic Manipulative Medicine           52.190790      307.218332
+Medical Oncology                            54.706517      303.610909
+Urology                                     54.570811      292.096215
+Addiction Medicine                          60.369457      290.558667
+Allergy/Immunology                          13.527731      286.279556
+Ophthalmology                               89.907446      277.764674
+Hematology                                  64.398284      277.157922
+Pulmonary Disease                           71.920664      254.809224
+Neuropsychiatry                             68.336400      249.960988
+Geriatric Psychiatry                        65.063721      249.494428
+Infectious Disease                          69.647045      248.983671
+                                         pay_per_service  pay_per_person
 provider_type                                                           
-Medical Oncology                            48.446631     1023.155564   
-Hematology                                  58.389641      835.151027   
-Physical Medicine and Rehabilitation        56.965318      380.476526   
-Neurology                                   73.933371      275.000045   
-Maxillofacial Surgery                      121.640617      231.702874   
-Obstetrics/Gynecology                       64.459293      169.733952   
-Hematology/Oncology                         44.492669     1214.372232   
-Clinical Laboratory                         36.792831      221.994798   
-Certified Clinical Nurse Specialist         52.142206      255.066447   
-Pulmonary Disease                           75.136316      286.684551   
-Ophthalmology                               96.476993      440.774976   
-Unknown Supplier/Provider                  123.689592      321.317508   
-Hospice and Palliative Care                 86.407424      210.279074   
-Nephrology                                  77.535945      475.646842   
-Endocrinology                               55.465260      201.661861   
-Slide Preparation Facility                  28.091908       59.823691   
-Osteopathic Manipulative Medicine           56.939303      460.787095   
-Oral Surgery (dentists only)               131.988950      267.469239   
-Certified Nurse Midwife                     44.485563       91.210501   
-Mammographic Screening Center               68.054678      120.527598   
-
-                                      overcharge_ratio  
-provider_type                                           
-Medical Oncology                              3.496945  
-Hematology                                    3.444018  
-Physical Medicine and Rehabilitation          3.373487  
-Neurology                                     3.290665  
-Maxillofacial Surgery                         3.248136  
-Obstetrics/Gynecology                         3.232778  
-Hematology/Oncology                           3.225288  
-Clinical Laboratory                           3.215916  
-Certified Clinical Nurse Specialist           3.209538  
-Pulmonary Disease                             3.112745  
-Ophthalmology                                 3.088304  
-Unknown Supplier/Provider                     3.082957  
-Hospice and Palliative Care                   3.047162  
-Nephrology                                    2.971021  
-Endocrinology                                 2.901285  
-Slide Preparation Facility                    2.895545  
-Osteopathic Manipulative Medicine             2.880066  
-Oral Surgery (dentists only)                  2.873425  
-Certified Nurse Midwife                       2.871727  
-Mammographic Screening Center                 2.845879  
-                                 pay_per_service  pay_per_person  \
-provider_type                                                      
-Rheumatology                           38.805806      740.686107   
-Infectious Disease                     65.710945      302.619497   
-Occupational therapist                 22.108466      580.958056   
-Family Practice                        45.282449      210.534757   
-Internal Medicine                      62.428107      267.455455   
-Preventive Medicine                    53.922560      290.853876   
-Geriatric Medicine                     67.872886      272.559925   
-Dermatology                            58.787798      313.182395   
-Addiction Medicine                     60.216075      408.592210   
-Physical Therapist                     20.791961      595.055822   
-Neuropsychiatry                        71.975351      405.780064   
-Psychiatry                             59.696768      332.864792   
-General Practice                       54.619105      274.523158   
-Licensed Clinical Social Worker        54.589515      544.732273   
-Ambulance Service Supplier             36.614915     1224.114260   
-Allergy/Immunology                     17.000696      392.738241   
-Geriatric Psychiatry                   66.441036      306.086385   
-Speech Language Pathologist            63.454600      659.780161   
-Podiatry                               46.835946      224.461094   
-Clinical Psychologist                  72.120674      760.112909   
-
-                                 overcharge_ratio  
-provider_type                                      
-Rheumatology                             2.834961  
-Infectious Disease                       2.830007  
-Occupational therapist                   2.828613  
-Family Practice                          2.828037  
-Internal Medicine                        2.818788  
-Preventive Medicine                      2.812799  
-Geriatric Medicine                       2.769172  
-Dermatology                              2.746109  
-Addiction Medicine                       2.738394  
-Physical Therapist                       2.733182  
-Neuropsychiatry                          2.706855  
-Psychiatry                               2.681429  
-General Practice                         2.641625  
-Licensed Clinical Social Worker          2.611377  
-Ambulance Service Supplier               2.556109  
-Allergy/Immunology                       2.512339  
-Geriatric Psychiatry                     2.504961  
-Speech Language Pathologist              2.501893  
-Podiatry                                 2.443837  
-Clinical Psychologist                    2.319511  
-                                             pay_per_service  pay_per_person  \
-provider_type                                                                  
-Portable X-ray                                     43.051390      226.973526   
-Multispecialty Clinic/Group Practice               24.001695       94.782377   
-Registered Dietician/Nutrition Professional        27.887597      141.479680   
-Psychologist (billing independently)               81.968770      999.215328   
-Optometry                                          56.409809      112.712710   
-Chiropractic                                       26.202902      255.842618   
-All Other Suppliers                               648.987372    13441.982119   
-Pharmacy                                           20.051236       42.292630   
-Public Health Welfare Agency                       22.770305       51.334160   
-Mass Immunization Roster Biller                    23.047532       49.278513   
-Centralized Flu                                    22.599007       48.356768   
-
-                                             overcharge_ratio  
-provider_type                                                  
-Portable X-ray                                       2.274525  
-Multispecialty Clinic/Group Practice                 2.237366  
-Registered Dietician/Nutrition Professional          2.105856  
-Psychologist (billing independently)                 1.999162  
-Optometry                                            1.946744  
-Chiropractic                                         1.910282  
-All Other Suppliers                                  1.369227  
-Pharmacy                                             1.270041  
-Public Health Welfare Agency                         1.091387  
-Mass Immunization Roster Biller                      1.089670  
-Centralized Flu                                      1.043804  
+Independent Diagnostic Testing Facility       104.911691      242.730569
+Sports Medicine                                45.571347      239.500771
+Psychiatry                                     58.944540      238.454605
+Gastroenterology                               97.743808      230.548194
+Dermatology                                    45.530261      228.799854
+Geriatric Medicine                             67.808811      221.206151
+Chiropractic                                   26.586417      220.188340
+Otolaryngology                                 68.715921      219.489758
+Internal Medicine                              60.980844      215.786763
+Portable X-ray                                 41.329475      213.432690
+Neurology                                      74.930030      207.009429
+Cardiac Electrophysiology                      66.631892      206.738890
+Hospice and Palliative Care                    86.663824      195.445018
+General Practice                               46.835194      193.815919
+Podiatry                                       45.046419      191.358128
+Unknown Physician Specialty Code               67.721709      187.666042
+Peripheral Vascular Disease                    81.143805      187.630668
+Maxillofacial Surgery                         105.288186      181.201264
+Family Practice                                43.702986      179.507998
+Cardiology                                     57.029090      177.945424
+                                             pay_per_service  pay_per_person
+provider_type                                                               
+Endocrinology                                      55.770021      174.719120
+Anesthesiology                                    131.026703      173.002862
+Certified Clinical Nurse Specialist                50.969313      166.223317
+Oral Surgery (dentists only)                       99.697442      164.483667
+Sleep Medicine                                     83.924397      157.496298
+Pediatric Medicine                                 51.390989      146.285628
+Interventional Radiology                           55.118859      144.125424
+Obstetrics/Gynecology                              58.320099      141.401459
+Preventive Medicine                                52.021065      137.742459
+Unknown Supplier/Provider                          77.907287      132.107433
+Clinical Laboratory                                11.407012      129.340414
+Registered Dietician/Nutrition Professional        27.920115      126.636316
+Emergency Medicine                                 86.592860      125.365105
+Mammographic Screening Center                      67.196491      124.364952
+CRNA                                              115.403862      121.219559
+Anesthesiologist Assistants                       108.656028      111.691955
+Optometry                                          58.605796      101.740704
+Physician Assistant                                48.568761       92.708596
+Nurse Practitioner                                 42.173589       91.269879
+Pathology                                          28.724943       79.854484
+                                      pay_per_service  pay_per_person
+provider_type                                                        
+Certified Nurse Midwife                     39.491818       75.734392
+Nuclear Medicine                            53.114589       69.255227
+Slide Preparation Facility                  27.274695       62.907241
+All Other Suppliers                         23.343738       49.935455
+Mass Immunization Roster Biller             23.038750       48.268359
+Diagnostic Radiology                        23.436218       47.170835
+Centralized Flu                             22.238837       47.138327
+Pharmacy                                    20.142520       44.721718
+Public Health Welfare Agency                21.971917       43.910000
+Audiologist (billing independently)         21.548352       41.285313
+Multispecialty Clinic/Group Practice         3.430000       33.883293
 
