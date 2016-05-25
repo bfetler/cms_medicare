@@ -154,7 +154,7 @@ def explore_initial_data(fname, new_cols):
 def main():
     fname = 'data/Medicare_Physician_and_Other_Supplier_NPI_Aggregate_CY2014.txt'
     new_cols = get_select_columns()
-#   explore_initial_data(fname, new_cols)
+    explore_initial_data(fname, new_cols)
 
 # group and filter data by provider_type mean
     provider_group = read_select_data(new_cols, fname)
