@@ -12,14 +12,14 @@ The file contains annual data from over 980,000 physicians and other healthcare 
 + some drug costs (full drug data is in other datasets)
 + summary of anonymized beneficiary information
 
-#### Preliminary Analysis
+### Preliminary Analysis
 To get an idea of actual health care costs for consumers, we did a preliminary analysis of the total Medicare payment amount per service and per beneficiary.  Typically, a beneficiary has supplemental insurance to cover the remainder of the claims, which often pays 20% of the approved Medicare payment.  Extra costs are typically fixed at a fraction of the approved payment.  We calculated two extra columns:
 + payment per service = total Medicare payment amount / total number of services
 + payment per person = total Medicare payment amount / total number of beneficiaries
 
 Grouping the payments by the 91 provider types in the data, we find some trends.  
 
-#### Payment Per Service
+##### Payment Per Service
 Of the top twenty provider types by median payment per service, eleven are for Surgery, with the most expensive being Ambulatory Surgery, and three are for Oncology or Radiation.  They are given in the table below.  
 
 <table>
@@ -46,8 +46,8 @@ Of the top twenty provider types by median payment per service, eleven are for S
 <tr><td>Ophthalmology</td><td>90</td></tr>
 </table>
 
-#### Payment Per Beneficiary
-Of the top twenty provider types by median payment per beneficiary, five are for Oncology or Radiation, with the most expensive being Radiation Therapy, and six are for Surgery.  They are given in the table below.  
+##### Payment Per Beneficiary
+Of the top twenty provider types by median payment per beneficiary, five are for Oncology or Radiation, with the most expensive being Radiation Therapy, and six are for Surgery, as given in the table below.  
 
 <table>
 <th>Provider Type</th><th>Payment Per Person (USD)</th>
@@ -72,6 +72,8 @@ Of the top twenty provider types by median payment per beneficiary, five are for
 <tr><td>Gynecological/Oncology</td><td>386</td></tr>
 <tr><td>Colorectal Surgery</td><td>380</td></tr>
 </table>
+
+For consumers, the payment per person is probably of most interest, since one is typically prescribed a series of treatments.
 
 There is a lot of variation in the data for each provider type.  Some have well-defined costs with little variation, while others have widely varying distributions.  Others have very few providers, for whom it is difficult to do statistics.
 
