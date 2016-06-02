@@ -459,109 +459,14 @@ total_medicare_payment_amt        3
 beneficiary_average_age           0
 Beneficiary_Average_Risk_Score    0
 dtype: int64
-df gender set [nan, 'M', 'F']
+df gender set ['F', nan, 'M']
 df (986674, 11) shape, filename data/Medicare_Physician_and_Other_Supplier_NPI_Aggregate_CY2014.txt
-                                          total_services
-provider_type                                           
-Addiction Medicine                                   125
-All Other Suppliers                                  665
-Allergy/Immunology                                  3315
-Ambulance Service Supplier                          9743
-Ambulatory Surgical Center                          4961
-Anesthesiologist Assistants                         1492
-Anesthesiology                                     36947
-Audiologist (billing independently)                 5851
-CRNA                                               39100
-Cardiac Electrophysiology                           1512
-Cardiac Surgery                                     1560
-Cardiology                                         22884
-Centralized Flu                                    12873
-Certified Clinical Nurse Specialist                 2042
-Certified Nurse Midwife                              753
-Chiropractic                                       36540
-Clinical Laboratory                                 2842
-Clinical Psychologist                              14650
-Colorectal Surgery (formerly proctology)            1334
-Critical Care (Intensivists)                        2545
-                                         total_services
-provider_type                                          
-Dermatology                                       11078
-Diagnostic Radiology                              29384
-Emergency Medicine                                40433
-Endocrinology                                      5241
-Family Practice                                   82268
-Gastroenterology                                  12751
-General Practice                                   6162
-General Surgery                                   19905
-Geriatric Medicine                                 1828
-Geriatric Psychiatry                                174
-Gynecological/Oncology                              932
-Hand Surgery                                       1264
-Hematology                                          725
-Hematology/Oncology                                7822
-Hospice and Palliative Care                         581
-Independent Diagnostic Testing Facility            2971
-Infectious Disease                                 5241
-Internal Medicine                                 97484
-Interventional Cardiology                             1
-Interventional Pain Management                     1852
-                                      total_services
-provider_type                                       
-Interventional Radiology                        1245
-Licensed Clinical Social Worker                16498
-Mammographic Screening Center                     19
-Mass Immunization Roster Biller                26028
-Maxillofacial Surgery                           1008
-Medical Oncology                                2849
-Multispecialty Clinic/Group Practice             580
-Nephrology                                      8037
-Neurology                                      13360
-Neuropsychiatry                                  107
-Neurosurgery                                    4487
-Nuclear Medicine                                 546
-Nurse Practitioner                             73816
-Obstetrics/Gynecology                          27648
-Occupational therapist                          4209
-Ophthalmology                                  17665
-Optometry                                      28468
-Oral Surgery (dentists only)                    1465
-Orthopedic Surgery                             21301
-Osteopathic Manipulative Medicine                612
-                                             total_services
-provider_type                                              
-Otolaryngology                                         8772
-Pain Management                                        1594
-Pathology                                             11586
-Pediatric Medicine                                     1910
-Peripheral Vascular Disease                              68
-Pharmacy                                                  3
-Physical Medicine and Rehabilitation                   7528
-Physical Therapist                                    41295
-Physician Assistant                                   54657
-Plastic and Reconstructive Surgery                     4479
-Podiatry                                              14950
-Portable X-ray                                          328
-Preventive Medicine                                     339
-Psychiatry                                            22609
-Psychologist (billing independently)                    255
-Public Health Welfare Agency                            395
-Pulmonary Disease                                      9350
-Radiation Oncology                                     4363
-Radiation Therapy                                        51
-Registered Dietician/Nutrition Professional            1741
-                                  total_services
-provider_type                                   
-Rheumatology                                4329
-Sleep Medicine                               192
-Slide Preparation Facility                    25
-Speech Language Pathologist                  548
-Sports Medicine                              641
-Surgical Oncology                            809
-Thoracic Surgery                            2042
-Unknown Physician Specialty Code             113
-Unknown Supplier/Provider                     27
-Urology                                     8981
-Vascular Surgery                            2915
+plotting histograms
+./Users/bfetler/anaconda/envs/pyana3/lib/python3.5/site-packages/matplotlib/tight_layout.py:222: UserWarning: tight_layout : falling back to Agg renderer
+  warnings.warn("tight_layout : falling back to Agg renderer")
+....... done plotting histograms
+plotting histograms
+........ done plotting histograms
 
 top median pay_per_service
                                           pay_per_service  pay_per_person

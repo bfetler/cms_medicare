@@ -1,11 +1,11 @@
 # explore center for medicare services (CMS) data
 
+import numpy as np
 import pandas as pd
+import os
+import matplotlib.pyplot as plt
 
 # to do:
-#    print top 20 pay_per_service, pay_per_person,
-#       total_payment_amt, overcharge_ratio
-#       groupby provider_type (and gender or state)
 #    hist plots of each provider_type for key variables (normal dist?)
 
 # interesting questions:
@@ -16,7 +16,13 @@ import pandas as pd
 #	avg beneficiary_average_age, Beneficiary_Average_Risk_Score
 #	group beneficiaries by disease percent
 #	group_by provider_state, provider_gender
-#   how to deal with NA's?
+
+def make_plotdir():
+    "make plot directory on file system"
+    plotdir = 'cms_hist_plots/'
+    if not os.access(plotdir, os.F_OK):
+        os.mkdir(plotdir)
+    return plotdir
 
 def read_first_data(fname, size=10):
     "read first N=size rows from csv file fname"
@@ -28,15 +34,13 @@ def read_first_data(fname, size=10):
 
 def get_select_columns():
     "try to select interesting columns, rather than all 70"
-#   new_cols = [ 'provider_type','nppes_provider_gender','nppes_provider_state','total_services','total_unique_benes','total_med_services','total_med_unique_benes','total_submitted_chrg_amt','total_medicare_payment_amt','total_med_submitted_chrg_amt','total_med_medicare_payment_amt','beneficiary_average_age','Beneficiary_Average_Risk_Score' ]
-#   the following columns appear to be near duplicates,
-#      except more NA's in 2nd column:
-#         total_services              total_med_services
-#         total_unique_benes          total_med_unique_benes
-#         total_submitted_chrg_amt    total_med_submitted_chrg_amt
-#	  total_medicare_payment_amt  total_med_medicare_payment_amt
-# add drug columns, beneficiary columns?
-
+    ''' the following columns appear to be near duplicates,
+        except more NA's in 2nd column:
+          total_services              total_med_services
+          total_unique_benes          total_med_unique_benes
+          total_submitted_chrg_amt    total_med_submitted_chrg_amt
+ 	  total_medicare_payment_amt  total_med_medicare_payment_amt
+    '''
     new_cols = [ 'provider_type','nppes_provider_gender','nppes_provider_state','total_services','total_unique_benes','total_submitted_chrg_amt','total_medicare_payment_amt','beneficiary_average_age','Beneficiary_Average_Risk_Score' ]
     return new_cols
 
@@ -96,6 +100,44 @@ def print_all_rows(df, column_names):
     for g in gx:
         print(df[column_names].ix[g])
 
+def make_hist_plot(df, column_names):
+    "make histogram plot of whole data frame"
+# works but mostly illegible
+    plotdir = make_plotdir()
+    plt.clf()
+    df.hist(column=column_names, by='provider_type', layout=(10,10), figsize=(40,40))
+    plt.tick_params(labelbottom='off', labelleft='off')
+    plt.savefig(plotdir + 'hist.png')
+
+def make_hist_plots(df, column_name, group_var):
+    "make histogram plot of data frame subsets by group variable"
+    plotdir = make_plotdir()
+    col_name = column_name     # for now
+    providers = sorted(list(set(df[group_var])))
+    print('plotting histograms')
+    gx = getn(providers, 12)
+    for i, g in enumerate(gx):
+#       print('group%s' % (i+1), g)
+        print('.', end='', flush=True)
+        plot_hists(df, g, 'group%s' % (i+1), col_name, group_var, plotdir)
+    print(' done plotting histograms')
+
+def plot_hists(df, vlist, label, col_name, group_var, plotdir, ncols=3):
+    plt.clf()
+    fig = plt.figure()  # new
+    nrows = len(vlist) // ncols
+    if len(vlist) % ncols > 0:
+        nrows += 1
+    for i, var in enumerate(vlist):
+        ax = fig.add_subplot(nrows, ncols, i+1)
+        ax.hist(df[df[group_var]==var][col_name], bins=30)
+        ax.set_title(var, fontsize=10)
+        ax.tick_params(labelbottom='on', labelleft='on', labelsize=7)
+    plt.tight_layout()
+    plt.subplots_adjust(top=0.85)
+    plt.suptitle('CMS %s histograms by %s' % (col_name, group_var), fontsize=12)
+    plt.savefig('%shist_%s_%s.png' % (plotdir, col_name, label))
+
 def read_select_data(new_cols, fname, first=False):
     "read new_cols from csv file fname and groupby provider_type"
     chunksize = 50000
@@ -128,13 +170,13 @@ def read_select_data(new_cols, fname, first=False):
     print("df %s shape, filename %s" % (df.shape, fname))
 #   shape (986674, 11)
 
-#   providers = list(set(df['provider_type']))
-#   print('provider types: len=%d %s' % (len(providers), providers))
-    print_all_rows(df.groupby('provider_type').count(), ['total_services'])
     provider_group = df.groupby('provider_type').median()
 #   provider_group = df.groupby('provider_type').agg(['count','mean','std','median','mad'])
 #   provider_gender_group = df.groupby(['provider_type','nppes_provider_gender']).mean()
-#   print_all_rows(provider_group, ['pay_per_service','pay_per_person'])
+
+# hist plots very varied, log scale may not help
+    make_hist_plots(df, 'pay_per_service', 'provider_type')
+    make_hist_plots(df, 'pay_per_person', 'provider_type')
 
     return provider_group
 
@@ -142,8 +184,8 @@ def filter_group_by_var(provider_group, var='pay_per_person'):
     "filter grouped data by variable var"
     provider_sort = provider_group.sort_values(by=var, ascending=False)
     print('\ntop median %s' % var)
-#   print_all_rows(provider_mean, ['pay_per_service','pay_per_person','overcharge_ratio','total_medicare_payment_amt'])
     print_all_rows(provider_sort, ['pay_per_service','pay_per_person'])
+        # add ['overcharge_ratio','total_medicare_payment_amt']
 
 def explore_initial_data(fname, new_cols):
     "explore initial data columns"
@@ -154,7 +196,7 @@ def explore_initial_data(fname, new_cols):
 def main():
     fname = 'data/Medicare_Physician_and_Other_Supplier_NPI_Aggregate_CY2014.txt'
     new_cols = get_select_columns()
-    explore_initial_data(fname, new_cols)
+#   explore_initial_data(fname, new_cols)
 
 # group and filter data by provider_type mean
     provider_group = read_select_data(new_cols, fname)
