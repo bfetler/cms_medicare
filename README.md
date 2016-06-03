@@ -82,7 +82,7 @@ There is a lot of variation in the data for each provider type.  Some have well-
 Much of the data does not follow a normal distribution, and is skewed to the left, although there is a lot of variation.  Others have very few providers, for whom it is difficult to do statistics.  For example:
 + There are 51 providers in Radiation Therapy, while there are 4363 in Radiation Oncology.  There is only 1 Interventional Cardiologist.  
 + Medical Oncology, Infectious Disease and Psychologist *Payment Per Service* have two-peak distributions, although *Payment Per Person* has a single peak.  
-+ + Psychologist providers have a fat distribution with a wide range.  
++ Psychologist providers have a fat distribution with a wide range.  
 
 The variation in costs may be due to the type of facility (e.g. major hospital or not) or location (e.g. urban or rural area), and requires further investigation.  
 
