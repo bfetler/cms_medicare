@@ -1,9 +1,11 @@
 # explore center for medicare services (CMS) data
 
+import os, sys
+
 import numpy as np
 import pandas as pd
-import os
 import matplotlib.pyplot as plt
+import seaborn as sns
 
 # to do:
 #    hist plots of each provider_type for key variables (normal dist?)
@@ -17,11 +19,11 @@ import matplotlib.pyplot as plt
 #	group beneficiaries by disease percent
 #	group_by provider_state, provider_gender
 
-def make_plotdir():
+def make_plotdir(plotdir='cms_hist_plots/'):
     "make plot directory on file system"
-    plotdir = 'cms_hist_plots/'
     if not os.access(plotdir, os.F_OK):
         os.mkdir(plotdir)
+    sns.set_style("darkgrid")
     return plotdir
 
 def read_first_data(fname, size=10):
@@ -109,34 +111,59 @@ def make_hist_plot(df, column_names):
     plt.tick_params(labelbottom='off', labelleft='off')
     plt.savefig(plotdir + 'hist.png')
 
-def make_hist_plots(df, column_name, group_var):
+def make_hist_plots(df, column_name, group_var, plotdir=make_plotdir(), split_var=None):
     "make histogram plot of data frame subsets by group variable"
-    plotdir = make_plotdir()
+#   plotdir = make_plotdir()
     col_name = column_name     # for now
     providers = sorted(list(set(df[group_var])))
     print('plotting histograms')
     gx = getn(providers, 12)
-    for i, g in enumerate(gx):
-#       print('group%s' % (i+1), g)
+    for k, v in enumerate(gx):
         print('.', end='', flush=True)
-        plot_hists(df, g, 'group%s' % (i+1), col_name, group_var, plotdir)
+        plot_hists(df, v, 'group%s' % (k+1), col_name, group_var, plotdir, split_var=split_var)
     print(' done plotting histograms')
+# e.g. make_hist_plots(df, 'pay_per_service', 'provider_type')
 
-def plot_hists(df, vlist, label, col_name, group_var, plotdir, ncols=3):
+def plot_hists(df, vlist, label, col_name, group_var, plotdir, ncols=3, split_var=None):
     plt.clf()
-    fig = plt.figure()  # new
+    fig = plt.figure(figsize=(10,8))
+    if split_var:    # e.g. nppes_provider_gender
+        splits = sorted(list(set(df[split_var])))
+        splits.reverse()
+#       print('splits', splits)
+        colors = ['green','blue','red']   # need alpha transparency
+# reverse colors, plot F last, may show on top of M?  count(M) > count(F)
+        aligns = ['left','right','mid']  # not always correct?  need more pixels?
     nrows = len(vlist) // ncols
     if len(vlist) % ncols > 0:
         nrows += 1
-    for i, var in enumerate(vlist):
-        ax = fig.add_subplot(nrows, ncols, i+1)
-        ax.hist(df[df[group_var]==var][col_name], bins=30)
-        ax.set_title(var, fontsize=10)
+    for k, val in enumerate(vlist):
+        ax = fig.add_subplot(nrows, ncols, k+1)
+        if split_var:
+#            for j,s in enumerate(splits):
+##               ax.hist(df[(df[group_var]==val) & (df[split_var]==s)][col_name], bins=30, color=colors[j], alpha=0.4)
+#                ax.hist(df[(df[group_var]==val) & (df[split_var]==s)][col_name], bins=20, rwidth=0.5, align=aligns[j])  # use seaborn colors
+            hdata = []
+            for s in splits:
+                hpart = df[(df[group_var]==val) & (df[split_var]==s)][col_name]
+#               print(s, hpart.size, sep=' ', end='')
+#               if hpart.size > 0:
+#                   hdata.append(np.array(hpart))
+                hdata.append(df[(df[group_var]==val) & (df[split_var]==s)][col_name])
+            ax.hist(hdata, bins=20)
+#           print('', flush=True)
+        else:
+            ax.hist(df[df[group_var]==val][col_name], bins=30)
+        ax.set_title(val, fontsize=10)
         ax.tick_params(labelbottom='on', labelleft='on', labelsize=7)
     plt.tight_layout()
-    plt.subplots_adjust(top=0.85)
-    plt.suptitle('CMS %s histograms by %s' % (col_name, group_var), fontsize=12)
-    plt.savefig('%shist_%s_%s.png' % (plotdir, col_name, label))
+    plt.subplots_adjust(top=0.88)
+    if split_var:
+        plt.suptitle('CMS %s histograms by %s and %s' % (col_name, group_var, split_var[-6:]), fontsize=12)
+        plt.savefig('%shist_%s_%s_%s.png' % (plotdir, split_var[-6:], col_name, label))
+    else:
+        plt.suptitle('CMS %s histograms by %s' % (col_name, group_var), fontsize=12)
+        plt.savefig('%shist_%s_%s.png' % (plotdir, col_name, label))
 
 def read_select_data(new_cols, fname, first=False):
     "read new_cols from csv file fname and groupby provider_type"
@@ -157,26 +184,34 @@ def read_select_data(new_cols, fname, first=False):
     print("df columns isnull sum\n%s" % df.isnull().sum())
 #   nppes_provider_gender  61330, others 0
     print("df columns iszero sum\n%s" % (df==0).sum())
-#   total_medicare_payment_amt 3, others 0
-    print("df gender set %s" % list(set(df['nppes_provider_gender'])))
-#       [nan, 'M', 'F']
-
+#   total_medicare_payment_amt 3, others 0,remove zeroes
     df = df[df.total_medicare_payment_amt != 0]
 
-# calc new columns
-    df['pay_per_service'] = df['total_medicare_payment_amt'] / df['total_services']
-    df['pay_per_person'] = df['total_medicare_payment_amt'] / df['total_unique_benes']
+#   convert gender nan to 'nan'
+    df['nppes_provider_gender'] = df['nppes_provider_gender'].apply(lambda s: str(s))
+    genders = sorted(list(set(df['nppes_provider_gender'])))
+    print("df gender set %s" % genders)
+#   print("df gender count %s" % df.groupby('nppes_provider_gender').count())
+#       ['F', 'M' 'nan'] count (18721, 28116, 3162) in 1st 50000
+
+# calc new columns, log of quotient = log($) - log(population)
+    df['pay_per_service'] = np.log10(df['total_medicare_payment_amt'] / df['total_services'])
+    df['pay_per_person'] = np.log10(df['total_medicare_payment_amt'] / df['total_unique_benes'])
 #   df['overcharge_ratio'] = df['total_submitted_chrg_amt'] / df['total_medicare_payment_amt']
     print("df %s shape, filename %s" % (df.shape, fname))
 #   shape (986674, 11)
 
     provider_group = df.groupby('provider_type').median()
 #   provider_group = df.groupby('provider_type').agg(['count','mean','std','median','mad'])
-#   provider_gender_group = df.groupby(['provider_type','nppes_provider_gender']).mean()
+    provider_gender_group = df.groupby(['provider_type','nppes_provider_gender']).count()
+    print_all_rows(provider_gender_group, ['pay_per_person'])
+# a count of provider_type, gender - very few F in many specialties
 
 # hist plots very varied, log scale may not help
-    make_hist_plots(df, 'pay_per_service', 'provider_type')
-    make_hist_plots(df, 'pay_per_person', 'provider_type')
+#   make_hist_plots(df, 'pay_per_service', 'provider_type')
+#   make_hist_plots(df, 'pay_per_person', 'provider_type')
+    make_hist_plots(df, 'pay_per_person', 'provider_type', plotdir=make_plotdir('cms_hist_gender_plots/'), split_var='nppes_provider_gender')
+# one obvious thing from plot it seems many provider_types have only one gender
 
     return provider_group
 
@@ -199,11 +234,14 @@ def main():
 #   explore_initial_data(fname, new_cols)
 
 # group and filter data by provider_type mean
-    provider_group = read_select_data(new_cols, fname)
-#   provider_group = read_select_data(new_cols, fname, first=True)  # 1st block
-    filter_group_by_var(provider_group, var='pay_per_service')
-    filter_group_by_var(provider_group, var='pay_per_person')
+    if len(sys.argv) > 1 and (sys.argv[1][0]=='t' or sys.argv[1][0]=='1'):
+        provider_group = read_select_data(new_cols, fname, first=True)  # 1st block
+    else:
+        provider_group = read_select_data(new_cols, fname)
+#   filter_group_by_var(provider_group, var='pay_per_service')
+#   filter_group_by_var(provider_group, var='pay_per_person')
 
 if __name__ == '__main__':
     main()
+
 
