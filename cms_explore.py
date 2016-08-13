@@ -18,6 +18,8 @@ import seaborn as sns
 #	avg beneficiary_average_age, Beneficiary_Average_Risk_Score
 #	group beneficiaries by disease percent
 #	group_by provider_state, provider_gender
+#       sort by most to least expensive provider
+#       find count by gender, find cost ratio by gender and sort
 
 def make_plotdir(plotdir='cms_hist_plots/'):
     "make plot directory on file system"
@@ -173,6 +175,7 @@ def read_select_data(new_cols, fname, first=False):
     print('reading data ', end='', flush=True)
     if (first):      # get one line for testing
         df = iterf.get_chunk(size=chunksize)
+#       print('df initial shape', df.shape)   # 50000 by 70
         df = df[new_cols]
     else:            # loop through all data
         for chunk in iterf:
@@ -201,11 +204,23 @@ def read_select_data(new_cols, fname, first=False):
     print("df %s shape, filename %s" % (df.shape, fname))
 #   shape (986674, 11)
 
+    print('provider_type median')
     provider_group = df.groupby('provider_type').median()
 #   provider_group = df.groupby('provider_type').agg(['count','mean','std','median','mad'])
     provider_gender_group = df.groupby(['provider_type','nppes_provider_gender']).count()
+    print('group by provider, gender pay_per_person count')
     print_all_rows(provider_gender_group, ['pay_per_person'])
 # a count of provider_type, gender - very few F in many specialties
+
+    provider_gender_group = df.groupby(['provider_type','nppes_provider_gender']).median()
+    print('group by provider, gender pay_per_person median')
+    print_all_rows(provider_gender_group, ['pay_per_person'])
+
+    provider_gender_group = df.groupby(['provider_type','nppes_provider_gender']).apply(lambda x: std_by_mean(x))
+    print('group by provider, gender pay_per_person std_by_mean')
+    print_all_rows(provider_gender_group, ['pay_per_person'])
+
+    provider_gender_group = df.groupby(['provider_type','nppes_provider_gender']).agg({'pay_per_person':['count','mean','std','median'], 'pay_per_service':['mean','std','median'] } )
 
 # hist plots very varied, log scale may not help
 #   make_hist_plots(df, 'pay_per_service', 'provider_type')
@@ -213,7 +228,11 @@ def read_select_data(new_cols, fname, first=False):
     make_hist_plots(df, 'pay_per_person', 'provider_type', plotdir=make_plotdir('cms_hist_gender_plots/'), split_var='nppes_provider_gender')
 # one obvious thing from plot it seems many provider_types have only one gender
 
+#   return provider_gender_group   # needs refactoring
     return provider_group
+
+def std_by_mean(x):
+    return x.std() / x.mean()
 
 def filter_group_by_var(provider_group, var='pay_per_person'):
     "filter grouped data by variable var"
@@ -238,8 +257,8 @@ def main():
         provider_group = read_select_data(new_cols, fname, first=True)  # 1st block
     else:
         provider_group = read_select_data(new_cols, fname)
-#   filter_group_by_var(provider_group, var='pay_per_service')
-#   filter_group_by_var(provider_group, var='pay_per_person')
+    filter_group_by_var(provider_group, var='pay_per_service')
+    filter_group_by_var(provider_group, var='pay_per_person')
 
 if __name__ == '__main__':
     main()

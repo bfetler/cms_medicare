@@ -1,441 +1,3 @@
-data/Medicare_Physician_and_Other_Supplier_NPI_Aggregate_CY2014.txt shape (10, 70)
-nppes columns len=15
-['npi', 'nppes_provider_last_org_name', 'nppes_provider_first_name', 'nppes_provider_mi', 'nppes_credentials', 'nppes_provider_gender', 'nppes_entity_code', 'nppes_provider_street1', 'nppes_provider_street2', 'nppes_provider_city', 'nppes_provider_zip', 'nppes_provider_state', 'nppes_provider_country', 'provider_type', 'medicare_participation_indicator']
-          npi nppes_provider_last_org_name nppes_provider_first_name  \
-0  1003000126                    ENKESHAFI                   ARDALAN   
-1  1003000134                       CIBULL                    THOMAS   
-2  1003000142                       KHALIL                    RASHID   
-3  1003000407                      GIRARDI                     DAVID   
-4  1003000423                      VELOTTA                  JENNIFER   
-5  1003000480                    ROTHCHILD                     KEVIN   
-6  1003000522                      WEIGAND                 FREDERICK   
-7  1003000530                     SEMONCHE                    AMANDA   
-8  1003000639                    BENHARASH                    PEYMAN   
-9  1003000704                       GATTON                   ZACHARY   
-
-  nppes_provider_mi nppes_credentials nppes_provider_gender nppes_entity_code  \
-0               NaN              M.D.                     M                 I   
-1                 L              M.D.                     M                 I   
-2               NaN              M.D.                     M                 I   
-3                 J              D.O.                     M                 I   
-4                 A              M.D.                     F                 I   
-5                 B                MD                     M                 I   
-6                 J                MD                     M                 I   
-7                 M                DO                     F                 I   
-8               NaN                MD                     M                 I   
-9                 M              M.D.                     M                 I   
-
-                          nppes_provider_street1 nppes_provider_street2  \
-0                                   900 SETON DR                    NaN   
-1                                 2650 RIDGE AVE      EVANSTON HOSPITAL   
-2                     4126 N HOLLAND SYLVANIA RD              SUITE 220   
-3                                  456 MAGEE AVE                    NaN   
-4                               11100 EUCLID AVE                    NaN   
-5                               12605 E 16TH AVE                    NaN   
-6                        1565 SAXON BLVD STE 202                    NaN   
-7                                  1021 PARK AVE              SUITE 203   
-8  UCLA CARDIOTHORACIC SURGERY 10833 LECONTE AVE             62-182 CHS   
-9                             1330 COSHOCTON AVE                    NaN   
-
-  nppes_provider_city  nppes_provider_zip nppes_provider_state  \
-0          CUMBERLAND               21502                   MD   
-1            EVANSTON               60201                   IL   
-2              TOLEDO               43623                   OH   
-3              PATTON               16668                   PA   
-4           CLEVELAND               44106                   OH   
-5              AURORA               80045                   CO   
-6             DELTONA               32725                   FL   
-7          QUAKERTOWN               18951                   PA   
-8         LOS ANGELES               90095                   CA   
-9        MOUNT VERNON               43050                   OH   
-
-  nppes_provider_country          provider_type  \
-0                     US      Internal Medicine   
-1                     US              Pathology   
-2                     US         Anesthesiology   
-3                     US        Family Practice   
-4                     US  Obstetrics/Gynecology   
-5                     US        General Surgery   
-6                     US        Family Practice   
-7                     US      Internal Medicine   
-8                     US        Cardiac Surgery   
-9                     US         Anesthesiology   
-
-  medicare_participation_indicator  
-0                                Y  
-1                                Y  
-2                                Y  
-3                                Y  
-4                                Y  
-5                                Y  
-6                                Y  
-7                                Y  
-8                                Y  
-9                                Y  
-total columns len=18
-['total_services', 'total_unique_benes', 'total_submitted_chrg_amt', 'total_medicare_allowed_amt', 'total_medicare_payment_amt', 'total_medicare_stnd_amt', 'total_drug_services', 'total_drug_unique_benes', 'total_drug_submitted_chrg_amt', 'total_drug_medicare_allowed_amt', 'total_drug_medicare_payment_amt', 'total_drug_medicare_stnd_amt', 'total_med_services', 'total_med_unique_benes', 'total_med_submitted_chrg_amt', 'total_med_medicare_allowed_amt', 'total_med_medicare_payment_amt', 'total_med_medicare_stnd_amt']
-   total_services  total_unique_benes  total_submitted_chrg_amt  \
-0            2749                 913                 750652.00   
-1            8643                4276                1357139.00   
-2             654                 165                 122130.00   
-3            1012                 392                 169486.00   
-4             293                  57                  24148.00   
-5             238                 153                 317428.25   
-6            1619                 471                 149525.80   
-7             848                 302                  90588.00   
-8              48                  30                 146287.50   
-9             140                 101                  96310.80   
-
-   total_medicare_allowed_amt  total_medicare_payment_amt  \
-0                   254849.52                   194073.09   
-1                   321641.88                   245364.34   
-2                    69771.61                    51820.04   
-3                   110286.91                    85665.04   
-4                    12261.24                     9491.61   
-5                    61302.67                    47097.18   
-6                   118660.50                    83692.49   
-7                    60650.83                    41392.10   
-8                    26321.24                    19542.01   
-9                    22904.76                    17572.93   
-
-   total_medicare_stnd_amt  total_drug_services  total_drug_unique_benes  \
-0                193275.26                    0                        0   
-1                227205.32                    0                        0   
-2                 51233.02                    0                        0   
-3                 87328.49                    0                        0   
-4                  9918.62                  NaN                      NaN   
-5                 47188.78                    0                        0   
-6                 83378.83                  NaN                      NaN   
-7                 42983.09                  141                      130   
-8                 20183.85                    0                        0   
-9                 17824.40                    0                        0   
-
-   total_drug_submitted_chrg_amt  total_drug_medicare_allowed_amt  \
-0                              0                             0.00   
-1                              0                             0.00   
-2                              0                             0.00   
-3                              0                             0.00   
-4                            NaN                              NaN   
-5                              0                             0.00   
-6                            NaN                              NaN   
-7                           9872                          4826.99   
-8                              0                             0.00   
-9                              0                             0.00   
-
-   total_drug_medicare_payment_amt  total_drug_medicare_stnd_amt  \
-0                             0.00                          0.00   
-1                             0.00                          0.00   
-2                             0.00                          0.00   
-3                             0.00                          0.00   
-4                              NaN                           NaN   
-5                             0.00                          0.00   
-6                              NaN                           NaN   
-7                          4722.73                       4722.73   
-8                             0.00                          0.00   
-9                             0.00                          0.00   
-
-   total_med_services  total_med_unique_benes  total_med_submitted_chrg_amt  \
-0                2749                     913                     750652.00   
-1                8643                    4276                    1357139.00   
-2                 654                     165                     122130.00   
-3                1012                     392                     169486.00   
-4                 NaN                     NaN                           NaN   
-5                 238                     153                     317428.25   
-6                 NaN                     NaN                           NaN   
-7                 707                     302                      80716.00   
-8                  48                      30                     146287.50   
-9                 140                     101                      96310.80   
-
-   total_med_medicare_allowed_amt  total_med_medicare_payment_amt  \
-0                       254849.52                       194073.09   
-1                       321641.88                       245364.34   
-2                        69771.61                        51820.04   
-3                       110286.91                        85665.04   
-4                             NaN                             NaN   
-5                        61302.67                        47097.18   
-6                             NaN                             NaN   
-7                        55823.84                        36669.37   
-8                        26321.24                        19542.01   
-9                        22904.76                        17572.93   
-
-   total_med_medicare_stnd_amt  
-0                    193275.26  
-1                    227205.32  
-2                     51233.02  
-3                     87328.49  
-4                          NaN  
-5                     47188.78  
-6                          NaN  
-7                     38260.36  
-8                     20183.85  
-9                     17824.40  
-number columns len=5
-['number_of_hcpcs', 'drug_suppress_indicator', 'number_of_drug_hcpcs', 'med_suppress_indicator', 'number_of_med_hcpcs']
-   number_of_hcpcs drug_suppress_indicator  number_of_drug_hcpcs  \
-0               16                     NaN                     0   
-1               13                     NaN                     0   
-2               40                     NaN                     0   
-3               39                     NaN                     0   
-4               29                       *                   NaN   
-5               62                     NaN                     0   
-6               34                       *                   NaN   
-7               32                     NaN                     7   
-8               29                     NaN                     0   
-9               43                     NaN                     0   
-
-  med_suppress_indicator  number_of_med_hcpcs  
-0                    NaN                   16  
-1                    NaN                   13  
-2                    NaN                   40  
-3                    NaN                   39  
-4                      #                  NaN  
-5                    NaN                   62  
-6                      #                  NaN  
-7                    NaN                   25  
-8                    NaN                   29  
-9                    NaN                   43  
-bene_count columns len=16
-['beneficiary_average_age', 'Beneficiary_Average_Risk_Score', 'beneficiary_age_less_65_count', 'beneficiary_age_65_74_count', 'beneficiary_age_75_84_count', 'beneficiary_age_greater_84_count', 'beneficiary_female_count', 'beneficiary_male_count', 'beneficiary_race_white_count', 'beneficiary_race_black_count', 'beneficiary_race_api_count', 'beneficiary_race_hispanic_count', 'beneficiary_race_natind_count', 'beneficiary_race_other_count', 'beneficiary_nondual_count', 'beneficiary_dual_count']
-   beneficiary_average_age  Beneficiary_Average_Risk_Score  \
-0                       74                          2.2206   
-1                       76                          1.0007   
-2                       60                          1.7777   
-3                       74                          1.7228   
-4                       60                          0.9101   
-5                       63                          2.1111   
-6                       78                          1.1398   
-7                       70                          0.9057   
-8                       65                          2.4164   
-9                       71                          1.0732   
-
-   beneficiary_age_less_65_count  beneficiary_age_65_74_count  \
-0                            162                          277   
-1                            102                         1856   
-2                            104                           37   
-3                             88                           82   
-4                             27                           18   
-5                             70                           43   
-6                             22                          146   
-7                             57                          146   
-8                            NaN                           14   
-9                            NaN                           38   
-
-   beneficiary_age_75_84_count  beneficiary_age_greater_84_count  \
-0                          297                               177   
-1                         1500                               818   
-2                          NaN                               NaN   
-3                          103                               119   
-4                          NaN                               NaN   
-5                           28                                12   
-6                          179                               124   
-7                           66                                33   
-8                          NaN                               NaN   
-9                           32                               NaN   
-
-   beneficiary_female_count  beneficiary_male_count  \
-0                       504                     409   
-1                      2252                    2024   
-2                        94                      71   
-3                       230                     162   
-4                        57                       0   
-5                        90                      63   
-6                       259                     212   
-7                       166                     136   
-8                       NaN                     NaN   
-9                        57                      44   
-
-   beneficiary_race_white_count  beneficiary_race_black_count  \
-0                           881                           NaN   
-1                          4057                            36   
-2                           115                           NaN   
-3                           NaN                           NaN   
-4                           NaN                           NaN   
-5                            98                            22   
-6                           430                            18   
-7                           NaN                           NaN   
-8                            16                           NaN   
-9                           NaN                           NaN   
-
-   beneficiary_race_api_count  beneficiary_race_hispanic_count  \
-0                         NaN                              NaN   
-1                          47                               69   
-2                         NaN                              NaN   
-3                         NaN                              NaN   
-4                         NaN                              NaN   
-5                         NaN                               17   
-6                         NaN                              NaN   
-7                         NaN                              NaN   
-8                         NaN                              NaN   
-9                         NaN                              NaN   
-
-   beneficiary_race_natind_count  beneficiary_race_other_count  \
-0                            NaN                           NaN   
-1                              0                            67   
-2                            NaN                           NaN   
-3                            NaN                           NaN   
-4                            NaN                           NaN   
-5                            NaN                           NaN   
-6                            NaN                           NaN   
-7                            NaN                           NaN   
-8                              0                             0   
-9                            NaN                           NaN   
-
-   beneficiary_nondual_count  beneficiary_dual_count  
-0                        588                     325  
-1                       4132                     144  
-2                         72                      93  
-3                        234                     158  
-4                         31                      26  
-5                         81                      72  
-6                        443                      28  
-7                        252                      50  
-8                        NaN                     NaN  
-9                         70                      31  
-bene_pct columns len=16
-['beneficiary_cc_afib_percent', 'beneficiary_cc_alzrdsd_percent', 'beneficiary_cc_asthma_percent', 'beneficiary_cc_cancer_percent', 'beneficiary_cc_chf_percent', 'beneficiary_cc_ckd_percent', 'beneficiary_cc_copd_percent', 'beneficiary_cc_depr_percent', 'beneficiary_cc_diab_percent', 'beneficiary_cc_hyperl_percent', 'beneficiary_cc_hypert_percent', 'beneficiary_cc_ihd_percent', 'beneficiary_cc_ost_percent', 'beneficiary_cc_raoa_percent', 'beneficiary_cc_schiot_percent', 'beneficiary_cc_strk_percent']
-   beneficiary_cc_afib_percent  beneficiary_cc_alzrdsd_percent  \
-0                           27                              31   
-1                           12                               7   
-2                          NaN                             NaN   
-3                           22                              30   
-4                          NaN                             NaN   
-5                           11                               8   
-6                           13                              32   
-7                           11                               9   
-8                          NaN                             NaN   
-9                           14                              11   
-
-   beneficiary_cc_asthma_percent  beneficiary_cc_cancer_percent  \
-0                             18                             16   
-1                              4                             13   
-2                             21                              8   
-3                             15                             13   
-4                            NaN                            NaN   
-5                             14                             12   
-6                              6                             16   
-7                            NaN                             10   
-8                            NaN                            NaN   
-9                             16                             12   
-
-   beneficiary_cc_chf_percent  beneficiary_cc_ckd_percent  \
-0                          49                          56   
-1                          11                          14   
-2                          22                          28   
-3                          47                          43   
-4                         NaN                         NaN   
-5                          22                          44   
-6                          16                          25   
-7                          11                          17   
-8                          75                          70   
-9                          14                          28   
-
-   beneficiary_cc_copd_percent  beneficiary_cc_depr_percent  \
-0                           43                           46   
-1                            7                           12   
-2                           35                           44   
-3                           38                           47   
-4                          NaN                           32   
-5                           12                           39   
-6                           19                           13   
-7                           12                           21   
-8                          NaN                          NaN   
-9                           20                           33   
-
-   beneficiary_cc_diab_percent  beneficiary_cc_hyperl_percent  \
-0                           52                             70   
-1                           20                             53   
-2                           48                             61   
-3                           40                             59   
-4                           23                             51   
-5                           36                             37   
-6                           31                             75   
-7                           22                             60   
-8                           53                             75   
-9                           32                             64   
-
-   beneficiary_cc_hypert_percent  beneficiary_cc_ihd_percent  \
-0                             75                          68   
-1                             57                          28   
-2                             75                          41   
-3                             75                          62   
-4                             46                          19   
-5                             69                          27   
-6                             75                          37   
-7                             65                          26   
-8                             75                          75   
-9                             75                          50   
-
-   beneficiary_cc_ost_percent  beneficiary_cc_raoa_percent  \
-0                          14                           53   
-1                           9                           37   
-2                           8                           75   
-3                          11                           45   
-4                         NaN                           32   
-5                           8                           39   
-6                          11                           54   
-7                           7                           27   
-8                         NaN                          NaN   
-9                          13                           60   
-
-   beneficiary_cc_schiot_percent  beneficiary_cc_strk_percent  
-0                             18                           20  
-1                              1                            3  
-2                              9                          NaN  
-3                             19                           10  
-4                            NaN                          NaN  
-5                            NaN                            9  
-6                            NaN                            4  
-7                            NaN                          NaN  
-8                              0                          NaN  
-9                            NaN                          NaN  
-select columns 
-           provider_type nppes_provider_gender nppes_provider_state  \
-0      Internal Medicine                     M                   MD   
-1              Pathology                     M                   IL   
-2         Anesthesiology                     M                   OH   
-3        Family Practice                     M                   PA   
-4  Obstetrics/Gynecology                     F                   OH   
-5        General Surgery                     M                   CO   
-6        Family Practice                     M                   FL   
-7      Internal Medicine                     F                   PA   
-8        Cardiac Surgery                     M                   CA   
-9         Anesthesiology                     M                   OH   
-
-   total_services  total_unique_benes  total_submitted_chrg_amt  \
-0            2749                 913                 750652.00   
-1            8643                4276                1357139.00   
-2             654                 165                 122130.00   
-3            1012                 392                 169486.00   
-4             293                  57                  24148.00   
-5             238                 153                 317428.25   
-6            1619                 471                 149525.80   
-7             848                 302                  90588.00   
-8              48                  30                 146287.50   
-9             140                 101                  96310.80   
-
-   total_medicare_payment_amt  beneficiary_average_age  \
-0                   194073.09                       74   
-1                   245364.34                       76   
-2                    51820.04                       60   
-3                    85665.04                       74   
-4                     9491.61                       60   
-5                    47097.18                       63   
-6                    83692.49                       78   
-7                    41392.10                       70   
-8                    19542.01                       65   
-9                    17572.93                       71   
-
-   Beneficiary_Average_Risk_Score  
-0                          2.2206  
-1                          1.0007  
-2                          1.7777  
-3                          1.7228  
-4                          0.9101  
-5                          2.1111  
-6                          1.1398  
-7                          0.9057  
-8                          2.4164  
-9                          1.0732  
 reading data .................... done
 df columns isnull sum
 provider_type                         0
@@ -459,218 +21,874 @@ total_medicare_payment_amt        3
 beneficiary_average_age           0
 Beneficiary_Average_Risk_Score    0
 dtype: int64
-df gender set ['F', nan, 'M']
+df gender set ['F', 'M', 'nan']
 df (986674, 11) shape, filename data/Medicare_Physician_and_Other_Supplier_NPI_Aggregate_CY2014.txt
+provider_type median
+group by provider, gender pay_per_person count
+                                                           pay_per_person
+provider_type                       nppes_provider_gender                
+Addiction Medicine                  F                                  20
+                                    M                                 105
+All Other Suppliers                 M                                   2
+                                    nan                               663
+Allergy/Immunology                  F                                1059
+                                    M                                2256
+Ambulance Service Supplier          F                                   4
+                                    M                                  17
+                                    nan                              9722
+Ambulatory Surgical Center          nan                              4961
+Anesthesiologist Assistants         F                                 721
+                                    M                                 771
+Anesthesiology                      F                                8752
+                                    M                               28195
+Audiologist (billing independently) F                                4794
+                                    M                                1057
+CRNA                                F                               23188
+                                    M                               15912
+Cardiac Electrophysiology           F                                 152
+                                    M                                1360
+                                                                pay_per_person
+provider_type                            nppes_provider_gender                
+Cardiac Surgery                          F                                  71
+                                         M                                1489
+Cardiology                               F                                2639
+                                         M                               20245
+Centralized Flu                          nan                             12873
+Certified Clinical Nurse Specialist      F                                1914
+                                         M                                 128
+Certified Nurse Midwife                  F                                 749
+                                         M                                   4
+Chiropractic                             F                                7431
+                                         M                               29102
+                                         nan                                 7
+Clinical Laboratory                      F                                  43
+                                         M                                  19
+                                         nan                              2780
+Clinical Psychologist                    F                                7693
+                                         M                                6957
+Colorectal Surgery (formerly proctology) F                                 262
+                                         M                                1072
+Critical Care (Intensivists)             F                                 583
+                                                    pay_per_person
+provider_type                nppes_provider_gender                
+Critical Care (Intensivists) M                                1962
+Dermatology                  F                                4937
+                             M                                6141
+Diagnostic Radiology         F                                6647
+                             M                               22737
+Emergency Medicine           F                               10595
+                             M                               29838
+Endocrinology                F                                2382
+                             M                                2859
+Family Practice              F                               30635
+                             M                               51621
+                             nan                                12
+Gastroenterology             F                                1906
+                             M                               10844
+                             nan                                 1
+General Practice             F                                1376
+                             M                                4786
+General Surgery              F                                3431
+                             M                               16474
+Geriatric Medicine           F                                 873
+                                                               pay_per_person
+provider_type                           nppes_provider_gender                
+Geriatric Medicine                      M                                 955
+Geriatric Psychiatry                    F                                  66
+                                        M                                 108
+Gynecological/Oncology                  F                                 358
+                                        M                                 574
+Hand Surgery                            F                                 135
+                                        M                                1129
+Hematology                              F                                 230
+                                        M                                 495
+Hematology/Oncology                     F                                2373
+                                        M                                5449
+Hospice and Palliative Care             F                                 325
+                                        M                                 256
+Independent Diagnostic Testing Facility F                                   5
+                                        M                                   7
+                                        nan                              2959
+Infectious Disease                      F                                2005
+                                        M                                3236
+Internal Medicine                       F                               34562
+                                        M                               62915
+                                                            pay_per_person
+provider_type                        nppes_provider_gender                
+Internal Medicine                    nan                                 7
+Interventional Cardiology            M                                   1
+Interventional Pain Management       F                                 225
+                                     M                                1627
+Interventional Radiology             F                                 126
+                                     M                                1119
+Licensed Clinical Social Worker      F                               12878
+                                     M                                3619
+                                     nan                                 1
+Mammographic Screening Center        nan                                19
+Mass Immunization Roster Biller      F                                   4
+                                     M                                  27
+                                     nan                             25997
+Maxillofacial Surgery                F                                  65
+                                     M                                 943
+Medical Oncology                     F                                 861
+                                     M                                1988
+Multispecialty Clinic/Group Practice F                                  25
+                                     M                                  40
+                                     nan                               515
+                                              pay_per_person
+provider_type          nppes_provider_gender                
+Nephrology             F                                2002
+                       M                                6034
+                       nan                                 1
+Neurology              F                                3892
+                       M                                9468
+Neuropsychiatry        F                                  23
+                       M                                  84
+Neurosurgery           F                                 297
+                       M                                4190
+Nuclear Medicine       F                                 117
+                       M                                 429
+Nurse Practitioner     F                               66788
+                       M                                7027
+                       nan                                 1
+Obstetrics/Gynecology  F                               14589
+                       M                               13058
+                       nan                                 1
+Occupational therapist F                                3492
+                       M                                 717
+Ophthalmology          F                                3833
+                                                         pay_per_person
+provider_type                     nppes_provider_gender                
+Ophthalmology                     M                               13831
+                                  nan                                 1
+Optometry                         F                               10249
+                                  M                               18218
+                                  nan                                 1
+Oral Surgery (dentists only)      F                                 174
+                                  M                                1291
+Orthopedic Surgery                F                                1028
+                                  M                               20273
+Osteopathic Manipulative Medicine F                                 203
+                                  M                                 409
+Otolaryngology                    F                                1186
+                                  M                                7586
+Pain Management                   F                                 238
+                                  M                                1356
+Pathology                         F                                4412
+                                  M                                7173
+                                  nan                                 1
+Pediatric Medicine                F                                 821
+                                  M                                1089
+                                                            pay_per_person
+provider_type                        nppes_provider_gender                
+Peripheral Vascular Disease          F                                  14
+                                     M                                  54
+Pharmacy                             nan                                 3
+Physical Medicine and Rehabilitation F                                2522
+                                     M                                5006
+Physical Therapist                   F                               22724
+                                     M                               18566
+                                     nan                                 5
+Physician Assistant                  F                               34381
+                                     M                               20276
+Plastic and Reconstructive Surgery   F                                 629
+                                     M                                3849
+                                     nan                                 1
+Podiatry                             F                                3322
+                                     M                               11627
+                                     nan                                 1
+Portable X-ray                       F                                   2
+                                     M                                   4
+                                     nan                               322
+Preventive Medicine                  F                                 109
+                                                                   pay_per_person
+provider_type                               nppes_provider_gender                
+Preventive Medicine                         M                                 230
+Psychiatry                                  F                                8027
+                                            M                               14581
+                                            nan                                 1
+Psychologist (billing independently)        F                                 136
+                                            M                                 119
+Public Health Welfare Agency                nan                               395
+Pulmonary Disease                           F                                1653
+                                            M                                7697
+Radiation Oncology                          F                                1126
+                                            M                                3237
+Radiation Therapy                           nan                                51
+Registered Dietician/Nutrition Professional F                                1692
+                                            M                                  49
+Rheumatology                                F                                1740
+                                            M                                2589
+Sleep Medicine                              F                                  63
+                                            M                                 129
+Slide Preparation Facility                  M                                   1
+                                            nan                                24
+                                                        pay_per_person
+provider_type                    nppes_provider_gender                
+Speech Language Pathologist      F                                 493
+                                 M                                  55
+Sports Medicine                  F                                  97
+                                 M                                 544
+Surgical Oncology                F                                 300
+                                 M                                 509
+Thoracic Surgery                 F                                 126
+                                 M                                1916
+Unknown Physician Specialty Code F                                  34
+                                 M                                  78
+                                 nan                                 1
+Unknown Supplier/Provider        F                                  11
+                                 M                                  13
+                                 nan                                 3
+Urology                          F                                 651
+                                 M                                8330
+Vascular Surgery                 F                                 301
+                                 M                                2614
+group by provider, gender pay_per_person median
+                                                           pay_per_person
+provider_type                       nppes_provider_gender                
+Addiction Medicine                  F                            2.318335
+                                    M                            2.509119
+All Other Suppliers                 M                            1.621081
+                                    nan                          1.698409
+Allergy/Immunology                  F                            2.455667
+                                    M                            2.457593
+Ambulance Service Supplier          F                            3.594162
+                                    M                            3.021727
+                                    nan                          2.763309
+Ambulatory Surgical Center          nan                          2.950948
+Anesthesiologist Assistants         F                            2.034294
+                                    M                            2.057513
+Anesthesiology                      F                            2.223238
+                                    M                            2.243642
+Audiologist (billing independently) F                            1.614637
+                                    M                            1.620864
+CRNA                                F                            2.070343
+                                    M                            2.106967
+Cardiac Electrophysiology           F                            2.264514
+                                    M                            2.324450
+                                                                pay_per_person
+provider_type                            nppes_provider_gender                
+Cardiac Surgery                          F                            2.825610
+                                         M                            2.976625
+Cardiology                               F                            2.147148
+                                         M                            2.262057
+Centralized Flu                          nan                          1.673374
+Certified Clinical Nurse Specialist      F                            2.220692
+                                         M                            2.218395
+Certified Nurse Midwife                  F                            1.878834
+                                         M                            2.048543
+Chiropractic                             F                            2.339847
+                                         M                            2.343884
+                                         nan                          2.260196
+Clinical Laboratory                      F                            2.247431
+                                         M                            2.267092
+                                         nan                          2.107664
+Clinical Psychologist                    F                            2.769150
+                                         M                            2.742316
+Colorectal Surgery (formerly proctology) F                            2.554698
+                                         M                            2.583268
+Critical Care (Intensivists)             F                            2.483406
+                                                    pay_per_person
+provider_type                nppes_provider_gender                
+Critical Care (Intensivists) M                            2.490842
+Dermatology                  F                            2.330930
+                             M                            2.393600
+Diagnostic Radiology         F                            1.659787
+                             M                            1.678016
+Emergency Medicine           F                            2.100586
+                             M                            2.097085
+Endocrinology                F                            2.231264
+                             M                            2.253122
+Family Practice              F                            2.219829
+                             M                            2.275885
+                             nan                          1.345616
+Gastroenterology             F                            2.337367
+                             M                            2.367349
+                             nan                          2.251799
+General Practice             F                            2.252988
+                             M                            2.295968
+General Surgery              F                            2.513315
+                             M                            2.555292
+Geriatric Medicine           F                            2.324769
+                                                               pay_per_person
+provider_type                           nppes_provider_gender                
+Geriatric Medicine                      M                            2.364687
+Geriatric Psychiatry                    F                            2.389664
+                                        M                            2.398141
+Gynecological/Oncology                  F                            2.568164
+                                        M                            2.603851
+Hand Surgery                            F                            2.517254
+                                        M                            2.529744
+Hematology                              F                            2.497026
+                                        M                            2.415142
+Hematology/Oncology                     F                            2.526032
+                                        M                            2.761205
+Hospice and Palliative Care             F                            2.291112
+                                        M                            2.289976
+Independent Diagnostic Testing Facility F                            2.384820
+                                        M                            2.456312
+                                        nan                          2.385026
+Infectious Disease                      F                            2.373852
+                                        M                            2.410741
+Internal Medicine                       F                            2.307037
+                                        M                            2.350578
+                                                            pay_per_person
+provider_type                        nppes_provider_gender                
+Internal Medicine                    nan                          1.292312
+Interventional Cardiology            M                            2.534470
+Interventional Pain Management       F                            2.590057
+                                     M                            2.652145
+Interventional Radiology             F                            1.945889
+                                     M                            2.190056
+Licensed Clinical Social Worker      F                            2.625937
+                                     M                            2.597187
+                                     nan                          2.486756
+Mammographic Screening Center        nan                          2.094698
+Mass Immunization Roster Biller      F                            1.663159
+                                     M                            1.616536
+                                     nan                          1.683718
+Maxillofacial Surgery                F                            2.261518
+                                     M                            2.257943
+Medical Oncology                     F                            2.437490
+                                     M                            2.517695
+Multispecialty Clinic/Group Practice F                            2.128815
+                                     M                            2.284428
+                                     nan                          1.410427
+                                              pay_per_person
+provider_type          nppes_provider_gender                
+Nephrology             F                            2.570038
+                       M                            2.608481
+                       nan                          2.754693
+Neurology              F                            2.304208
+                       M                            2.322101
+Neuropsychiatry        F                            2.278325
+                       M                            2.456723
+Neurosurgery           F                            2.682134
+                       M                            2.742808
+Nuclear Medicine       F                            1.844131
+                       M                            1.839905
+Nurse Practitioner     F                            1.957142
+                       M                            1.990983
+                       nan                          1.470557
+Obstetrics/Gynecology  F                            2.121606
+                       M                            2.188256
+                       nan                          1.862003
+Occupational therapist F                            2.641260
+                       M                            2.701973
+Ophthalmology          F                            2.395573
+                                                         pay_per_person
+provider_type                     nppes_provider_gender                
+Ophthalmology                     M                            2.459201
+                                  nan                          2.045689
+Optometry                         F                            2.005724
+                                  M                            2.008776
+                                  nan                          2.031466
+Oral Surgery (dentists only)      F                            2.173382
+                                  M                            2.222003
+Orthopedic Surgery                F                            2.517811
+                                  M                            2.578685
+Osteopathic Manipulative Medicine F                            2.537910
+                                  M                            2.476783
+Otolaryngology                    F                            2.322030
+                                  M                            2.344576
+Pain Management                   F                            2.485909
+                                  M                            2.575595
+Pathology                         F                            1.909691
+                                  M                            1.897754
+                                  nan                          1.823827
+Pediatric Medicine                F                            2.167738
+                                  M                            2.161717
+                                                            pay_per_person
+provider_type                        nppes_provider_gender                
+Peripheral Vascular Disease          F                            1.808385
+                                     M                            2.429760
+Pharmacy                             nan                          1.650518
+Physical Medicine and Rehabilitation F                            2.454037
+                                     M                            2.503962
+Physical Therapist                   F                            2.691692
+                                     M                            2.762825
+                                     nan                          2.690120
+Physician Assistant                  F                            1.955817
+                                     M                            1.987662
+Plastic and Reconstructive Surgery   F                            2.690791
+                                     M                            2.699710
+                                     nan                          2.355733
+Podiatry                             F                            2.253571
+                                     M                            2.288207
+                                     nan                          1.671526
+Portable X-ray                       F                            2.454736
+                                     M                            2.514705
+                                     nan                          2.327962
+Preventive Medicine                  F                            2.159252
+                                                                   pay_per_person
+provider_type                               nppes_provider_gender                
+Preventive Medicine                         M                            2.116519
+Psychiatry                                  F                            2.348789
+                                            M                            2.393014
+                                            nan                          2.897474
+Psychologist (billing independently)        F                            2.972615
+                                            M                            2.908709
+Public Health Welfare Agency                nan                          1.642563
+Pulmonary Disease                           F                            2.376151
+                                            M                            2.412467
+Radiation Oncology                          F                            2.865647
+                                            M                            2.938782
+Radiation Therapy                           nan                          3.847509
+Registered Dietician/Nutrition Professional F                            2.101717
+                                            M                            2.126792
+Rheumatology                                F                            2.414993
+                                            M                            2.590176
+Sleep Medicine                              F                            2.194032
+                                            M                            2.197845
+Slide Preparation Facility                  M                            1.709601
+                                            nan                          1.799228
+                                                        pay_per_person
+provider_type                    nppes_provider_gender                
+Speech Language Pathologist      F                            2.683516
+                                 M                            2.514360
+Sports Medicine                  F                            2.231488
+                                 M                            2.407530
+Surgical Oncology                F                            2.568263
+                                 M                            2.651631
+Thoracic Surgery                 F                            2.705570
+                                 M                            2.848551
+Unknown Physician Specialty Code F                            2.288356
+                                 M                            2.268077
+                                 nan                          3.191043
+Unknown Supplier/Provider        F                            2.085314
+                                 M                            2.157481
+                                 nan                          1.786445
+Urology                          F                            2.436130
+                                 M                            2.467567
+Vascular Surgery                 F                            2.526835
+                                 M                            2.561771
+group by provider, gender pay_per_person std_by_mean
+                                                           pay_per_person
+provider_type                       nppes_provider_gender                
+Addiction Medicine                  F                            0.127941
+                                    M                            0.139847
+All Other Suppliers                 M                            0.073336
+                                    nan                          0.458505
+Allergy/Immunology                  F                            0.115613
+                                    M                            0.117602
+Ambulance Service Supplier          F                            0.213440
+                                    M                            0.235085
+                                    nan                          0.110616
+Ambulatory Surgical Center          nan                          0.077362
+Anesthesiologist Assistants         F                            0.056880
+                                    M                            0.054958
+Anesthesiology                      F                            0.088654
+                                    M                            0.097001
+Audiologist (billing independently) F                            0.110102
+                                    M                            0.121451
+CRNA                                F                            0.073057
+                                    M                            0.072191
+Cardiac Electrophysiology           F                            0.146958
+                                    M                            0.124068
+                                                                pay_per_person
+provider_type                            nppes_provider_gender                
+Cardiac Surgery                          F                            0.131671
+                                         M                            0.102771
+Cardiology                               F                            0.155039
+                                         M                            0.150128
+Centralized Flu                          nan                          0.063551
+Certified Clinical Nurse Specialist      F                            0.166678
+                                         M                            0.128323
+Certified Nurse Midwife                  F                            0.141388
+                                         M                            0.090390
+Chiropractic                             F                            0.107661
+                                         M                            0.109684
+                                         nan                          0.258491
+Clinical Laboratory                      F                            0.063623
+                                         M                            0.137017
+                                         nan                          0.225068
+Clinical Psychologist                    F                            0.128749
+                                         M                            0.127270
+Colorectal Surgery (formerly proctology) F                            0.055089
+                                         M                            0.060222
+Critical Care (Intensivists)             F                            0.074062
+                                                    pay_per_person
+provider_type                nppes_provider_gender                
+Critical Care (Intensivists) M                            0.076023
+Dermatology                  F                            0.104453
+                             M                            0.122863
+Diagnostic Radiology         F                            0.180457
+                             M                            0.182154
+Emergency Medicine           F                            0.059257
+                             M                            0.068285
+Endocrinology                F                            0.090819
+                             M                            0.110097
+Family Practice              F                            0.148887
+                             M                            0.141511
+                             nan                          0.055681
+Gastroenterology             F                            0.058546
+                             M                            0.063140
+                             nan                               NaN
+General Practice             F                            0.172114
+                             M                            0.167483
+General Surgery              F                            0.082054
+                             M                            0.089128
+Geriatric Medicine           F                            0.095252
+                                                               pay_per_person
+provider_type                           nppes_provider_gender                
+Geriatric Medicine                      M                            0.115011
+Geriatric Psychiatry                    F                            0.101038
+                                        M                            0.118413
+Gynecological/Oncology                  F                            0.129911
+                                        M                            0.125191
+Hand Surgery                            F                            0.053227
+                                        M                            0.055189
+Hematology                              F                            0.186039
+                                        M                            0.180114
+Hematology/Oncology                     F                            0.179784
+                                        M                            0.185548
+Hospice and Palliative Care             F                            0.067294
+                                        M                            0.074923
+Independent Diagnostic Testing Facility F                            0.083145
+                                        M                            0.165747
+                                        nan                          0.147261
+Infectious Disease                      F                            0.095676
+                                        M                            0.102623
+Internal Medicine                       F                            0.115797
+                                        M                            0.119578
+                                                            pay_per_person
+provider_type                        nppes_provider_gender                
+Internal Medicine                    nan                          0.222151
+Interventional Cardiology            M                                 NaN
+Interventional Pain Management       F                            0.121603
+                                     M                            0.108643
+Interventional Radiology             F                            0.241137
+                                     M                            0.229406
+Licensed Clinical Social Worker      F                            0.136732
+                                     M                            0.140130
+                                     nan                               NaN
+Mammographic Screening Center        nan                          0.063064
+Mass Immunization Roster Biller      F                            0.055535
+                                     M                            0.050870
+                                     nan                          0.057356
+Maxillofacial Surgery                F                            0.124338
+                                     M                            0.104587
+Medical Oncology                     F                            0.180157
+                                     M                            0.189941
+Multispecialty Clinic/Group Practice F                            0.180366
+                                     M                            0.180195
+                                     nan                          0.273536
+                                              pay_per_person
+provider_type          nppes_provider_gender                
+Nephrology             F                            0.090368
+                       M                            0.096148
+                       nan                               NaN
+Neurology              F                            0.103695
+                       M                            0.110987
+Neuropsychiatry        F                            0.128097
+                       M                            0.135169
+Neurosurgery           F                            0.104907
+                       M                            0.088195
+Nuclear Medicine       F                            0.245396
+                       M                            0.238489
+Nurse Practitioner     F                            0.167913
+                       M                            0.164663
+                       nan                               NaN
+Obstetrics/Gynecology  F                            0.098489
+                       M                            0.109770
+                       nan                               NaN
+Occupational therapist F                            0.132066
+                       M                            0.130704
+Ophthalmology          F                            0.123973
+                                                         pay_per_person
+provider_type                     nppes_provider_gender                
+Ophthalmology                     M                            0.136725
+                                  nan                               NaN
+Optometry                         F                            0.088932
+                                  M                            0.094741
+                                  nan                               NaN
+Oral Surgery (dentists only)      F                            0.171335
+                                  M                            0.134249
+Orthopedic Surgery                F                            0.085522
+                                  M                            0.075195
+Osteopathic Manipulative Medicine F                            0.168245
+                                  M                            0.167540
+Otolaryngology                    F                            0.093271
+                                  M                            0.101051
+Pain Management                   F                            0.119029
+                                  M                            0.115268
+Pathology                         F                            0.109673
+                                  M                            0.113286
+                                  nan                               NaN
+Pediatric Medicine                F                            0.197023
+                                  M                            0.198041
+                                                            pay_per_person
+provider_type                        nppes_provider_gender                
+Peripheral Vascular Disease          F                            0.204487
+                                     M                            0.187048
+Pharmacy                             nan                          0.113422
+Physical Medicine and Rehabilitation F                            0.116622
+                                     M                            0.106853
+Physical Therapist                   F                            0.096050
+                                     M                            0.087753
+                                     nan                          0.092423
+Physician Assistant                  F                            0.132471
+                                     M                            0.136568
+Plastic and Reconstructive Surgery   F                            0.080939
+                                     M                            0.076825
+                                     nan                               NaN
+Podiatry                             F                            0.100933
+                                     M                            0.098989
+                                     nan                               NaN
+Portable X-ray                       F                            0.029494
+                                     M                            0.084523
+                                     nan                          0.069018
+Preventive Medicine                  F                            0.211105
+                                                                   pay_per_person
+provider_type                               nppes_provider_gender                
+Preventive Medicine                         M                            0.200872
+Psychiatry                                  F                            0.135916
+                                            M                            0.137773
+                                            nan                               NaN
+Psychologist (billing independently)        F                            0.119752
+                                            M                            0.124095
+Public Health Welfare Agency                nan                          0.095028
+Pulmonary Disease                           F                            0.091532
+                                            M                            0.094885
+Radiation Oncology                          F                            0.153973
+                                            M                            0.150911
+Radiation Therapy                           nan                          0.056791
+Registered Dietician/Nutrition Professional F                            0.090807
+                                            M                            0.085255
+Rheumatology                                F                            0.172999
+                                            M                            0.185690
+Sleep Medicine                              F                            0.084859
+                                            M                            0.098918
+Slide Preparation Facility                  M                                 NaN
+                                            nan                          0.067398
+                                                        pay_per_person
+provider_type                    nppes_provider_gender                
+Speech Language Pathologist      F                            0.147305
+                                 M                            0.143991
+Sports Medicine                  F                            0.100897
+                                 M                            0.093845
+Surgical Oncology                F                            0.083085
+                                 M                            0.100497
+Thoracic Surgery                 F                            0.103877
+                                 M                            0.099911
+Unknown Physician Specialty Code F                            0.175589
+                                 M                            0.188665
+                                 nan                               NaN
+Unknown Supplier/Provider        F                            0.094039
+                                 M                            0.060356
+                                 nan                          0.462179
+Urology                          F                            0.075959
+                                 M                            0.082380
+Vascular Surgery                 F                            0.133615
+                                 M                            0.140394
 plotting histograms
-./Users/bfetler/anaconda/envs/pyana3/lib/python3.5/site-packages/matplotlib/tight_layout.py:222: UserWarning: tight_layout : falling back to Agg renderer
+./Users/bfetler/anaconda/envs/taxi3/lib/python3.5/site-packages/matplotlib/tight_layout.py:222: UserWarning: tight_layout : falling back to Agg renderer
   warnings.warn("tight_layout : falling back to Agg renderer")
 ....... done plotting histograms
-plotting histograms
-........ done plotting histograms
 
 top median pay_per_service
                                           pay_per_service  pay_per_person
 provider_type                                                            
-Ambulatory Surgical Center                     457.033585      893.198710
-Cardiac Surgery                                353.245027      933.512141
-Thoracic Surgery                               261.803840      689.114580
-Neurosurgery                                   220.810944      549.077861
-Surgical Oncology                              167.415656      406.925047
-Plastic and Reconstructive Surgery             163.857286      499.582462
-Radiation Therapy                              155.014931     7038.965077
-Colorectal Surgery (formerly proctology)       151.646725      380.250333
-General Surgery                                144.576501      353.419080
-Anesthesiology                                 131.026703      173.002862
-Vascular Surgery                               124.708455      360.204791
-Gynecological/Oncology                         118.264310      385.654485
-Critical Care (Intensivists)                   116.937742      309.321000
-CRNA                                           115.403862      121.219559
-Anesthesiologist Assistants                    108.656028      111.691955
-Maxillofacial Surgery                          105.288186      181.201264
-Independent Diagnostic Testing Facility        104.911691      242.730569
-Oral Surgery (dentists only)                    99.697442      164.483667
-Gastroenterology                                97.743808      230.548194
-Ophthalmology                                   89.907446      277.764674
+Ambulatory Surgical Center                       2.659948        2.950948
+Cardiac Surgery                                  2.548076        2.970120
+Thoracic Surgery                                 2.417976        2.838291
+Neurosurgery                                     2.344021        2.739634
+Surgical Oncology                                2.223796        2.609514
+Plastic and Reconstructive Surgery               2.214466        2.698607
+Radiation Therapy                                2.190374        3.847509
+Colorectal Surgery (formerly proctology)         2.180833        2.580070
+General Surgery                                  2.160098        2.548290
+Anesthesiology                                   2.117360        2.238053
+Vascular Surgery                                 2.095896        2.556549
+Gynecological/Oncology                           2.072853        2.586198
+Critical Care (Intensivists)                     2.067955        2.490409
+CRNA                                             2.062220        2.083573
+Anesthesiologist Assistants                      2.036054        2.048022
+Maxillofacial Surgery                            2.022380        2.258161
+Independent Diagnostic Testing Facility          2.020824        2.385124
+Oral Surgery (dentists only)                     1.998684        2.216123
+Gastroenterology                                 1.990089        2.362762
+Ophthalmology                                    1.953796        2.443677
                                       pay_per_service  pay_per_person
 provider_type                                                        
-Hospice and Palliative Care                 86.663824      195.445018
-Emergency Medicine                          86.592860      125.365105
-Sleep Medicine                              83.924397      157.496298
-Psychologist (billing independently)        82.440557      867.150833
-Peripheral Vascular Disease                 81.143805      187.630668
-Unknown Supplier/Provider                   77.907287      132.107433
-Nephrology                                  77.255633      396.694498
-Neurology                                   74.930030      207.009429
-Radiation Oncology                          73.912366      829.617236
-Orthopedic Surgery                          72.890315      377.000767
-Pulmonary Disease                           71.920664      254.809224
-Hand Surgery                                70.714419      337.249720
-Clinical Psychologist                       70.699565      571.290882
-Infectious Disease                          69.647045      248.983671
-Otolaryngology                              68.715921      219.489758
-Neuropsychiatry                             68.336400      249.960988
-Geriatric Medicine                          67.808811      221.206151
-Unknown Physician Specialty Code            67.721709      187.666042
-Mammographic Screening Center               67.196491      124.364952
-Cardiac Electrophysiology                   66.631892      206.738890
+Hospice and Palliative Care                  1.937838        2.291025
+Emergency Medicine                           1.937482        2.098177
+Sleep Medicine                               1.923888        2.197270
+Psychologist (billing independently)         1.916141        2.938095
+Peripheral Vascular Disease                  1.909252        2.273290
+Unknown Supplier/Provider                    1.891578        2.120927
+Nephrology                                   1.887930        2.598456
+Neurology                                    1.874656        2.315990
+Radiation Oncology                           1.868717        2.918878
+Orthopedic Surgery                           1.862670        2.576342
+Pulmonary Disease                            1.856854        2.406215
+Hand Surgery                                 1.849508        2.527952
+Clinical Psychologist                        1.849417        2.756857
+Infectious Disease                           1.842903        2.396171
+Otolaryngology                               1.837057        2.341414
+Neuropsychiatry                              1.834652        2.397872
+Geriatric Medicine                           1.831286        2.344797
+Unknown Physician Specialty Code             1.830728        2.273386
+Mammographic Screening Center                1.827347        2.094698
+Cardiac Electrophysiology                    1.823682        2.315422
                                       pay_per_service  pay_per_person
 provider_type                                                        
-Geriatric Psychiatry                        65.063721      249.494428
-Speech Language Pathologist                 64.757890      462.771412
-Hematology                                  64.398284      277.157922
-Internal Medicine                           60.980844      215.786763
-Addiction Medicine                          60.369457      290.558667
-Psychiatry                                  58.944540      238.454605
-Optometry                                   58.605796      101.740704
-Physical Medicine and Rehabilitation        58.504621      308.312067
-Obstetrics/Gynecology                       58.320099      141.401459
-Pain Management                             57.648364      362.674656
-Cardiology                                  57.029090      177.945424
-Endocrinology                               55.770021      174.719120
-Interventional Radiology                    55.118859      144.125424
-Medical Oncology                            54.706517      303.610909
-Urology                                     54.570811      292.096215
-Interventional Pain Management              53.208307      436.912642
-Nuclear Medicine                            53.114589       69.255227
-Licensed Clinical Social Worker             52.564730      417.556812
-Osteopathic Manipulative Medicine           52.190790      307.218332
-Preventive Medicine                         52.021065      137.742459
+Geriatric Psychiatry                         1.813339        2.397061
+Speech Language Pathologist                  1.811293        2.665367
+Hematology                                   1.808874        2.442727
+Internal Medicine                            1.785193        2.334025
+Addiction Medicine                           1.780817        2.463234
+Psychiatry                                   1.770444        2.377406
+Optometry                                    1.767941        2.007495
+Physical Medicine and Rehabilitation         1.767190        2.488991
+Obstetrics/Gynecology                        1.765818        2.150454
+Pain Management                              1.760787        2.559517
+Cardiology                                   1.756096        2.250287
+Endocrinology                                1.746401        2.242340
+Interventional Radiology                     1.741300        2.158741
+Medical Oncology                             1.738039        2.482317
+Urology                                      1.736960        2.465526
+Interventional Pain Management               1.725979        2.640394
+Nuclear Medicine                             1.725213        1.840452
+Licensed Clinical Social Worker              1.720694        2.620716
+Osteopathic Manipulative Medicine            1.717594        2.487444
+Preventive Medicine                          1.716179        2.139068
                                              pay_per_service  pay_per_person
 provider_type                                                               
-Pediatric Medicine                                 51.390989      146.285628
-Certified Clinical Nurse Specialist                50.969313      166.223317
-Physician Assistant                                48.568761       92.708596
-General Practice                                   46.835194      193.815919
-Sports Medicine                                    45.571347      239.500771
-Dermatology                                        45.530261      228.799854
-Podiatry                                           45.046419      191.358128
-Family Practice                                    43.702986      179.507998
-Nurse Practitioner                                 42.173589       91.269879
-Portable X-ray                                     41.329475      213.432690
-Certified Nurse Midwife                            39.491818       75.734392
-Interventional Cardiology                          36.424773      342.349823
-Rheumatology                                       33.800357      311.568139
-Hematology/Oncology                                31.756212      453.454411
-Pathology                                          28.724943       79.854484
-Registered Dietician/Nutrition Professional        27.920115      126.636316
-Ambulance Service Supplier                         27.349052      580.085833
-Slide Preparation Facility                         27.274695       62.907241
-Chiropractic                                       26.586417      220.188340
-Diagnostic Radiology                               23.436218       47.170835
+Pediatric Medicine                                  1.710887        2.165202
+Certified Clinical Nurse Specialist                 1.707309        2.220692
+Physician Assistant                                 1.686357        1.967120
+General Practice                                    1.670572        2.287389
+Sports Medicine                                     1.658692        2.379307
+Dermatology                                         1.658300        2.359456
+Podiatry                                            1.653660        2.281847
+Family Practice                                     1.640511        2.254084
+Nurse Practitioner                                  1.625041        1.960327
+Portable X-ray                                      1.616260        2.329260
+Certified Nurse Midwife                             1.596507        1.879293
+Interventional Cardiology                           1.561397        2.534470
+Rheumatology                                        1.528921        2.493553
+Hematology/Oncology                                 1.501829        2.656534
+Pathology                                           1.458259        1.902299
+Registered Dietician/Nutrition Professional         1.445917        2.102558
+Ambulance Service Supplier                          1.436942        2.763492
+Slide Preparation Facility                          1.435760        1.798701
+Chiropractic                                        1.424660        2.342794
+Diagnostic Radiology                                1.369888        1.673674
                                       pay_per_service  pay_per_person
 provider_type                                                        
-All Other Suppliers                         23.343738       49.935455
-Mass Immunization Roster Biller             23.038750       48.268359
-Centralized Flu                             22.238837       47.138327
-Public Health Welfare Agency                21.971917       43.910000
-Occupational therapist                      21.639449      447.779667
-Audiologist (billing independently)         21.548352       41.285313
-Physical Therapist                          20.643570      528.878151
-Pharmacy                                    20.142520       44.721718
-Allergy/Immunology                          13.527731      286.279556
-Clinical Laboratory                         11.407012      129.340414
-Multispecialty Clinic/Group Practice         3.430000       33.883293
+All Other Suppliers                          1.368170        1.698409
+Mass Immunization Roster Biller              1.362459        1.683663
+Centralized Flu                              1.347112        1.673374
+Public Health Welfare Agency                 1.341868        1.642563
+Occupational therapist                       1.335246        2.651064
+Audiologist (billing independently)          1.333414        1.615796
+Physical Therapist                           1.314785        2.723356
+Pharmacy                                     1.304114        1.650518
+Allergy/Immunology                           1.131225        2.456790
+Clinical Laboratory                          1.057172        2.111734
+Multispecialty Clinic/Group Practice         0.535294        1.529982
 
 top median pay_per_person
                                           pay_per_service  pay_per_person
 provider_type                                                            
-Radiation Therapy                              155.014931     7038.965077
-Cardiac Surgery                                353.245027      933.512141
-Ambulatory Surgical Center                     457.033585      893.198710
-Psychologist (billing independently)            82.440557      867.150833
-Radiation Oncology                              73.912366      829.617236
-Thoracic Surgery                               261.803840      689.114580
-Ambulance Service Supplier                      27.349052      580.085833
-Clinical Psychologist                           70.699565      571.290882
-Neurosurgery                                   220.810944      549.077861
-Physical Therapist                              20.643570      528.878151
-Plastic and Reconstructive Surgery             163.857286      499.582462
-Speech Language Pathologist                     64.757890      462.771412
-Hematology/Oncology                             31.756212      453.454411
-Occupational therapist                          21.639449      447.779667
-Interventional Pain Management                  53.208307      436.912642
-Licensed Clinical Social Worker                 52.564730      417.556812
-Surgical Oncology                              167.415656      406.925047
-Nephrology                                      77.255633      396.694498
-Gynecological/Oncology                         118.264310      385.654485
-Colorectal Surgery (formerly proctology)       151.646725      380.250333
+Radiation Therapy                                2.190374        3.847509
+Cardiac Surgery                                  2.548076        2.970120
+Ambulatory Surgical Center                       2.659948        2.950948
+Psychologist (billing independently)             1.916141        2.938095
+Radiation Oncology                               1.868717        2.918878
+Thoracic Surgery                                 2.417976        2.838291
+Ambulance Service Supplier                       1.436942        2.763492
+Clinical Psychologist                            1.849417        2.756857
+Neurosurgery                                     2.344021        2.739634
+Physical Therapist                               1.314785        2.723356
+Plastic and Reconstructive Surgery               2.214466        2.698607
+Speech Language Pathologist                      1.811293        2.665367
+Hematology/Oncology                              1.501829        2.656534
+Occupational therapist                           1.335246        2.651064
+Interventional Pain Management                   1.725979        2.640394
+Licensed Clinical Social Worker                  1.720694        2.620716
+Surgical Oncology                                2.223796        2.609514
+Nephrology                                       1.887930        2.598456
+Gynecological/Oncology                           2.072853        2.586198
+Colorectal Surgery (formerly proctology)         2.180833        2.580070
                                       pay_per_service  pay_per_person
 provider_type                                                        
-Orthopedic Surgery                          72.890315      377.000767
-Pain Management                             57.648364      362.674656
-Vascular Surgery                           124.708455      360.204791
-General Surgery                            144.576501      353.419080
-Interventional Cardiology                   36.424773      342.349823
-Hand Surgery                                70.714419      337.249720
-Rheumatology                                33.800357      311.568139
-Critical Care (Intensivists)               116.937742      309.321000
-Physical Medicine and Rehabilitation        58.504621      308.312067
-Osteopathic Manipulative Medicine           52.190790      307.218332
-Medical Oncology                            54.706517      303.610909
-Urology                                     54.570811      292.096215
-Addiction Medicine                          60.369457      290.558667
-Allergy/Immunology                          13.527731      286.279556
-Ophthalmology                               89.907446      277.764674
-Hematology                                  64.398284      277.157922
-Pulmonary Disease                           71.920664      254.809224
-Neuropsychiatry                             68.336400      249.960988
-Geriatric Psychiatry                        65.063721      249.494428
-Infectious Disease                          69.647045      248.983671
+Orthopedic Surgery                           1.862670        2.576342
+Pain Management                              1.760787        2.559517
+Vascular Surgery                             2.095896        2.556549
+General Surgery                              2.160098        2.548290
+Interventional Cardiology                    1.561397        2.534470
+Hand Surgery                                 1.849508        2.527952
+Rheumatology                                 1.528921        2.493553
+Critical Care (Intensivists)                 2.067955        2.490409
+Physical Medicine and Rehabilitation         1.767190        2.488991
+Osteopathic Manipulative Medicine            1.717594        2.487444
+Medical Oncology                             1.738039        2.482317
+Urology                                      1.736960        2.465526
+Addiction Medicine                           1.780817        2.463234
+Allergy/Immunology                           1.131225        2.456790
+Ophthalmology                                1.953796        2.443677
+Hematology                                   1.808874        2.442727
+Pulmonary Disease                            1.856854        2.406215
+Neuropsychiatry                              1.834652        2.397872
+Geriatric Psychiatry                         1.813339        2.397061
+Infectious Disease                           1.842903        2.396171
                                          pay_per_service  pay_per_person
 provider_type                                                           
-Independent Diagnostic Testing Facility       104.911691      242.730569
-Sports Medicine                                45.571347      239.500771
-Psychiatry                                     58.944540      238.454605
-Gastroenterology                               97.743808      230.548194
-Dermatology                                    45.530261      228.799854
-Geriatric Medicine                             67.808811      221.206151
-Chiropractic                                   26.586417      220.188340
-Otolaryngology                                 68.715921      219.489758
-Internal Medicine                              60.980844      215.786763
-Portable X-ray                                 41.329475      213.432690
-Neurology                                      74.930030      207.009429
-Cardiac Electrophysiology                      66.631892      206.738890
-Hospice and Palliative Care                    86.663824      195.445018
-General Practice                               46.835194      193.815919
-Podiatry                                       45.046419      191.358128
-Unknown Physician Specialty Code               67.721709      187.666042
-Peripheral Vascular Disease                    81.143805      187.630668
-Maxillofacial Surgery                         105.288186      181.201264
-Family Practice                                43.702986      179.507998
-Cardiology                                     57.029090      177.945424
+Independent Diagnostic Testing Facility         2.020824        2.385124
+Sports Medicine                                 1.658692        2.379307
+Psychiatry                                      1.770444        2.377406
+Gastroenterology                                1.990089        2.362762
+Dermatology                                     1.658300        2.359456
+Geriatric Medicine                              1.831286        2.344797
+Chiropractic                                    1.424660        2.342794
+Otolaryngology                                  1.837057        2.341414
+Internal Medicine                               1.785193        2.334025
+Portable X-ray                                  1.616260        2.329260
+Neurology                                       1.874656        2.315990
+Cardiac Electrophysiology                       1.823682        2.315422
+Hospice and Palliative Care                     1.937838        2.291025
+General Practice                                1.670572        2.287389
+Podiatry                                        1.653660        2.281847
+Unknown Physician Specialty Code                1.830728        2.273386
+Peripheral Vascular Disease                     1.909252        2.273290
+Maxillofacial Surgery                           2.022380        2.258161
+Family Practice                                 1.640511        2.254084
+Cardiology                                      1.756096        2.250287
                                              pay_per_service  pay_per_person
 provider_type                                                               
-Endocrinology                                      55.770021      174.719120
-Anesthesiology                                    131.026703      173.002862
-Certified Clinical Nurse Specialist                50.969313      166.223317
-Oral Surgery (dentists only)                       99.697442      164.483667
-Sleep Medicine                                     83.924397      157.496298
-Pediatric Medicine                                 51.390989      146.285628
-Interventional Radiology                           55.118859      144.125424
-Obstetrics/Gynecology                              58.320099      141.401459
-Preventive Medicine                                52.021065      137.742459
-Unknown Supplier/Provider                          77.907287      132.107433
-Clinical Laboratory                                11.407012      129.340414
-Registered Dietician/Nutrition Professional        27.920115      126.636316
-Emergency Medicine                                 86.592860      125.365105
-Mammographic Screening Center                      67.196491      124.364952
-CRNA                                              115.403862      121.219559
-Anesthesiologist Assistants                       108.656028      111.691955
-Optometry                                          58.605796      101.740704
-Physician Assistant                                48.568761       92.708596
-Nurse Practitioner                                 42.173589       91.269879
-Pathology                                          28.724943       79.854484
+Endocrinology                                       1.746401        2.242340
+Anesthesiology                                      2.117360        2.238053
+Certified Clinical Nurse Specialist                 1.707309        2.220692
+Oral Surgery (dentists only)                        1.998684        2.216123
+Sleep Medicine                                      1.923888        2.197270
+Pediatric Medicine                                  1.710887        2.165202
+Interventional Radiology                            1.741300        2.158741
+Obstetrics/Gynecology                               1.765818        2.150454
+Preventive Medicine                                 1.716179        2.139068
+Unknown Supplier/Provider                           1.891578        2.120927
+Clinical Laboratory                                 1.057172        2.111734
+Registered Dietician/Nutrition Professional         1.445917        2.102558
+Emergency Medicine                                  1.937482        2.098177
+Mammographic Screening Center                       1.827347        2.094698
+CRNA                                                2.062220        2.083573
+Anesthesiologist Assistants                         2.036054        2.048022
+Optometry                                           1.767941        2.007495
+Physician Assistant                                 1.686357        1.967120
+Nurse Practitioner                                  1.625041        1.960327
+Pathology                                           1.458259        1.902299
                                       pay_per_service  pay_per_person
 provider_type                                                        
-Certified Nurse Midwife                     39.491818       75.734392
-Nuclear Medicine                            53.114589       69.255227
-Slide Preparation Facility                  27.274695       62.907241
-All Other Suppliers                         23.343738       49.935455
-Mass Immunization Roster Biller             23.038750       48.268359
-Diagnostic Radiology                        23.436218       47.170835
-Centralized Flu                             22.238837       47.138327
-Pharmacy                                    20.142520       44.721718
-Public Health Welfare Agency                21.971917       43.910000
-Audiologist (billing independently)         21.548352       41.285313
-Multispecialty Clinic/Group Practice         3.430000       33.883293
+Certified Nurse Midwife                      1.596507        1.879293
+Nuclear Medicine                             1.725213        1.840452
+Slide Preparation Facility                   1.435760        1.798701
+All Other Suppliers                          1.368170        1.698409
+Mass Immunization Roster Biller              1.362459        1.683663
+Diagnostic Radiology                         1.369888        1.673674
+Centralized Flu                              1.347112        1.673374
+Pharmacy                                     1.304114        1.650518
+Public Health Welfare Agency                 1.341868        1.642563
+Audiologist (billing independently)          1.333414        1.615796
+Multispecialty Clinic/Group Practice         0.535294        1.529982
 
