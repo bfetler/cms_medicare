@@ -28,14 +28,6 @@ def make_plotdir(plotdir='cms_hist_plots/'):
     sns.set_style("darkgrid")
     return plotdir
 
-def read_first_data(fname, size=10):
-    "read first N=size rows from csv file fname"
-    iterf = pd.read_csv(fname, sep=None, engine='python', iterator=True, chunksize=size)
-    iterp = iter(iterf)
-    df = next(iterp)
-    print("%s shape %s" % (fname, df.shape))
-    return df
-
 def get_select_columns():
     "try to select interesting columns, rather than all 70"
     ''' the following columns appear to be near duplicates,
@@ -184,6 +176,8 @@ def read_select_data(new_cols, fname, first=False):
 
     print(" done")
 #   shape (986677, 9)
+    print("df %s shape, filename %s" % (df.shape, fname))
+
     print("df columns isnull sum\n%s" % df.isnull().sum())
 #   nppes_provider_gender  61330, others 0
     print("df columns iszero sum\n%s" % (df==0).sum())
@@ -201,12 +195,42 @@ def read_select_data(new_cols, fname, first=False):
     df['pay_per_service'] = np.log10(df['total_medicare_payment_amt'] / df['total_services'])
     df['pay_per_person'] = np.log10(df['total_medicare_payment_amt'] / df['total_unique_benes'])
 #   df['overcharge_ratio'] = df['total_submitted_chrg_amt'] / df['total_medicare_payment_amt']
-    print("df %s shape, filename %s" % (df.shape, fname))
+    print("df shape", df.shape)
 #   shape (986674, 11)
 
+    return df
+
+def std_by_mean(x):
+    "standard error divided by mean"
+    return x.std() / x.mean()
+
+def filter_group_by_vars(provider_group, agg_fns, var='pay_per_person', stat='median'):
+    "filter grouped data by variable var"
+    print('filter_group_by_vars', var, stat)
+    provider_sort = provider_group[var].sort_values(by=stat, ascending=False)
+    print('\ntop %s by %s' % (var, stat))
+    print_all_rows(provider_sort, agg_fns)
+
+def calc_par_group(df, pars, print_cols):
+    "aggregate function grouped by provider_type or gender"
+    agg_fns = ['count','median','mean','std']
+    par_group = df.groupby(pars).agg(agg_fns)
+    print('alphabetical group by %s, %s stats' % (pars, print_cols))
+    print_all_rows(par_group, print_cols)
+#   filter_group_by_vars(par_group, agg_fns, var='pay_per_service', stat='median')
+#   filter_group_by_vars(par_group, agg_fns, var='pay_per_person', stat='median')
+
+def calc_par_groups(df):
+    "calculate series of grouped parameters, printed by column"
+    calc_par_group(df, ['provider_type'], ['pay_per_person'])
+# line below works but is useless, need sort by provider type, then split by gender
+    calc_par_group(df, ['provider_type','nppes_provider_gender'], ['pay_per_person'])
+
+def get_provider_groups(df):
+    "get aggregate functions grouped by provider_type or gender"
     print('provider_type median')
-    provider_group = df.groupby('provider_type').median()
-#   provider_group = df.groupby('provider_type').agg(['count','mean','std','median','mad'])
+    provider_group = df.groupby(['provider_type']).median()
+#   provider_group = df.groupby(['provider_type']).agg(['count','median','mean','std'])
     provider_gender_group = df.groupby(['provider_type','nppes_provider_gender']).count()
     print('group by provider, gender pay_per_person count')
     print_all_rows(provider_gender_group, ['pay_per_person'])
@@ -220,47 +244,38 @@ def read_select_data(new_cols, fname, first=False):
     print('group by provider, gender pay_per_person std_by_mean')
     print_all_rows(provider_gender_group, ['pay_per_person'])
 
-    provider_gender_group = df.groupby(['provider_type','nppes_provider_gender']).agg({'pay_per_person':['count','mean','std','median'], 'pay_per_service':['mean','std','median'] } )
-
-# hist plots very varied, log scale may not help
-#   make_hist_plots(df, 'pay_per_service', 'provider_type')
-#   make_hist_plots(df, 'pay_per_person', 'provider_type')
-    make_hist_plots(df, 'pay_per_person', 'provider_type', plotdir=make_plotdir('cms_hist_gender_plots/'), split_var='nppes_provider_gender')
-# one obvious thing from plot it seems many provider_types have only one gender
+    provider_gender_group = df.groupby(['provider_type','nppes_provider_gender']).agg({'pay_per_person':['count','median','mean','std'], 'pay_per_service':['median','mean','std'] })
 
 #   return provider_gender_group   # needs refactoring
     return provider_group
-
-def std_by_mean(x):
-    return x.std() / x.mean()
 
 def filter_group_by_var(provider_group, var='pay_per_person'):
     "filter grouped data by variable var"
     provider_sort = provider_group.sort_values(by=var, ascending=False)
     print('\ntop median %s' % var)
     print_all_rows(provider_sort, ['pay_per_service','pay_per_person'])
-        # add ['overcharge_ratio','total_medicare_payment_amt']
-
-def explore_initial_data(fname, new_cols):
-    "explore initial data columns"
-    df = read_first_data(fname)  # first 10 rows
-    print_all_columns(df)
-    print_select_columns(df, new_cols)
 
 def main():
     fname = 'data/Medicare_Physician_and_Other_Supplier_NPI_Aggregate_CY2014.txt'
     new_cols = get_select_columns()
-#   explore_initial_data(fname, new_cols)
 
 # group and filter data by provider_type mean
-    if len(sys.argv) > 1 and (sys.argv[1][0]=='t' or sys.argv[1][0]=='1'):
-        provider_group = read_select_data(new_cols, fname, first=True)  # 1st block
+    if len(sys.argv) > 1 and sys.argv[1].startswith('test'):
+        df = read_select_data(new_cols, fname, first=True)  # 1st block
     else:
-        provider_group = read_select_data(new_cols, fname)
-    filter_group_by_var(provider_group, var='pay_per_service')
-    filter_group_by_var(provider_group, var='pay_per_person')
+        df = read_select_data(new_cols, fname)
+
+    calc_par_groups(df)
+#   provider_group = get_provider_groups(df)
+#   filter_group_by_var(provider_group, var='pay_per_service')
+#   filter_group_by_var(provider_group, var='pay_per_person')
+
+# hist plots very varied, log scale may not help
+#   make_hist_plots(df, 'pay_per_service', 'provider_type')
+#   make_hist_plots(df, 'pay_per_person', 'provider_type')
+    make_hist_plots(df, 'pay_per_person', 'provider_type', plotdir=make_plotdir('cms_hist_gender_plots/'), split_var='nppes_provider_gender')
+# many provider_types have only one gender, nan
 
 if __name__ == '__main__':
     main()
-
 
