@@ -96,15 +96,6 @@ def print_all_rows(df, column_names):
     for g in gx:
         print(df[column_names].ix[g])
 
-def make_hist_plot(df, column_names):
-    "make histogram plot of whole data frame"
-# works but mostly illegible
-    plotdir = make_plotdir()
-    plt.clf()
-    df.hist(column=column_names, by='provider_type', layout=(10,10), figsize=(40,40))
-    plt.tick_params(labelbottom='off', labelleft='off')
-    plt.savefig(plotdir + 'hist.png')
-
 def make_hist_plots(df, column_name, group_var, plotdir=make_plotdir(), split_var=None):
     "make histogram plot of data frame subsets by group variable"
 #   plotdir = make_plotdir()
@@ -204,56 +195,51 @@ def std_by_mean(x):
     "standard error divided by mean"
     return x.std() / x.mean()
 
-def filter_group_by_vars(provider_group, agg_fns, var='pay_per_person', stat='median'):
-    "filter grouped data by variable var"
-    print('filter_group_by_vars', var, stat)
-    provider_sort = provider_group[var].sort_values(by=stat, ascending=False)
-    print('\ntop %s by %s' % (var, stat))
+def process_by_var(dfgroup, col, var='nppes_provider_gender'):
+    "process dataframe group by variable, usually gender"
+# assumes agg_fns count, median, mean, std and gender F, M
+    dfg = dfgroup.unstack(level=var)[col]
+    print('process group by %s' % var)
+    dfg['count_fractionF'] = dfg['count']['F'] / (dfg['count']['F'] + dfg['count']['M'])
+    dfg['median_FtoMdiff'] = dfg['median']['F'] / dfg['median']['M']
+    dfg['median_FtoM'] = 10 ** (dfg['median']['F'] - dfg['median']['M'])
+    dfg['mean_diff_ratio'] = (dfg['mean']['F'] - dfg['mean']['M']) * 2 / (dfg['std']['F'] + dfg['std']['M'])  # mean difference divided by avg std error
+    print('\nprocess group by %s stat columns' % var)
+    print_all_rows(dfg, ['count','median','mean','std'])
+    print('\nprocess group by %s FtoM columns' % var)
+    cols = ['count_fractionF','median_FtoM','mean_diff_ratio']
+    print_all_rows(dfg, cols)
+    print('\ntop count_fractionF')
+    filter_group_by_var(dfg, cols, stat='count_fractionF')
+    print('\ntop median_FtoM')
+    filter_group_by_var(dfg, cols, stat='median_FtoM')
+# to do: plot columns
+    return dfg[cols].dropna()
+
+def filter_group_by_var(provider_group, agg_fns, stat='median'):
+    "filter grouped data by variable var, sort by stat"
+    print('filter_group_by_vars', stat)
+    provider_sort = provider_group.sort_values(by=stat, ascending=False)
     print_all_rows(provider_sort, agg_fns)
 
-def calc_par_group(df, pars, print_cols):
+def calc_par_group(df, agg_fns, pars, cols):
     "aggregate function grouped by provider_type or gender"
-    agg_fns = ['count','median','mean','std']
-    par_group = df.groupby(pars).agg(agg_fns)
-    print('alphabetical group by %s, %s stats' % (pars, print_cols))
-    print_all_rows(par_group, print_cols)
-#   filter_group_by_vars(par_group, agg_fns, var='pay_per_service', stat='median')
-#   filter_group_by_vars(par_group, agg_fns, var='pay_per_person', stat='median')
+    par_group = df.groupby(pars)[cols].agg(agg_fns)
+    print('alphabetical group by %s, %s stats' % (pars, cols))
+    print_all_rows(par_group, cols)
+    return par_group
 
 def calc_par_groups(df):
     "calculate series of grouped parameters, printed by column"
-    calc_par_group(df, ['provider_type'], ['pay_per_person'])
-# line below works but is useless, need sort by provider type, then split by gender
-    calc_par_group(df, ['provider_type','nppes_provider_gender'], ['pay_per_person'])
-
-def get_provider_groups(df):
-    "get aggregate functions grouped by provider_type or gender"
-    print('provider_type median')
-    provider_group = df.groupby(['provider_type']).median()
-#   provider_group = df.groupby(['provider_type']).agg(['count','median','mean','std'])
-    provider_gender_group = df.groupby(['provider_type','nppes_provider_gender']).count()
-    print('group by provider, gender pay_per_person count')
-    print_all_rows(provider_gender_group, ['pay_per_person'])
-# a count of provider_type, gender - very few F in many specialties
-
-    provider_gender_group = df.groupby(['provider_type','nppes_provider_gender']).median()
-    print('group by provider, gender pay_per_person median')
-    print_all_rows(provider_gender_group, ['pay_per_person'])
-
-    provider_gender_group = df.groupby(['provider_type','nppes_provider_gender']).apply(lambda x: std_by_mean(x))
-    print('group by provider, gender pay_per_person std_by_mean')
-    print_all_rows(provider_gender_group, ['pay_per_person'])
-
-    provider_gender_group = df.groupby(['provider_type','nppes_provider_gender']).agg({'pay_per_person':['count','median','mean','std'], 'pay_per_service':['median','mean','std'] })
-
-#   return provider_gender_group   # needs refactoring
-    return provider_group
-
-def filter_group_by_var(provider_group, var='pay_per_person'):
-    "filter grouped data by variable var"
-    provider_sort = provider_group.sort_values(by=var, ascending=False)
-    print('\ntop median %s' % var)
-    print_all_rows(provider_sort, ['pay_per_service','pay_per_person'])
+    agg_fns = ['count','median','mean','std']
+    p_group = calc_par_group(df, agg_fns, ['provider_type'], ['pay_per_person','pay_per_service'])
+    print('\ntop pay_per_service')
+    filter_group_by_var(p_group['pay_per_service'], agg_fns, stat='median')
+    print('\ntop pay_per_person')
+    filter_group_by_var(p_group['pay_per_person'], agg_fns, stat='median')
+    g_group = calc_par_group(df, agg_fns, ['provider_type','nppes_provider_gender'], ['pay_per_person'])
+    dfg = process_by_var(g_group, col='pay_per_person', var='nppes_provider_gender')
+#   plot dfg and p_group median?
 
 def main():
     fname = 'data/Medicare_Physician_and_Other_Supplier_NPI_Aggregate_CY2014.txt'
@@ -266,14 +252,11 @@ def main():
         df = read_select_data(new_cols, fname)
 
     calc_par_groups(df)
-#   provider_group = get_provider_groups(df)
-#   filter_group_by_var(provider_group, var='pay_per_service')
-#   filter_group_by_var(provider_group, var='pay_per_person')
 
-# hist plots very varied, log scale may not help
-#   make_hist_plots(df, 'pay_per_service', 'provider_type')
+# hist plots very varied, log scale doesn't always help
+    make_hist_plots(df, 'pay_per_service', 'provider_type')
 #   make_hist_plots(df, 'pay_per_person', 'provider_type')
-    make_hist_plots(df, 'pay_per_person', 'provider_type', plotdir=make_plotdir('cms_hist_gender_plots/'), split_var='nppes_provider_gender')
+#   make_hist_plots(df, 'pay_per_person', 'provider_type', plotdir=make_plotdir('cms_hist_gender_plots/'), split_var='nppes_provider_gender')
 # many provider_types have only one gender, nan
 
 if __name__ == '__main__':
