@@ -191,7 +191,7 @@ def read_select_data(new_cols, fname, first=False):
 
     return df
 
-def process_by_var(dfgroup, col, var='nppes_provider_gender'):
+def process_by_var(plotdir, dfgroup, col, var='nppes_provider_gender'):
     "process dataframe group by variable, usually gender"
 # assumes agg_fns [count, median, mean, std] and gender [F, M, nan]
     dfg = dfgroup.unstack(level=var)[col]
@@ -206,17 +206,39 @@ def process_by_var(dfgroup, col, var='nppes_provider_gender'):
     cols = ['count_fractionF','median_FtoM','mean_diff_ratio']
     print_all_rows(dfg, cols)
     print('\ntop count_fractionF')
-    filter_group_by_var(dfg, cols, stat='count_fractionF')
-    print('\ntop median_FtoM')
-    filter_group_by_var(dfg, cols, stat='median_FtoM')
+    g_sort = filter_group_by_var(dfg, cols, stat='count_fractionF')
+    make_bar_plot(g_sort, 'count_fractionF', plotdir, 'count_fraction', 'Count Fraction Female')
+#   print('\ntop median_FtoM')
+#   g_sort = filter_group_by_var(dfg, cols, stat='median_FtoM')
 # to do: plot gender columns
     return dfg[cols].dropna()
 
-def filter_group_by_var(provider_group, agg_fns, stat='median'):
+def make_bar_plot(g_sort, stat, plotdir, fname, label):
+    "make bar plot"
+    plt.clf()
+    ser = g_sort[stat].dropna()
+    print('ser', ser.shape[0])
+    print(ser.index)
+    print(ser.values)
+    f = plt.figure()
+    ax = f.add_subplot(111)
+#   ax.bar(range(ser.shape[0]), ser.values) # , tick_label=ser.index)
+#   ax.set_xticklabels(ser.index, rotation=90, size=6)
+    ax.barh(range(ser.shape[0]), ser.values) # , tick_label=ser.index)
+#   ax.set_ylim([0, 1+ser.shape[0]])
+    ax.set_yticklabels(ser.index, size=6)
+    plt.title(label)
+# only shows major tick labels
+    plt.tight_layout()
+#   plt.subplots_adjust(top=0.88)
+    plt.savefig('%sbar_%s.png' % (plotdir, fname))
+
+def filter_group_by_var(p_group, agg_fns, stat='median'):
     "filter grouped data by variable var, sort by stat"
     print('filter_group_by_vars', stat)
-    provider_sort = provider_group.sort_values(by=stat, ascending=False)
-    print_all_rows(provider_sort, agg_fns)
+    p_sort = p_group.sort_values(by=stat, ascending=False)
+    print_all_rows(p_sort, agg_fns)
+    return p_sort
 
 def calc_par_group(df, agg_fns, pars, cols):
     "aggregate function grouped by provider_type or gender"
@@ -227,6 +249,7 @@ def calc_par_group(df, agg_fns, pars, cols):
 
 def calc_par_groups(df):
     "calculate series of grouped parameters, printed by column"
+    plotdir = make_plotdir(plotdir='cms_gender_plots/')
     agg_fns = ['count','median','mean','std']
     p_group = calc_par_group(df, agg_fns, ['provider_type'], ['pay_per_person','pay_per_service'])
     print('\ntop pay_per_service')
@@ -234,7 +257,7 @@ def calc_par_groups(df):
     print('\ntop pay_per_person')
     filter_group_by_var(p_group['pay_per_person'], agg_fns, stat='median')
     g_group = calc_par_group(df, agg_fns, ['provider_type','nppes_provider_gender'], ['pay_per_person'])
-    g_group = process_by_var(g_group, col='pay_per_person', var='nppes_provider_gender')
+    g_group = process_by_var(plotdir, g_group, col='pay_per_person', var='nppes_provider_gender')
 
 def main():
     fname = 'data/Medicare_Physician_and_Other_Supplier_NPI_Aggregate_CY2014.txt'
@@ -247,9 +270,9 @@ def main():
         df = read_select_data(new_cols, fname)
 
 # hist plots very varied, log scale doesn't always help
-    make_hist_plots(df, 'pay_per_service', 'provider_type')
-    make_hist_plots(df, 'pay_per_person', 'provider_type')
-    make_hist_plots(df, 'pay_per_person', 'provider_type', plotdir=make_plotdir('cms_hist_gender_plots/'), split_var='nppes_provider_gender')
+#   make_hist_plots(df, 'pay_per_service', 'provider_type')
+#   make_hist_plots(df, 'pay_per_person', 'provider_type')
+#   make_hist_plots(df, 'pay_per_person', 'provider_type', plotdir=make_plotdir('cms_hist_gender_plots/'), split_var='nppes_provider_gender')
 # many provider_types have only one gender, nan
 
     calc_par_groups(df)
