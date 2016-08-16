@@ -14,12 +14,11 @@ import seaborn as sns
 #    group_by provider_type, find:
 #	avg std total_submitted_chrg_amt / total_services
 #	avg std total_medicare_payment_amt / total_services
-#	drug vs. other benefits
 #	avg beneficiary_average_age, Beneficiary_Average_Risk_Score
 #	group beneficiaries by disease percent
 #	group_by provider_state, provider_gender
 #       sort by most to least expensive provider
-#       find count by gender, find cost ratio by gender and sort
+#       find count by gender, find cost ratio by gender
 
 def make_plotdir(plotdir='cms_hist_plots/'):
     "make plot directory on file system"
@@ -97,7 +96,7 @@ def print_all_rows(df, column_names):
         print(df[column_names].ix[g])
 
 def make_hist_plots(df, column_name, group_var, plotdir=make_plotdir(), split_var=None):
-    "make histogram plot of data frame subsets by group variable"
+    "make histogram plot of data frame subsets by group variable, with optional split variable"
 #   plotdir = make_plotdir()
     col_name = column_name     # for now
     providers = sorted(list(set(df[group_var])))
@@ -110,13 +109,14 @@ def make_hist_plots(df, column_name, group_var, plotdir=make_plotdir(), split_va
 # e.g. make_hist_plots(df, 'pay_per_service', 'provider_type')
 
 def plot_hists(df, vlist, label, col_name, group_var, plotdir, ncols=3, split_var=None):
+    "plot subset of histograms"
     plt.clf()
     fig = plt.figure(figsize=(10,8))
     if split_var:    # e.g. nppes_provider_gender
         splits = sorted(list(set(df[split_var])))
         splits.reverse()
 #       print('splits', splits)
-        colors = ['green','blue','red']   # need alpha transparency
+        colors = ['blue','green','red']   # need alpha transparency
 # reverse colors, plot F last, may show on top of M?  count(M) > count(F)
         aligns = ['left','right','mid']  # not always correct?  need more pixels?
     nrows = len(vlist) // ncols
@@ -191,13 +191,9 @@ def read_select_data(new_cols, fname, first=False):
 
     return df
 
-def std_by_mean(x):
-    "standard error divided by mean"
-    return x.std() / x.mean()
-
 def process_by_var(dfgroup, col, var='nppes_provider_gender'):
     "process dataframe group by variable, usually gender"
-# assumes agg_fns count, median, mean, std and gender F, M
+# assumes agg_fns [count, median, mean, std] and gender [F, M, nan]
     dfg = dfgroup.unstack(level=var)[col]
     print('process group by %s' % var)
     dfg['count_fractionF'] = dfg['count']['F'] / (dfg['count']['F'] + dfg['count']['M'])
@@ -213,7 +209,7 @@ def process_by_var(dfgroup, col, var='nppes_provider_gender'):
     filter_group_by_var(dfg, cols, stat='count_fractionF')
     print('\ntop median_FtoM')
     filter_group_by_var(dfg, cols, stat='median_FtoM')
-# to do: plot columns
+# to do: plot gender columns
     return dfg[cols].dropna()
 
 def filter_group_by_var(provider_group, agg_fns, stat='median'):
@@ -238,8 +234,7 @@ def calc_par_groups(df):
     print('\ntop pay_per_person')
     filter_group_by_var(p_group['pay_per_person'], agg_fns, stat='median')
     g_group = calc_par_group(df, agg_fns, ['provider_type','nppes_provider_gender'], ['pay_per_person'])
-    dfg = process_by_var(g_group, col='pay_per_person', var='nppes_provider_gender')
-#   plot dfg and p_group median?
+    g_group = process_by_var(g_group, col='pay_per_person', var='nppes_provider_gender')
 
 def main():
     fname = 'data/Medicare_Physician_and_Other_Supplier_NPI_Aggregate_CY2014.txt'
@@ -251,13 +246,13 @@ def main():
     else:
         df = read_select_data(new_cols, fname)
 
-    calc_par_groups(df)
-
 # hist plots very varied, log scale doesn't always help
     make_hist_plots(df, 'pay_per_service', 'provider_type')
-#   make_hist_plots(df, 'pay_per_person', 'provider_type')
-#   make_hist_plots(df, 'pay_per_person', 'provider_type', plotdir=make_plotdir('cms_hist_gender_plots/'), split_var='nppes_provider_gender')
+    make_hist_plots(df, 'pay_per_person', 'provider_type')
+    make_hist_plots(df, 'pay_per_person', 'provider_type', plotdir=make_plotdir('cms_hist_gender_plots/'), split_var='nppes_provider_gender')
 # many provider_types have only one gender, nan
+
+    calc_par_groups(df)
 
 if __name__ == '__main__':
     main()
