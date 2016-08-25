@@ -7,6 +7,9 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
+from sklearn.feature_extraction import DictVectorizer
+from nlp_process import vectorize_group
+
 # to do:
 #    hist plots of each provider_type for key variables (normal dist?)
 
@@ -19,6 +22,7 @@ import seaborn as sns
 #	group_by provider_state, provider_gender
 #       sort by most to least expensive provider
 #       find count by gender, find cost ratio by gender
+#   use NLP to find word associations w/ high or low cost, e.g. surgery
 
 def make_plotdir(plotdir='cms_hist_plots/'):
     "make plot directory on file system"
@@ -252,6 +256,8 @@ def calc_par_groups(df):
     plotdir = make_plotdir(plotdir='cms_gender_plots/')
     agg_fns = ['count','median','mean','std']
     p_group = calc_par_group(df, agg_fns, ['provider_type'], ['pay_per_person','pay_per_service'])
+    vectorize_group(p_group['pay_per_service'])
+
     print('\ntop pay_per_service')
     filter_group_by_var(p_group['pay_per_service'], agg_fns, stat='median')
     print('\ntop pay_per_person')
