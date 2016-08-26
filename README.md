@@ -26,7 +26,7 @@ A good proportion of the cost data follows a normal distribution on a log scale,
 
 We find some trends by provider type.
 
-##### Payment Per Service
+#### Payment Per Service
 Of the top twenty provider types by median payment per service, eleven are for Surgery, with the most expensive being Ambulatory Surgery, and three are for Oncology or Radiation.  They are given in the table below.  
 
 <table>
@@ -53,9 +53,9 @@ Of the top twenty provider types by median payment per service, eleven are for S
 <tr><td>Ophthalmology</td><td>90</td></tr>
 </table>
 
-<img src="https://github.com/bfetler/cms_medicare/blob/master/cms_cost_plots/bar_pay_per_service.png" alt="example bar plot per service" />
+<img src="https://github.com/bfetler/cms_medicare/blob/master/cms_cost_plots/bar_pay_per_service.png" alt="bar plot per service" />
 
-##### Payment Per Beneficiary
+#### Payment Per Beneficiary
 Of the top twenty provider types by median payment per beneficiary, five are for Oncology or Radiation, with the most expensive being Radiation Therapy, and six are for Surgery, as given in the table below.  
 
 <table>
@@ -82,8 +82,22 @@ Of the top twenty provider types by median payment per beneficiary, five are for
 <tr><td>Colorectal Surgery</td><td>380</td></tr>
 </table>
 
-<img src="https://github.com/bfetler/cms_medicare/blob/master/cms_cost_plots/bar_pay_per_person.png" alt="example bar plot per person" />
+<img src="https://github.com/bfetler/cms_medicare/blob/master/cms_cost_plots/bar_pay_per_person.png" alt="bar plot per person" />
 
 For consumers, the payment per person is probably of most interest, since a patient is typically prescribed a series of treatments, not just a single treatment.
+
+#### Provider Gender
+
+We further dividing the data by provider gender, with some types of facilities categorized as neither.  In general, we find some specialties have a large gender gap, while others do not.  This somewhat reflects traditional roles in society, with more male surgeons and more female nurses.  
+
+<img src="https://github.com/bfetler/cms_medicare/blob/master/cms_gender_plots/bar_count_fraction.png" alt="gender count bar plot" />
+
+We also find that female providers generally cost less than male providers, depending on specialty.  The cost gap is less than 20% for 75% of providers.  Consumers who choose female providers may see reduced costs.  On the other hand, it also shows a persistent wage gap among female providers.
+
+<img src="https://github.com/bfetler/cms_medicare/blob/master/cms_gender_plots/bar_cost_ratio.png" alt="gender cost ratio bar plot" />
+
+<img src="https://github.com/bfetler/cms_medicare/blob/master/cms_gender_plots/scatter_cost_ratio_by_fraction.png" alt="gender cost ratio scatter plot" />
+
+#### Conclusion
 
 The costs are a sobering reminder for consumers and anyone concerned with health care costs in the U.S.
