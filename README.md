@@ -10,6 +10,7 @@ The file contains annual data from over 980,000 physicians and other healthcare 
 + total number of services (doctors visits or procedures)
 + total number of beneficiaries (patients)
 + some drug costs (full drug data is in other datasets)
++ provider and patient gender summary
 + summary of anonymized beneficiary information
 
 ### Preliminary Analysis
@@ -73,17 +74,12 @@ Of the top twenty provider types by median payment per beneficiary, five are for
 <tr><td>Colorectal Surgery</td><td>380</td></tr>
 </table>
 
-For consumers, the payment per person is probably of most interest, since a patient is typically prescribed a series of treatments, all of which must be followed.
+For consumers, the payment per person is probably of most interest, since a patient is typically prescribed a series of treatments, not just a single treatment.
 
 There is a lot of variation in the data for each provider type.  Some have well-defined costs with little variation, while others have widely varying distributions.  Histograms for all provider types are given in __cms_hist_plots/__.  Below is a histogram of some specialties.  
 
 <img src="https://github.com/bfetler/cms_medicare/blob/master/cms_hist_plots/hist_pay_per_person_group7.png" alt="example histogram per person" />
 
-Much of the data does not follow a normal distribution, and is skewed to the left, although there is a lot of variation.  Others have very few providers, for whom it is difficult to do statistics.  For example:
-+ There are 51 providers in Radiation Therapy, while there are 4363 in Radiation Oncology.  There is only 1 Interventional Cardiologist.  
-+ Psychologist and Speech Language Pathologist providers have a wide distribution range. 
-+ Medical Oncology, Infectious Disease and Psychologist *Payment Per Service* have two-peak distributions, although *Payment Per Person* has a single peak.  
-
-The variation in costs may be due to the type of facility (e.g. major hospital or not) or location (e.g. urban or rural area), and requires further investigation.  
+A good proportion of the cost data follows a normal distribution on a log scale, although there is a lot of variation.  Some categories have very few providers, for whom it is difficult to do statistics.  The variation in costs may be due to the type of facility (e.g. major hospital or not) or location (e.g. urban or rural area), and requires further investigation.  
 
 The costs are a sobering reminder for consumers and anyone concerned with health care costs in the U.S.
