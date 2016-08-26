@@ -22,8 +22,8 @@ from nlp_process import vectorize_group
 #	group_by provider_state, provider_gender
 #       sort by most to least expensive provider
 #       find count by gender, find cost ratio by gender
-#   use NLP to find word associations w/ high or low cost, e.g. surgery
-#   other columns: patient_gender, age_groups vs. cost
+#    use NLP to find word associations w/ high or low cost, e.g. surgery
+#    other columns: patient_gender, age_groups vs. cost
 
 def make_plotdir(plotdir='cms_hist_plots/'):
     "make plot directory on file system"
@@ -214,14 +214,14 @@ def process_by_var(plotdir, dfgroup, col, var='nppes_provider_gender'):
     g_sort = filter_group_by_var(dfg, cols, stat='count_fractionF')
     make_bar_plot(get_col(g_sort,'count_fractionF'), plotdir, 'count_fraction', 'Count Fraction Female')
     g_sort = filter_group_by_var(dfg, cols, stat='median_FtoM')
-    make_bar_plot(get_col(g_sort,'median_FtoM'), plotdir, 'salary_ratio', 'Salary Ratio Female / Male')
+    make_bar_plot(get_col(g_sort,'median_FtoM'), plotdir, 'cost_ratio', 'Cost Ratio Female / Male')
 #   g_sort = filter_group_by_var(dfg, cols, stat='mean_diff_ratio')
-    make_bar_plot(get_col(g_sort,'mean_diff_ratio'), plotdir, 'mean_diff', 'Mean Female - Male Salary Difference')
-    make_scatter_plot(dfg['count_fractionF'], dfg['median_FtoM'], plotdir, 'salary_ratio_by_fraction', 'Female Count Fraction', 'Salary Ratio Female / Male', xlim=(0,1))
-    make_scatter_plot(dfg['count']['F'], dfg['median']['F'], plotdir, 'salary_by_count', 'Female Count', 'Log Salary', xlim=(-50,3500))
-    make_scatter_plot(dfg['count_fractionF'], dfg['median']['F'], plotdir, 'salary_by_fraction_count', 'Female Count Fraction', 'Log Salary', xlim=(0,1))
-    make_scatter_plot(dfg['count']['F'], dfg['median_FtoM'], plotdir, 'salary_ratio_by_count', 'Female Count', 'Salary Ratio Female / Male', xlim=(-50,3500))
-#   make_scatter_plot(dfg['median_FtoM'], dfg['median']['F'], plotdir, 'salary_ratio_by_salary', 'Salary Ratio Female / Male', 'Log Salary')
+    make_bar_plot(get_col(g_sort,'mean_diff_ratio'), plotdir, 'mean_diff', 'Mean Female - Male Cost Difference')
+    make_scatter_plot(dfg['count_fractionF'], dfg['median_FtoM'], plotdir, 'cost_ratio_by_fraction', 'Female Count Fraction', 'Cost Ratio Female / Male', xlim=(0,1))
+    make_scatter_plot(dfg['count']['F'], dfg['median']['F'], plotdir, 'cost_by_count', 'Female Provider Count', 'Log10 Cost', xlim=(-1000,70000))
+    make_scatter_plot(dfg['count_fractionF'], dfg['median']['F'], plotdir, 'cost_by_fraction_count', 'Female Count Fraction', 'Log10 Cost', xlim=(0,1))
+    make_scatter_plot(dfg['count']['F'], dfg['median_FtoM'], plotdir, 'cost_ratio_by_count', 'Female Provider Count', 'Cost Ratio Female / Male', xlim=(-1000,70000))
+#   make_scatter_plot(dfg['median_FtoM'], dfg['median']['F'], plotdir, 'cost_ratio_by_cost', 'Salary Ratio Female / Male', 'Log Salary')
 #   print('\ntop median_FtoM')
 #   g_sort = filter_group_by_var(dfg, cols, stat='median_FtoM')
 # to do: plot gender columns
@@ -232,7 +232,7 @@ def get_col(df, col):
     return df[col].dropna()
 
 def make_bar_plot(ser, plotdir, fname, label):
-    "make bar plot"
+    "make bar plot from series"
     plt.clf()
     f = plt.figure(figsize=(10,8))
     ax = f.add_subplot(111)
@@ -244,7 +244,6 @@ def make_bar_plot(ser, plotdir, fname, label):
     ax.set_ylim([0, ser.shape[0]])
     plt.title(label)
     plt.tight_layout()
-#   plt.subplots_adjust(top=0.88)
     pname = '%sbar_%s.png' % (plotdir, fname)
     plt.savefig(pname)
     print('saved plot %s' % pname)
@@ -279,15 +278,22 @@ def calc_par_group(df, agg_fns, pars, cols):
 
 def calc_par_groups(df):
     "calculate series of grouped parameters, printed by column"
-    plotdir = make_plotdir(plotdir='cms_gender_plots/')
+    plotdir = make_plotdir(plotdir='cms_cost_plots/')
     agg_fns = ['count','median','mean','std']
     p_group = calc_par_group(df, agg_fns, ['provider_type'], ['pay_per_person','pay_per_service'])
 #   vectorize_group(p_group['pay_per_service'])
 
     print('\ntop pay_per_service')
-    filter_group_by_var(p_group['pay_per_service'], agg_fns, stat='median')
+    p_sort = filter_group_by_var(p_group['pay_per_service'], agg_fns, stat='median')
+    make_bar_plot(get_col(p_sort,'median'), plotdir, 'pay_per_service', 'Median Log10 Pay Per Service')
     print('\ntop pay_per_person')
-    filter_group_by_var(p_group['pay_per_person'], agg_fns, stat='median')
+    p_sort = filter_group_by_var(p_group['pay_per_person'], agg_fns, stat='median')
+    make_bar_plot(get_col(p_sort,'median'), plotdir, 'pay_per_person', 'Median Log10 Pay Per Person')
+#   p_sort = filter_group_by_var(p_group['pay_per_person'], agg_fns, stat='count')
+    make_bar_plot(get_col(p_sort,'count'), plotdir, 'pay_per_person_count', 'Count Per Specialist')
+    make_scatter_plot(get_col(p_sort,'count'), get_col(p_sort,'median'), plotdir, 'pay_per_person_by_count', 'Count', 'Log10 Cost Per Person', xlim=(-1000,100000))
+
+    plotdir = make_plotdir(plotdir='cms_gender_plots/')
     g_group = calc_par_group(df, agg_fns, ['provider_type','nppes_provider_gender'], ['pay_per_person'])
     g_group = process_by_var(plotdir, g_group, col='pay_per_person', var='nppes_provider_gender')
 
