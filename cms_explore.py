@@ -23,6 +23,7 @@ from nlp_process import vectorize_group
 #       sort by most to least expensive provider
 #       find count by gender, find cost ratio by gender
 #   use NLP to find word associations w/ high or low cost, e.g. surgery
+#   other columns: patient_gender, age_groups vs. cost
 
 def make_plotdir(plotdir='cms_hist_plots/'):
     "make plot directory on file system"
@@ -211,31 +212,56 @@ def process_by_var(plotdir, dfgroup, col, var='nppes_provider_gender'):
     print_all_rows(dfg, cols)
     print('\ntop count_fractionF')
     g_sort = filter_group_by_var(dfg, cols, stat='count_fractionF')
-    make_bar_plot(g_sort, 'count_fractionF', plotdir, 'count_fraction', 'Count Fraction Female')
+    make_bar_plot(get_col(g_sort,'count_fractionF'), plotdir, 'count_fraction', 'Count Fraction Female')
+    g_sort = filter_group_by_var(dfg, cols, stat='median_FtoM')
+    make_bar_plot(get_col(g_sort,'median_FtoM'), plotdir, 'salary_ratio', 'Salary Ratio Female / Male')
+#   g_sort = filter_group_by_var(dfg, cols, stat='mean_diff_ratio')
+    make_bar_plot(get_col(g_sort,'mean_diff_ratio'), plotdir, 'mean_diff', 'Mean Female - Male Salary Difference')
+    make_scatter_plot(dfg['count_fractionF'], dfg['median_FtoM'], plotdir, 'salary_ratio_by_fraction', 'Female Count Fraction', 'Salary Ratio Female / Male', xlim=(0,1))
+    make_scatter_plot(dfg['count']['F'], dfg['median']['F'], plotdir, 'salary_by_count', 'Female Count', 'Log Salary', xlim=(-50,3500))
+    make_scatter_plot(dfg['count_fractionF'], dfg['median']['F'], plotdir, 'salary_by_fraction_count', 'Female Count Fraction', 'Log Salary', xlim=(0,1))
+    make_scatter_plot(dfg['count']['F'], dfg['median_FtoM'], plotdir, 'salary_ratio_by_count', 'Female Count', 'Salary Ratio Female / Male', xlim=(-50,3500))
+#   make_scatter_plot(dfg['median_FtoM'], dfg['median']['F'], plotdir, 'salary_ratio_by_salary', 'Salary Ratio Female / Male', 'Log Salary')
 #   print('\ntop median_FtoM')
 #   g_sort = filter_group_by_var(dfg, cols, stat='median_FtoM')
 # to do: plot gender columns
     return dfg[cols].dropna()
 
-def make_bar_plot(g_sort, stat, plotdir, fname, label):
+def get_col(df, col):
+    "get a series from dataframe for a particular column"
+    return df[col].dropna()
+
+def make_bar_plot(ser, plotdir, fname, label):
     "make bar plot"
     plt.clf()
-    ser = g_sort[stat].dropna()
-    print('ser', ser.shape[0])
-    print(ser.index)
-    print(ser.values)
-    f = plt.figure()
+    f = plt.figure(figsize=(10,8))
     ax = f.add_subplot(111)
-#   ax.bar(range(ser.shape[0]), ser.values) # , tick_label=ser.index)
+#   ax.bar(range(ser.shape[0]), ser.values)
 #   ax.set_xticklabels(ser.index, rotation=90, size=6)
-    ax.barh(range(ser.shape[0]), ser.values) # , tick_label=ser.index)
-#   ax.set_ylim([0, 1+ser.shape[0]])
+    ax.barh(range(ser.shape[0]), ser.values)
+    ax.set_yticks(range(ser.shape[0]))
     ax.set_yticklabels(ser.index, size=6)
+    ax.set_ylim([0, ser.shape[0]])
     plt.title(label)
-# only shows major tick labels
     plt.tight_layout()
 #   plt.subplots_adjust(top=0.88)
-    plt.savefig('%sbar_%s.png' % (plotdir, fname))
+    pname = '%sbar_%s.png' % (plotdir, fname)
+    plt.savefig(pname)
+    print('saved plot %s' % pname)
+
+def make_scatter_plot(xvar, yvar, plotdir, fname, xlabel, ylabel, xlim=None):
+    "make scatter plot"
+    plt.clf()
+    f = plt.figure()
+    ax = f.add_subplot(111)
+    ax.scatter(xvar, yvar, linewidths=0, c='blue', alpha=0.5)
+    if xlim:
+        ax.set_xlim(xlim[0], xlim[1])
+    ax.set_xlabel(xlabel)
+    ax.set_ylabel(ylabel)
+    pname = '%sscatter_%s.png' % (plotdir, fname)
+    plt.savefig(pname)
+    print('saved plot %s' % pname)
 
 def filter_group_by_var(p_group, agg_fns, stat='median'):
     "filter grouped data by variable var, sort by stat"
@@ -256,7 +282,7 @@ def calc_par_groups(df):
     plotdir = make_plotdir(plotdir='cms_gender_plots/')
     agg_fns = ['count','median','mean','std']
     p_group = calc_par_group(df, agg_fns, ['provider_type'], ['pay_per_person','pay_per_service'])
-    vectorize_group(p_group['pay_per_service'])
+#   vectorize_group(p_group['pay_per_service'])
 
     print('\ntop pay_per_service')
     filter_group_by_var(p_group['pay_per_service'], agg_fns, stat='median')
