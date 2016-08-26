@@ -18,7 +18,13 @@ To get an idea of actual health care costs for consumers, we did a preliminary a
 + payment per service = total Medicare payment amount / total number of services
 + payment per person = total Medicare payment amount / total number of beneficiaries
 
-Grouping the payments by the 91 provider types in the data, we find some trends.  
+Grouping the payments by the 91 provider types in the data, we find a lot of variation for each provider type.  Some have well-defined costs with little variation, while others have widely varying distributions.  Histograms for all provider types are given in __cms_hist_plots/__.  Below is a histogram of some specialties.  
+
+<img src="https://github.com/bfetler/cms_medicare/blob/master/cms_hist_plots/hist_pay_per_person_group7.png" alt="example histogram per person" />
+
+A good proportion of the cost data follows a normal distribution on a log scale, although there is a lot of variation.  Some categories have very few providers, for whom it is difficult to do statistics.  The variation in costs may be due to the type of facility (e.g. major hospital or not) or location (e.g. urban or rural area), and requires further investigation.  
+
+We find some trends by provider type.
 
 ##### Payment Per Service
 Of the top twenty provider types by median payment per service, eleven are for Surgery, with the most expensive being Ambulatory Surgery, and three are for Oncology or Radiation.  They are given in the table below.  
@@ -47,6 +53,8 @@ Of the top twenty provider types by median payment per service, eleven are for S
 <tr><td>Ophthalmology</td><td>90</td></tr>
 </table>
 
+<img src="https://github.com/bfetler/cms_medicare/blob/master/cms_cost_plots/bar_pay_per_service.png" alt="example bar plot per service" />
+
 ##### Payment Per Beneficiary
 Of the top twenty provider types by median payment per beneficiary, five are for Oncology or Radiation, with the most expensive being Radiation Therapy, and six are for Surgery, as given in the table below.  
 
@@ -74,12 +82,8 @@ Of the top twenty provider types by median payment per beneficiary, five are for
 <tr><td>Colorectal Surgery</td><td>380</td></tr>
 </table>
 
+<img src="https://github.com/bfetler/cms_medicare/blob/master/cms_cost_plots/bar_pay_per_person.png" alt="example bar plot per person" />
+
 For consumers, the payment per person is probably of most interest, since a patient is typically prescribed a series of treatments, not just a single treatment.
-
-There is a lot of variation in the data for each provider type.  Some have well-defined costs with little variation, while others have widely varying distributions.  Histograms for all provider types are given in __cms_hist_plots/__.  Below is a histogram of some specialties.  
-
-<img src="https://github.com/bfetler/cms_medicare/blob/master/cms_hist_plots/hist_pay_per_person_group7.png" alt="example histogram per person" />
-
-A good proportion of the cost data follows a normal distribution on a log scale, although there is a lot of variation.  Some categories have very few providers, for whom it is difficult to do statistics.  The variation in costs may be due to the type of facility (e.g. major hospital or not) or location (e.g. urban or rural area), and requires further investigation.  
 
 The costs are a sobering reminder for consumers and anyone concerned with health care costs in the U.S.
