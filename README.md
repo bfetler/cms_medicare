@@ -82,6 +82,10 @@ We also find that female providers generally cost less than male providers, depe
 
 <img src="https://github.com/bfetler/cms_medicare/blob/master/cms_gender_plots/scatter_cost_ratio_by_fraction.png" alt="gender cost ratio scatter plot" />
 
+Here is an example plot of a histogram of log costs by provider gender.  There does not appear to be a large difference in cost distribution based upon gender *(red=female, green=male, blue=facility)* for most provider types.
+
+<img src="https://github.com/bfetler/cms_medicare/blob/master/cms_hist_gender_plots/hist_gender_pay_per_person_group7.png" alt="gender cost histogram plot" />
+
 #### Conclusion
 
 The costs are a sobering reminder for consumers and anyone concerned with health care costs in the U.S.
