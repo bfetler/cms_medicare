@@ -72,11 +72,11 @@ For consumers, the payment per person is probably of most interest, since a pati
 
 #### Provider Gender
 
-We further divided the data by provider gender, with some types of facilities categorized as neither.  In general, we find some specialties have a sizeable gender gap, while others do not.  This somewhat reflects traditional roles in society, with more female nurses and more male surgeons.  
+We further analyzed the data by provider gender, with some types of facilities categorized as neither.  In general, we find some specialties have a sizeable gender gap, while others do not.  This somewhat reflects traditional roles in society, with more female nurses and more male surgeons.  
 
 <img src="https://github.com/bfetler/cms_medicare/blob/master/cms_gender_plots/bar_count_fraction.png" alt="gender count bar plot" />
 
-We also find that female providers generally cost less than male providers, depending on specialty.  The median cost ratio is less than 20% for 80% of providers.  Consumers who choose female providers may see reduced costs.  On the other hand, the data also may indicate a persistent wage gap among female providers.
+We also find that female providers generally cost less than male providers, depending on specialty.  Consumers who choose female providers may see reduced costs.  On the other hand, the data also may indicate a persistent wage gap among female providers.  The median cost ratio is less than 20% for 80% of providers.  
 
 <img src="https://github.com/bfetler/cms_medicare/blob/master/cms_gender_plots/bar_cost_ratio.png" alt="gender cost ratio bar plot" />
 
