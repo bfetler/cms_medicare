@@ -308,9 +308,9 @@ def main():
         df = read_select_data(new_cols, fname)
 
 # hist plots very varied, log scale doesn't always help
-#   make_hist_plots(df, 'pay_per_service', 'provider_type')
-#   make_hist_plots(df, 'pay_per_person', 'provider_type')
-#   make_hist_plots(df, 'pay_per_person', 'provider_type', plotdir=make_plotdir('cms_hist_gender_plots/'), split_var='nppes_provider_gender')
+    make_hist_plots(df, 'pay_per_service', 'provider_type')
+    make_hist_plots(df, 'pay_per_person', 'provider_type')
+    make_hist_plots(df, 'pay_per_person', 'provider_type', plotdir=make_plotdir('cms_hist_gender_plots/'), split_var='nppes_provider_gender')
 # many provider_types have only one gender, nan
 
     calc_par_groups(df)
