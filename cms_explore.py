@@ -148,11 +148,23 @@ def calc_par_group(df, agg_fns, pars, cols):
     print_all_rows(par_group, cols)
     return par_group
 
+def age_calc(df):
+    "average age calc per provider type"
+    df['total_age'] = df['beneficiary_average_age'] * df['total_unique_benes']
+#   print(df['total_age'])
+    plotdir = make_plotdir(plotdir='cms_pop_plots/')
+    agg_fns = ['sum']
+    p_group = calc_par_group(df, agg_fns, ['provider_type'], ['total_unique_benes','total_age'])
+    p_group['avg_age'] = p_group['total_age']['sum'] / p_group['total_unique_benes']['sum']
+    p_sort = p_group.sort_values(by='avg_age', ascending=False)
+    print_all_rows(p_sort, ['avg_age'])
+    make_bar_plot(get_col(p_sort,'avg_age'), plotdir, 'beneficiary_average_age', 'Beneficiary Average Age', xlim=(50,100))
+
 def pop_calc_par_groups(df):
     "calculate series of grouped population parameters, printed by column"
     plotdir = make_plotdir(plotdir='cms_pop_plots/')
     agg_fns = ['count','sum','median']
-    p_group = calc_par_group(df, agg_fns, ['provider_type'], ['total_unique_benes','total_services','beneficiary_average_age'])
+    p_group = calc_par_group(df, agg_fns, ['provider_type'], ['total_unique_benes','total_services','beneficiary_average_age','total_medicare_payment_amt'])
 
     print('\ntop total_services count')  # count of number of providers, not patients
     p_sort = filter_group_by_var(p_group['total_services'], agg_fns, stat='count')
@@ -167,7 +179,15 @@ def pop_calc_par_groups(df):
 
     print('\ntop beneficiary_average_age median')
     p_sort = filter_group_by_var(p_group['beneficiary_average_age'], agg_fns, stat='median')
-    make_bar_plot(get_col(p_sort,'median'), plotdir, 'beneficiary_average_age_median', 'Median Beneficiary Age', xlim=(50,100))
+    make_bar_plot(get_col(p_sort,'median'), plotdir, 'beneficiary_average_age_median', 'Median Beneficiary Age Per Provider', xlim=(50,100))
+
+    print('\ntop total_medicare_payment_amt median')
+    p_sort = filter_group_by_var(p_group['total_medicare_payment_amt'], agg_fns, stat='median')
+    make_bar_plot(get_col(p_sort,'median'), plotdir, 'median_medicare_payment_amt', 'Median Medicare Payment Amount Per Provider')
+
+    print('\ntop total_medicare_payment_amt')
+    p_sort = filter_group_by_var(p_group['total_medicare_payment_amt'], agg_fns, stat='sum')
+    make_bar_plot(get_col(p_sort,'sum'), plotdir, 'total_medicare_payment_amt', 'Total Medicare Payment Amount')
 
 def pay_calc_par_groups(df):
     "calculate series of grouped pay parameters, printed by column"
@@ -209,7 +229,8 @@ def main():
 # many provider_types have only one gender, nan
 
 #   pay_calc_par_groups(df)
-    pop_calc_par_groups(df)
+#   pop_calc_par_groups(df)
+    age_calc(df)
 
 if __name__ == '__main__':
     main()
