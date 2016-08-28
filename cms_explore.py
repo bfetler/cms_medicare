@@ -12,7 +12,7 @@ from plot_methods import make_plotdir, print_all_rows, make_hist_plots, plot_his
         make_bar_plot, make_scatter_plot
 
 # to do:
-#    hist plots of each provider_type for key variables (normal dist?)
+#    histogram plots of each provider_type for key variables (normal distribution?)
 
 # interesting questions:
 #    group_by provider_type, find:
@@ -41,7 +41,7 @@ def get_select_columns():
           total_submitted_chrg_amt    total_med_submitted_chrg_amt
  	  total_medicare_payment_amt  total_med_medicare_payment_amt
     '''
-    new_cols = [ 'provider_type','nppes_provider_gender','nppes_provider_state','total_services','total_unique_benes','total_submitted_chrg_amt','total_medicare_payment_amt','beneficiary_average_age','Beneficiary_Average_Risk_Score', 'total_med_medicare_payment_amt', 'total_med_services','total_med_unique_benes' ]
+    new_cols = [ 'provider_type','nppes_provider_gender','nppes_provider_state','total_services','total_unique_benes','total_submitted_chrg_amt','total_medicare_payment_amt','beneficiary_average_age','Beneficiary_Average_Risk_Score', 'total_med_medicare_payment_amt', 'total_med_services','total_drug_medicare_payment_amt','total_drug_services' ]
     return new_cols
 
 def read_select_data(new_cols, fname, first=False):
@@ -65,10 +65,18 @@ def read_select_data(new_cols, fname, first=False):
 
     print("df columns isnull sum\n%s" % df.isnull().sum())
 #   nppes_provider_gender  61330, others 0
+#   total_med_services, total_drug_services 5186 out of 50000
     print("df columns iszero sum\n%s" % (df==0).sum())
-#	  total_medicare_payment_amt  total_med_medicare_payment_amt
+#   total_drug_services 32011 out of 50000
+
+    pay_diff = (df['total_services'] != df['total_med_services']).sum()
+    print('med services diff sum', pay_diff)  # 17989
     pay_diff = (df['total_medicare_payment_amt'] != df['total_med_medicare_payment_amt']).sum()
-    print('pay_diff sum', pay_diff)  # it's not zero
+    print('med pay diff sum', pay_diff)  # 17989 out of 50000 ~ 36%
+    pay_diff = (df['total_services'] != df['total_drug_services']).sum()
+    print('drug services diff sum', pay_diff)  # 49995
+    pay_diff = (df['total_medicare_payment_amt'] != df['total_drug_medicare_payment_amt']).sum()
+    print('drug pay diff sum', pay_diff)  # 49994 out of 50000 ~ 100%
 
 #   total_medicare_payment_amt 3, others 0,remove zeroes
     df = df[df.total_medicare_payment_amt != 0]
@@ -140,8 +148,29 @@ def calc_par_group(df, agg_fns, pars, cols):
     print_all_rows(par_group, cols)
     return par_group
 
-def calc_par_groups(df):
-    "calculate series of grouped parameters, printed by column"
+def pop_calc_par_groups(df):
+    "calculate series of grouped population parameters, printed by column"
+    plotdir = make_plotdir(plotdir='cms_pop_plots/')
+    agg_fns = ['count','sum','median']
+    p_group = calc_par_group(df, agg_fns, ['provider_type'], ['total_unique_benes','total_services','beneficiary_average_age'])
+
+    print('\ntop total_services count')  # count of number of providers, not patients
+    p_sort = filter_group_by_var(p_group['total_services'], agg_fns, stat='count')
+    make_bar_plot(get_col(p_sort,'count'), plotdir, 'total_services_count', 'Count Total Services')
+    print('\ntop total_services sum')
+    p_sort = filter_group_by_var(p_group['total_services'], agg_fns, stat='sum')
+    make_bar_plot(get_col(p_sort,'sum'), plotdir, 'total_services_sum', 'Sum Total Services')
+
+    print('\ntop total_unique_benes sum')
+    p_sort = filter_group_by_var(p_group['total_unique_benes'], agg_fns, stat='sum')
+    make_bar_plot(get_col(p_sort,'sum'), plotdir, 'total_unique_benes_sum', 'Sum Total Beneficiaries')
+
+    print('\ntop beneficiary_average_age median')
+    p_sort = filter_group_by_var(p_group['beneficiary_average_age'], agg_fns, stat='median')
+    make_bar_plot(get_col(p_sort,'median'), plotdir, 'beneficiary_average_age_median', 'Median Beneficiary Age', xlim=(50,100))
+
+def pay_calc_par_groups(df):
+    "calculate series of grouped pay parameters, printed by column"
     plotdir = make_plotdir(plotdir='cms_cost_plots/')
     agg_fns = ['count','median','mean','std']
     p_group = calc_par_group(df, agg_fns, ['provider_type'], ['pay_per_person','pay_per_service'])
@@ -154,7 +183,7 @@ def calc_par_groups(df):
     p_sort = filter_group_by_var(p_group['pay_per_person'], agg_fns, stat='median')
     make_bar_plot(get_col(p_sort,'median'), plotdir, 'pay_per_person', 'Median Log10 Pay Per Person')
 #   p_sort = filter_group_by_var(p_group['pay_per_person'], agg_fns, stat='count')
-    make_bar_plot(get_col(p_sort,'count'), plotdir, 'pay_per_person_count', 'Count Per Specialist')
+    make_bar_plot(get_col(p_sort,'count'), plotdir, 'pay_per_person_count', 'Count Per Person')
     make_scatter_plot(get_col(p_sort,'count'), get_col(p_sort,'median'), plotdir, 'pay_per_person_by_count', 'Count', 'Log10 Cost Per Person', xlim=(-1000,100000))
 
     plotdir = make_plotdir(plotdir='cms_gender_plots/')
@@ -171,13 +200,16 @@ def main():
     else:
         df = read_select_data(new_cols, fname)
 
-# hist plots very varied, log scale doesn't always help
-#   make_hist_plots(df, 'pay_per_service', 'provider_type')
-#   make_hist_plots(df, 'pay_per_person', 'provider_type')
-    make_hist_plots(df, 'pay_per_person', 'provider_type', plotdir=make_plotdir('cms_hist_gender_plots/'), split_var='nppes_provider_gender')
+# hist plots very varied, log scale usually helps $ and population data
+#   make_hist_plots(df, 'pay_per_service', 'provider_type', plotdir=make_plotdir())
+#   make_hist_plots(df, 'pay_per_person', 'provider_type', plotdir=make_plotdir())
+#   make_hist_plots(df, 'beneficiary_average_age', 'provider_type', plotdir=make_plotdir('bene_average_age_plots/'))
+#   make_hist_plots(df, 'Beneficiary_Average_Risk_Score', 'provider_type', plotdir=make_plotdir('bene_risk_plots/'))
+#   make_hist_plots(df, 'pay_per_person', 'provider_type', plotdir=make_plotdir('cms_hist_gender_plots/'), split_var='nppes_provider_gender')
 # many provider_types have only one gender, nan
 
-#   calc_par_groups(df)
+#   pay_calc_par_groups(df)
+    pop_calc_par_groups(df)
 
 if __name__ == '__main__':
     main()

@@ -1,4 +1,4 @@
-# plot methods
+# plot and print methods
 
 import os
 import matplotlib.pyplot as plt
@@ -63,9 +63,9 @@ def print_all_rows(df, column_names):
     for g in gx:
         print(df[column_names].ix[g])
 
-def make_hist_plots(df, column_name, group_var, plotdir=make_plotdir(), split_var=None):
+# def make_hist_plots(df, column_name, group_var, plotdir=make_plotdir(), split_var=None):
+def make_hist_plots(df, column_name, group_var, plotdir, split_var=None):
     "make histogram plot of data frame subsets by group variable, with optional split variable"
-#   plotdir = make_plotdir()
     col_name = column_name     # for now
     providers = sorted(list(set(df[group_var])))
     print('plotting histograms')
@@ -107,7 +107,7 @@ def plot_hists(df, vlist, label, col_name, group_var, plotdir, ncols=3, split_va
         plt.suptitle('CMS %s histograms by %s' % (col_name, group_var), fontsize=12)
         plt.savefig('%shist_%s_%s.png' % (plotdir, col_name, label))
 
-def make_bar_plot(ser, plotdir, fname, label):
+def make_bar_plot(ser, plotdir, fname, label, xlim=None):
     "make bar plot from series"
     plt.clf()
     f = plt.figure(figsize=(10,8))
@@ -118,6 +118,8 @@ def make_bar_plot(ser, plotdir, fname, label):
     ax.set_yticks(range(ser.shape[0]))
     ax.set_yticklabels(ser.index, size=6)
     ax.set_ylim([0, ser.shape[0]])
+    if xlim:
+        ax.set_xlim(xlim[0], xlim[1])
     plt.title(label)
     plt.tight_layout()
     pname = '%sbar_%s.png' % (plotdir, fname)

@@ -1,6 +1,6 @@
 import unittest
-import pandas as pd
-from cms_explore import getn
+# import pandas as pd
+from plot_methods import getn
 
 class CmsExploreTest(unittest.TestCase):
 
