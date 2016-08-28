@@ -126,29 +126,16 @@ def plot_hists(df, vlist, label, col_name, group_var, plotdir, ncols=3, split_va
     if split_var:    # e.g. nppes_provider_gender
         splits = sorted(list(set(df[split_var])))
         splits.reverse()
-#       print('splits', splits)
-#       colors = ['blue','green','red']   # need alpha transparency
-# reverse colors, plot F last, may show on top of M?  count(M) > count(F)
-#       aligns = ['left','right','mid']  # not always correct?  need more pixels?
     nrows = len(vlist) // ncols
     if len(vlist) % ncols > 0:
         nrows += 1
     for k, val in enumerate(vlist):
         ax = fig.add_subplot(nrows, ncols, k+1)
         if split_var:
-#            for j,s in enumerate(splits):
-##               ax.hist(df[(df[group_var]==val) & (df[split_var]==s)][col_name], bins=30, color=colors[j], alpha=0.4)
-#                ax.hist(df[(df[group_var]==val) & (df[split_var]==s)][col_name], bins=20, rwidth=0.5, align=aligns[j])  # use seaborn colors
             hdata = []
             for s in splits:
-#               hpart = df[(df[group_var]==val) & (df[split_var]==s)][col_name]
-#               print(s, hpart.size, sep=' ', end='')
-#               if hpart.size > 0:
-#                   hdata.append(np.array(hpart))
                 hdata.append(df[(df[group_var]==val) & (df[split_var]==s)][col_name])
             ax.hist(hdata, bins=20)
-#           ax.legend(splits)
-#           print('', flush=True)
         else:
             ax.hist(df[df[group_var]==val][col_name], bins=30)
         ax.set_title(val, fontsize=10)
@@ -156,7 +143,7 @@ def plot_hists(df, vlist, label, col_name, group_var, plotdir, ncols=3, split_va
     plt.tight_layout()
     plt.subplots_adjust(top=0.88)
     if split_var:
-        ax.legend(splits)
+        ax.legend(splits, bbox_to_anchor=(1.0,5.8))  # misses last plot
         plt.suptitle('CMS %s histograms by %s and %s' % (col_name, group_var, split_var[-6:]), fontsize=12)
         plt.savefig('%shist_%s_%s_%s.png' % (plotdir, split_var[-6:], col_name, label))
     else:
@@ -193,7 +180,7 @@ def read_select_data(new_cols, fname, first=False):
     df = df[df.total_medicare_payment_amt != 0]
 
 #   convert gender nan to 'nan'
-    df['nppes_provider_gender'] = df['nppes_provider_gender'].apply(lambda s: str(s))
+    df['nppes_provider_gender'] = df['nppes_provider_gender'].apply(lambda s: 'none' if type(s)==float else str(s))
     genders = sorted(list(set(df['nppes_provider_gender'])))
     print("df gender set %s" % genders)
 #   print("df gender count %s" % df.groupby('nppes_provider_gender').count())
@@ -205,8 +192,6 @@ def read_select_data(new_cols, fname, first=False):
 #   df['overcharge_ratio'] = df['total_submitted_chrg_amt'] / df['total_medicare_payment_amt']
     print("df shape", df.shape)
 #   shape (986674, 11)
-
-    raise ValueError('yahh')
 
     return df
 
