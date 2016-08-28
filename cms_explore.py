@@ -25,6 +25,7 @@ from nlp_process import vectorize_group
 #    use NLP to find word associations w/ high or low cost, e.g. surgery
 #    other columns: patient_gender, age_groups vs. cost
 #      total_medicare_payment_amt vs. total_submitted_chrg_amt
+#        vs. total_med_medicare_payment_amt (may not include drugs)
 #      beneficiary_average_age beneficiary_age_less_65_count beneficiary_age_65_74_count
 #      beneficiary_female_count beneficiary_male_count 
 # beneficiary_cc_afib_percent beneficiary_cc_cancer_percent beneficiary_cc_hypert_percent
@@ -46,7 +47,7 @@ def get_select_columns():
           total_submitted_chrg_amt    total_med_submitted_chrg_amt
  	  total_medicare_payment_amt  total_med_medicare_payment_amt
     '''
-    new_cols = [ 'provider_type','nppes_provider_gender','nppes_provider_state','total_services','total_unique_benes','total_submitted_chrg_amt','total_medicare_payment_amt','beneficiary_average_age','Beneficiary_Average_Risk_Score' ]
+    new_cols = [ 'provider_type','nppes_provider_gender','nppes_provider_state','total_services','total_unique_benes','total_submitted_chrg_amt','total_medicare_payment_amt','beneficiary_average_age','Beneficiary_Average_Risk_Score', 'total_med_medicare_payment_amt' ]
     return new_cols
 
 def print_select_columns(df, new_cols, size=10):
@@ -126,9 +127,9 @@ def plot_hists(df, vlist, label, col_name, group_var, plotdir, ncols=3, split_va
         splits = sorted(list(set(df[split_var])))
         splits.reverse()
 #       print('splits', splits)
-        colors = ['blue','green','red']   # need alpha transparency
+#       colors = ['blue','green','red']   # need alpha transparency
 # reverse colors, plot F last, may show on top of M?  count(M) > count(F)
-        aligns = ['left','right','mid']  # not always correct?  need more pixels?
+#       aligns = ['left','right','mid']  # not always correct?  need more pixels?
     nrows = len(vlist) // ncols
     if len(vlist) % ncols > 0:
         nrows += 1
@@ -140,12 +141,13 @@ def plot_hists(df, vlist, label, col_name, group_var, plotdir, ncols=3, split_va
 #                ax.hist(df[(df[group_var]==val) & (df[split_var]==s)][col_name], bins=20, rwidth=0.5, align=aligns[j])  # use seaborn colors
             hdata = []
             for s in splits:
-                hpart = df[(df[group_var]==val) & (df[split_var]==s)][col_name]
+#               hpart = df[(df[group_var]==val) & (df[split_var]==s)][col_name]
 #               print(s, hpart.size, sep=' ', end='')
 #               if hpart.size > 0:
 #                   hdata.append(np.array(hpart))
                 hdata.append(df[(df[group_var]==val) & (df[split_var]==s)][col_name])
             ax.hist(hdata, bins=20)
+#           ax.legend(splits)
 #           print('', flush=True)
         else:
             ax.hist(df[df[group_var]==val][col_name], bins=30)
@@ -154,6 +156,7 @@ def plot_hists(df, vlist, label, col_name, group_var, plotdir, ncols=3, split_va
     plt.tight_layout()
     plt.subplots_adjust(top=0.88)
     if split_var:
+        ax.legend(splits)
         plt.suptitle('CMS %s histograms by %s and %s' % (col_name, group_var, split_var[-6:]), fontsize=12)
         plt.savefig('%shist_%s_%s_%s.png' % (plotdir, split_var[-6:], col_name, label))
     else:
@@ -182,6 +185,10 @@ def read_select_data(new_cols, fname, first=False):
     print("df columns isnull sum\n%s" % df.isnull().sum())
 #   nppes_provider_gender  61330, others 0
     print("df columns iszero sum\n%s" % (df==0).sum())
+#	  total_medicare_payment_amt  total_med_medicare_payment_amt
+    pay_diff = (df['total_medicare_payment_amt'] != df['total_med_medicare_payment_amt']).sum()
+    print('pay_diff sum', pay_diff)  # it's not zero
+
 #   total_medicare_payment_amt 3, others 0,remove zeroes
     df = df[df.total_medicare_payment_amt != 0]
 
@@ -198,6 +205,8 @@ def read_select_data(new_cols, fname, first=False):
 #   df['overcharge_ratio'] = df['total_submitted_chrg_amt'] / df['total_medicare_payment_amt']
     print("df shape", df.shape)
 #   shape (986674, 11)
+
+    raise ValueError('yahh')
 
     return df
 
@@ -313,12 +322,12 @@ def main():
         df = read_select_data(new_cols, fname)
 
 # hist plots very varied, log scale doesn't always help
-    make_hist_plots(df, 'pay_per_service', 'provider_type')
-    make_hist_plots(df, 'pay_per_person', 'provider_type')
+#   make_hist_plots(df, 'pay_per_service', 'provider_type')
+#   make_hist_plots(df, 'pay_per_person', 'provider_type')
     make_hist_plots(df, 'pay_per_person', 'provider_type', plotdir=make_plotdir('cms_hist_gender_plots/'), split_var='nppes_provider_gender')
 # many provider_types have only one gender, nan
 
-    calc_par_groups(df)
+#   calc_par_groups(df)
 
 if __name__ == '__main__':
     main()
