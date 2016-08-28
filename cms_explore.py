@@ -4,11 +4,12 @@ import os, sys
 
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
 
 from sklearn.feature_extraction import DictVectorizer
 from nlp_process import vectorize_group
+
+from plot_methods import make_plotdir, print_all_rows, make_hist_plots, plot_hists, \
+        make_bar_plot, make_scatter_plot
 
 # to do:
 #    hist plots of each provider_type for key variables (normal dist?)
@@ -31,13 +32,6 @@ from nlp_process import vectorize_group
 # beneficiary_cc_afib_percent beneficiary_cc_cancer_percent beneficiary_cc_hypert_percent
 # beneficiary_cc_strk_percent Beneficiary_Average_Risk_Score (what do abbreviations mean?)
 
-def make_plotdir(plotdir='cms_hist_plots/'):
-    "make plot directory on file system"
-    if not os.access(plotdir, os.F_OK):
-        os.mkdir(plotdir)
-    sns.set_style("darkgrid")
-    return plotdir
-
 def get_select_columns():
     "try to select interesting columns, rather than all 70"
     ''' the following columns appear to be near duplicates,
@@ -47,108 +41,8 @@ def get_select_columns():
           total_submitted_chrg_amt    total_med_submitted_chrg_amt
  	  total_medicare_payment_amt  total_med_medicare_payment_amt
     '''
-    new_cols = [ 'provider_type','nppes_provider_gender','nppes_provider_state','total_services','total_unique_benes','total_submitted_chrg_amt','total_medicare_payment_amt','beneficiary_average_age','Beneficiary_Average_Risk_Score', 'total_med_medicare_payment_amt' ]
+    new_cols = [ 'provider_type','nppes_provider_gender','nppes_provider_state','total_services','total_unique_benes','total_submitted_chrg_amt','total_medicare_payment_amt','beneficiary_average_age','Beneficiary_Average_Risk_Score', 'total_med_medicare_payment_amt', 'total_med_services','total_med_unique_benes' ]
     return new_cols
-
-def print_select_columns(df, new_cols, size=10):
-    "print subset of columns"
-    print("select columns \n%s" % df[new_cols][:size])
-
-def print_all_columns(df, size=10):
-    "print columns in sensible groups"
-    nppes_col = [ m for m in list(df.columns) if m.startswith('nppes') ]
-    nppes_col.insert(0, 'npi')   # just an index
-    nppes_col.extend(['provider_type','medicare_participation_indicator'])
-    # 15 columns
-    print("nppes columns len=%d\n%s" % (len(nppes_col), nppes_col))   # zip contains 9 digits sometimes
-    df['nppes_provider_zip'] = df['nppes_provider_zip'].map(lambda s: int(str(s)[:5]))
-    print(df[nppes_col][:size])
-
-    total_col = [ m for m in list(df.columns) if m.startswith('total') ]
-    # 23 columns
-    print("total columns len=%d\n%s" % (len(total_col), total_col))
-    print(df[total_col][:size])
-
-    number_col = [ m for m in list(df.columns) if m.startswith('number') or m.endswith('suppress_indicator') ]
-    # 18 columns
-    print("number columns len=%d\n%s" % (len(number_col), number_col))
-    print(df[number_col][:size])
-
-    bene_count = [ m for m in list(df.columns) if m.startswith('bene') and m.endswith('count') ]
-    bene_count.insert(0, 'beneficiary_average_age')
-    bene_count.insert(1, 'Beneficiary_Average_Risk_Score')
-    # 5 columns
-    print("bene_count columns len=%d\n%s" % (len(bene_count), bene_count))
-    print(df[bene_count][:size])
-
-    bene_pct = [ m for m in list(df.columns) if m.startswith('bene') and m.endswith('percent') ]
-    # 16 columns
-    print("bene_pct columns len=%d\n%s" % (len(bene_pct), bene_pct))
-    print(df[bene_pct][:size])
-
-def getn(o1, n=10):
-    "get n rows of array o1, for print output"
-    i=0
-    while i<len(o1):
-        ar = [o1[i]]
-        i += 1
-        while i % n != 0:
-            if i<len(o1):
-                ar.append(o1[i])
-                i += 1
-            else:
-                break
-        yield ar
-
-def print_all_rows(df, column_names):
-    "print all rows in groups of 20"
-    gx = getn(list(df.index), 20)
-    for g in gx:
-        print(df[column_names].ix[g])
-
-def make_hist_plots(df, column_name, group_var, plotdir=make_plotdir(), split_var=None):
-    "make histogram plot of data frame subsets by group variable, with optional split variable"
-#   plotdir = make_plotdir()
-    col_name = column_name     # for now
-    providers = sorted(list(set(df[group_var])))
-    print('plotting histograms')
-    gx = getn(providers, 12)
-    for k, v in enumerate(gx):
-        print('.', end='', flush=True)
-        plot_hists(df, v, 'group%s' % (k+1), col_name, group_var, plotdir, split_var=split_var)
-    print(' done plotting histograms')
-# e.g. make_hist_plots(df, 'pay_per_service', 'provider_type')
-
-def plot_hists(df, vlist, label, col_name, group_var, plotdir, ncols=3, split_var=None):
-    "plot subset of histograms"
-    plt.clf()
-    fig = plt.figure(figsize=(10,8))
-    if split_var:    # e.g. nppes_provider_gender
-        splits = sorted(list(set(df[split_var])))
-        splits.reverse()
-    nrows = len(vlist) // ncols
-    if len(vlist) % ncols > 0:
-        nrows += 1
-    for k, val in enumerate(vlist):
-        ax = fig.add_subplot(nrows, ncols, k+1)
-        if split_var:
-            hdata = []
-            for s in splits:
-                hdata.append(df[(df[group_var]==val) & (df[split_var]==s)][col_name])
-            ax.hist(hdata, bins=20)
-        else:
-            ax.hist(df[df[group_var]==val][col_name], bins=30)
-        ax.set_title(val, fontsize=10)
-        ax.tick_params(labelbottom='on', labelleft='on', labelsize=7)
-    plt.tight_layout()
-    plt.subplots_adjust(top=0.88)
-    if split_var:
-        ax.legend(splits, bbox_to_anchor=(1.0,5.8))  # misses last plot
-        plt.suptitle('CMS %s histograms by %s and %s' % (col_name, group_var, split_var[-6:]), fontsize=12)
-        plt.savefig('%shist_%s_%s_%s.png' % (plotdir, split_var[-6:], col_name, label))
-    else:
-        plt.suptitle('CMS %s histograms by %s' % (col_name, group_var), fontsize=12)
-        plt.savefig('%shist_%s_%s.png' % (plotdir, col_name, label))
 
 def read_select_data(new_cols, fname, first=False):
     "read new_cols from csv file fname and groupby provider_type"
@@ -184,16 +78,22 @@ def read_select_data(new_cols, fname, first=False):
     genders = sorted(list(set(df['nppes_provider_gender'])))
     print("df gender set %s" % genders)
 #   print("df gender count %s" % df.groupby('nppes_provider_gender').count())
-#       ['F', 'M' 'nan'] count (18721, 28116, 3162) in 1st 50000
+#       ['F', 'M' 'none'] count (18721, 28116, 3162) in 1st 50000
 
 # calc new columns, log of quotient = log($) - log(population)
     df['pay_per_service'] = np.log10(df['total_medicare_payment_amt'] / df['total_services'])
     df['pay_per_person'] = np.log10(df['total_medicare_payment_amt'] / df['total_unique_benes'])
+#   df['med_pay_per_service'] = np.log10(df['total_med_medicare_payment_amt'] / df['total_med_services'])
+#   df['med_pay_per_person'] = np.log10(df['total_med_medicare_payment_amt'] / df['total_med_unique_benes'])
 #   df['overcharge_ratio'] = df['total_submitted_chrg_amt'] / df['total_medicare_payment_amt']
     print("df shape", df.shape)
 #   shape (986674, 11)
 
     return df
+
+def get_col(df, col):
+    "get a series from dataframe for a particular column"
+    return df[col].dropna()
 
 def process_by_var(plotdir, dfgroup, col, var='nppes_provider_gender'):
     "process dataframe group by variable, usually gender"
@@ -225,41 +125,6 @@ def process_by_var(plotdir, dfgroup, col, var='nppes_provider_gender'):
 #   g_sort = filter_group_by_var(dfg, cols, stat='median_FtoM')
 # to do: plot gender columns
     return dfg[cols].dropna()
-
-def get_col(df, col):
-    "get a series from dataframe for a particular column"
-    return df[col].dropna()
-
-def make_bar_plot(ser, plotdir, fname, label):
-    "make bar plot from series"
-    plt.clf()
-    f = plt.figure(figsize=(10,8))
-    ax = f.add_subplot(111)
-#   ax.bar(range(ser.shape[0]), ser.values)
-#   ax.set_xticklabels(ser.index, rotation=90, size=6)
-    ax.barh(range(ser.shape[0]), ser.values)
-    ax.set_yticks(range(ser.shape[0]))
-    ax.set_yticklabels(ser.index, size=6)
-    ax.set_ylim([0, ser.shape[0]])
-    plt.title(label)
-    plt.tight_layout()
-    pname = '%sbar_%s.png' % (plotdir, fname)
-    plt.savefig(pname)
-    print('saved plot %s' % pname)
-
-def make_scatter_plot(xvar, yvar, plotdir, fname, xlabel, ylabel, xlim=None):
-    "make scatter plot"
-    plt.clf()
-    f = plt.figure()
-    ax = f.add_subplot(111)
-    ax.scatter(xvar, yvar, linewidths=0, c='blue', alpha=0.5)
-    if xlim:
-        ax.set_xlim(xlim[0], xlim[1])
-    ax.set_xlabel(xlabel)
-    ax.set_ylabel(ylabel)
-    pname = '%sscatter_%s.png' % (plotdir, fname)
-    plt.savefig(pname)
-    print('saved plot %s' % pname)
 
 def filter_group_by_var(p_group, agg_fns, stat='median'):
     "filter grouped data by variable var, sort by stat"
