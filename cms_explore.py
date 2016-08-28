@@ -24,6 +24,11 @@ from nlp_process import vectorize_group
 #       find count by gender, find cost ratio by gender
 #    use NLP to find word associations w/ high or low cost, e.g. surgery
 #    other columns: patient_gender, age_groups vs. cost
+#      total_medicare_payment_amt vs. total_submitted_chrg_amt
+#      beneficiary_average_age beneficiary_age_less_65_count beneficiary_age_65_74_count
+#      beneficiary_female_count beneficiary_male_count 
+# beneficiary_cc_afib_percent beneficiary_cc_cancer_percent beneficiary_cc_hypert_percent
+# beneficiary_cc_strk_percent Beneficiary_Average_Risk_Score (what do abbreviations mean?)
 
 def make_plotdir(plotdir='cms_hist_plots/'):
     "make plot directory on file system"
