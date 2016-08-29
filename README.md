@@ -86,6 +86,12 @@ Here is an example plot of a histogram of log costs by provider gender.  There d
 
 <img src="https://github.com/bfetler/cms_medicare/blob/master/cms_hist_gender_plots/hist_gender_pay_per_person_group7.png" alt="gender cost histogram plot" />
 
+#### Patient Age
+
+We have data on average patient age, and age broken into four categories, which we can group by provider type.  The information is not broken down into cost per service by age, but it is still interesting to consider the popularity of different specialists by age.  
+
+
+
 #### Conclusion
 
-The costs are a sobering reminder for consumers and anyone concerned with health care costs in the U.S.
+Health care costs are a sobering reminder for consumers and anyone concerned with health care in the U.S.
