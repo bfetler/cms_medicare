@@ -92,7 +92,7 @@ We also find that female providers generally cost less than male providers, depe
 
 <img src="https://github.com/bfetler/cms_medicare/blob/master/cms_gender_plots/scatter_cost_ratio_by_fraction.png" alt="gender cost ratio scatter plot" />
 
-Here is an example plot of a histogram of log costs by provider gender.  There does not appear to be a large difference in cost distribution based upon gender *(red=female, green=male, blue=facility)* for most provider types.
+Here is an example plot of a histogram of log costs by provider gender.  There does not appear to be a large difference in cost distribution based upon gender for most provider types.
 
 <img src="https://github.com/bfetler/cms_medicare/blob/master/cms_hist_gender_plots/hist_gender_pay_per_person_group7.png" alt="gender cost histogram plot" />
 
@@ -100,7 +100,17 @@ Here is an example plot of a histogram of log costs by provider gender.  There d
 
 We have data on average patient age, and age broken into four categories, which we can group by provider type.  The information is not broken down into cost per service by age, but it is still interesting to consider the popularity of different specialists by age.  
 
+<img src="https://github.com/bfetler/cms_medicare/blob/master/cms_pop_plots/bar_beneficiary_average_age.png" alt="beneficiary average age by provider" />
 
+Apparently psychiatry is needed more by seniors in their mid-50's, while Radiation Oncology is more common in the mid-70's.  
+
+<img src="https://github.com/bfetler/cms_medicare/blob/master/bene_average_age_plots/hist_beneficiary_average_age_group7.png" alt="beneficiary age subgroup" />
+
+#### Patient Gender
+
+Patient gender also affects the types of medical procedures needed.  The results are for total population.  
+
+<img src="https://github.com/bfetler/cms_medicare/blob/master/cms_pop_gender_plots/bar_provider_type_group1.png" alt="beneficiary gender subgroup" />
 
 #### Conclusion
 
