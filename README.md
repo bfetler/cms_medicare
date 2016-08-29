@@ -70,6 +70,16 @@ Of the top dozen provider types by median payment per beneficiary, two are for R
 
 For consumers, the payment per person is probably of most interest, since a patient is typically prescribed a series of treatments, not just a single service.
 
+#### Medicare Total Beneficiaries and Payment
+
+The total number of medicare beneficiaries by provider type is shown below.  This gives some idea of the most and least popular care options provided by Medicare.  
+
+<img src="https://github.com/bfetler/cms_medicare/blob/master/cms_pop_plots/bar_total_unique_benes_sum.png" alt="bar plot total beneficiaries" />
+
+The total medicare payment by provider type is shown below.  This gives some idea of the most and least expensive care provided by Medicare.  
+
+<img src="https://github.com/bfetler/cms_medicare/blob/master/cms_pop_plots/bar_total_medicare_payment_amt.png" alt="bar plot total payment" />
+
 #### Provider Gender
 
 We further analyzed the data by provider gender, with some types of facilities categorized as neither.  In general, we find some specialties have a sizeable gender gap, while others do not.  This somewhat reflects traditional roles in society, with more female nurses and more male surgeons.  
