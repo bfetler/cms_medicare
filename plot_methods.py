@@ -63,6 +63,41 @@ def print_all_rows(df, column_names):
     for g in gx:
         print(df[column_names].ix[g])
 
+def make_group_bar_plots(df, index, columns, xlabels, stat, tlabel, plotdir):
+    "make bar plot of data frame subsets by group variable"
+    print('plotting bar plots')
+    providers = df.index
+    gx = getn(providers, 12)
+    for k, v in enumerate(gx):
+        print('.', end='', flush=True)
+        plot_bars(df, v, 'group%s' % (k+1), index, columns, xlabels, stat, tlabel, plotdir)
+    print(' done plotting bar plots')
+
+def plot_bars(df, vlist, glabel, index, columns, xlabels, stat, tlabel, plotdir, ncols=3):
+    "plot subset of bar plots"
+    colors = ['#bb0000','#0000bb','#bb00bb','#00bb00']
+    plt.clf()
+    fig = plt.figure(figsize=(10,8))
+    nrows = len(vlist) // ncols
+    if len(vlist) % ncols > 0:
+        nrows += 1
+    for k, val in enumerate(vlist):
+        ax = fig.add_subplot(nrows, ncols, k+1)
+        hdata = []
+        for column in columns:
+            hdata.append(df[column][stat].ix[[val]].values)
+        ax.bar(range(len(columns)), hdata, align='center', color=colors)
+        ax.set_xticks(range(len(columns)))
+        ax.set_xticklabels(xlabels, size=6)
+        ylim = ax.get_ylim()
+        ax.set_ylim(ylim[0], 1.2*ylim[1])
+        ax.set_title(val, fontsize=10)
+        ax.tick_params(labelbottom='on', labelleft='on', labelsize=7)
+    plt.tight_layout()
+    plt.subplots_adjust(top=0.88)
+    plt.suptitle('CMS %s bar plots by %s' % (index, tlabel), fontsize=12)
+    plt.savefig('%sbar_%s_%s.png' % (plotdir, index, glabel))
+
 # def make_hist_plots(df, column_name, group_var, plotdir=make_plotdir(), split_var=None):
 def make_hist_plots(df, column_name, group_var, plotdir, split_var=None):
     "make histogram plot of data frame subsets by group variable, with optional split variable"
@@ -74,7 +109,6 @@ def make_hist_plots(df, column_name, group_var, plotdir, split_var=None):
         print('.', end='', flush=True)
         plot_hists(df, v, 'group%s' % (k+1), col_name, group_var, plotdir, split_var=split_var)
     print(' done plotting histograms')
-# e.g. make_hist_plots(df, 'pay_per_service', 'provider_type')
 
 def plot_hists(df, vlist, label, col_name, group_var, plotdir, ncols=3, split_var=None):
     "plot subset of histograms"

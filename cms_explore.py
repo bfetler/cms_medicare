@@ -9,7 +9,7 @@ from sklearn.feature_extraction import DictVectorizer
 from nlp_process import vectorize_group
 
 from plot_methods import make_plotdir, print_all_rows, make_hist_plots, plot_hists, \
-        make_bar_plot, make_scatter_plot
+        make_bar_plot, make_scatter_plot, make_group_bar_plots
 
 # to do:
 #    histogram plots of each provider_type for key variables (normal distribution?)
@@ -41,7 +41,7 @@ def get_select_columns():
           total_submitted_chrg_amt    total_med_submitted_chrg_amt
  	  total_medicare_payment_amt  total_med_medicare_payment_amt
     '''
-    new_cols = [ 'provider_type','nppes_provider_gender','nppes_provider_state','total_services','total_unique_benes','total_submitted_chrg_amt','total_medicare_payment_amt','beneficiary_average_age','Beneficiary_Average_Risk_Score', 'total_med_medicare_payment_amt', 'total_med_services','total_drug_medicare_payment_amt','total_drug_services' ]
+    new_cols = [ 'provider_type','nppes_provider_gender','nppes_provider_state','total_services','total_unique_benes','total_submitted_chrg_amt','total_medicare_payment_amt','beneficiary_average_age','Beneficiary_Average_Risk_Score', 'total_med_medicare_payment_amt', 'total_med_services','total_drug_medicare_payment_amt','total_drug_services','beneficiary_female_count','beneficiary_male_count','beneficiary_age_less_65_count','beneficiary_age_65_74_count','beneficiary_age_75_84_count','beneficiary_age_greater_84_count' ]
     return new_cols
 
 def read_select_data(new_cols, fname, first=False):
@@ -148,7 +148,7 @@ def calc_par_group(df, agg_fns, pars, cols):
     print_all_rows(par_group, cols)
     return par_group
 
-def age_calc(df):
+def average_age_par_group(df):
     "average age calc per provider type"
     df['total_age'] = df['beneficiary_average_age'] * df['total_unique_benes']
 #   print(df['total_age'])
@@ -159,6 +159,31 @@ def age_calc(df):
     p_sort = p_group.sort_values(by='avg_age', ascending=False)
     print_all_rows(p_sort, ['avg_age'])
     make_bar_plot(get_col(p_sort,'avg_age'), plotdir, 'beneficiary_average_age', 'Beneficiary Average Age', xlim=(50,100))
+
+def gender_par_groups(df):
+    "calculate series of grouped gender parameters, printed by column"
+    plotdir = make_plotdir(plotdir='cms_pop_gender_plots/')
+    agg_fns = ['count','sum']
+    pars = ['beneficiary_female_count','beneficiary_male_count']
+    p_group = calc_par_group(df, agg_fns, ['provider_type'], pars)
+    make_group_bar_plots(p_group, 'provider_type', pars, ['female','male'], 'sum', 'Patient Gender', plotdir)
+
+def age_segment_par_groups(df):
+    "calculate series of grouped age parameters, printed by column"
+    plotdir = make_plotdir(plotdir='cms_pop_age_plots/')
+    agg_fns = ['count','sum']
+    pars = ['beneficiary_age_less_65_count','beneficiary_age_65_74_count','beneficiary_age_75_84_count','beneficiary_age_greater_84_count']
+    p_group = calc_par_group(df, agg_fns, ['provider_type'], pars)
+    labels = ['< 65','65-74','75-84','> 84']
+    make_group_bar_plots(p_group, 'provider_type', pars, ['< 65','65-74','75-84','> 84'], 'sum', 'Patient Age Group', plotdir)
+
+    age_sums = [ p_group[p]['sum'].sum() for p in pars ]
+    age_total = 0
+    for age in age_sums:
+        age_total += age
+    print('\nage_range  number of patients:')
+    for label,age in zip(labels, age_sums):
+        print('  %5s    %d   (%.2f%%)' % (label, age, 100*age/age_total))
 
 def pop_calc_par_groups(df):
     "calculate series of grouped population parameters, printed by column"
@@ -230,7 +255,9 @@ def main():
 
 #   pay_calc_par_groups(df)
 #   pop_calc_par_groups(df)
-    age_calc(df)
+    average_age_par_group(df)
+    gender_par_groups(df)
+    age_segment_par_groups(df)
 
 if __name__ == '__main__':
     main()
