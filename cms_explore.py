@@ -11,9 +11,6 @@ from nlp_process import vectorize_group
 from plot_methods import make_plotdir, print_all_rows, make_hist_plots, plot_hists, \
         make_bar_plot, make_scatter_plot, make_group_bar_plots
 
-# to do:
-#    histogram plots of each provider_type for key variables (normal distribution?)
-
 # interesting questions:
 #    group_by provider_type, find:
 #	avg std total_submitted_chrg_amt / total_services
@@ -22,15 +19,14 @@ from plot_methods import make_plotdir, print_all_rows, make_hist_plots, plot_his
 #	group beneficiaries by disease percent
 #	group_by provider_state, provider_gender
 #       sort by most to least expensive provider
-#       find count by gender, find cost ratio by gender
-#    use NLP to find word associations w/ high or low cost, e.g. surgery
-#    other columns: patient_gender, age_groups vs. cost
+#       find count, cost ratio by provider_gender
+#       group by patient gender, patient age range
+#    other columns: 
 #      total_medicare_payment_amt vs. total_submitted_chrg_amt
 #        vs. total_med_medicare_payment_amt (may not include drugs)
-#      beneficiary_average_age beneficiary_age_less_65_count beneficiary_age_65_74_count
-#      beneficiary_female_count beneficiary_male_count 
 # beneficiary_cc_afib_percent beneficiary_cc_cancer_percent beneficiary_cc_hypert_percent
-# beneficiary_cc_strk_percent Beneficiary_Average_Risk_Score (what do abbreviations mean?)
+# beneficiary_cc_strk_percent (abbreviations for disease?)
+#    try NLP to find word associations w/ high or low cost, e.g. surgery
 
 def get_select_columns():
     "try to select interesting columns, rather than all 70"
@@ -95,7 +91,7 @@ def read_select_data(new_cols, fname, first=False):
 #   df['med_pay_per_person'] = np.log10(df['total_med_medicare_payment_amt'] / df['total_med_unique_benes'])
 #   df['overcharge_ratio'] = df['total_submitted_chrg_amt'] / df['total_medicare_payment_amt']
     print("df shape", df.shape)
-#   shape (986674, 11)
+#   shape (986674, 21)
 
     return df
 
@@ -175,7 +171,6 @@ def age_segment_par_groups(df):
     pars = ['beneficiary_age_less_65_count','beneficiary_age_65_74_count','beneficiary_age_75_84_count','beneficiary_age_greater_84_count']
     p_group = calc_par_group(df, agg_fns, ['provider_type'], pars)
     labels = ['< 65','65-74','75-84','> 84']
-    make_group_bar_plots(p_group, 'provider_type', pars, ['< 65','65-74','75-84','> 84'], 'sum', 'Patient Age Group', plotdir)
 
     age_sums = [ p_group[p]['sum'].sum() for p in pars ]
     age_total = 0
@@ -184,6 +179,8 @@ def age_segment_par_groups(df):
     print('\nage_range  number of patients:')
     for label,age in zip(labels, age_sums):
         print('  %5s    %d   (%.2f%%)' % (label, age, 100*age/age_total))
+
+    make_group_bar_plots(p_group, 'provider_type', pars, labels, 'sum', 'Patient Age Group', plotdir)
 
 def pop_calc_par_groups(df):
     "calculate series of grouped population parameters, printed by column"
@@ -246,15 +243,15 @@ def main():
         df = read_select_data(new_cols, fname)
 
 # hist plots very varied, log scale usually helps $ and population data
-#   make_hist_plots(df, 'pay_per_service', 'provider_type', plotdir=make_plotdir())
-#   make_hist_plots(df, 'pay_per_person', 'provider_type', plotdir=make_plotdir())
-#   make_hist_plots(df, 'beneficiary_average_age', 'provider_type', plotdir=make_plotdir('bene_average_age_plots/'))
-#   make_hist_plots(df, 'Beneficiary_Average_Risk_Score', 'provider_type', plotdir=make_plotdir('bene_risk_plots/'))
-#   make_hist_plots(df, 'pay_per_person', 'provider_type', plotdir=make_plotdir('cms_hist_gender_plots/'), split_var='nppes_provider_gender')
-# many provider_types have only one gender, nan
+    make_hist_plots(df, 'pay_per_service', 'provider_type', plotdir=make_plotdir())
+    make_hist_plots(df, 'pay_per_person', 'provider_type', plotdir=make_plotdir())
+    make_hist_plots(df, 'beneficiary_average_age', 'provider_type', plotdir=make_plotdir('bene_average_age_plots/'))
+    make_hist_plots(df, 'Beneficiary_Average_Risk_Score', 'provider_type', plotdir=make_plotdir('bene_risk_plots/'))
+    make_hist_plots(df, 'pay_per_person', 'provider_type', plotdir=make_plotdir('cms_hist_gender_plots/'), split_var='nppes_provider_gender')
+# many facility provider_types have only one gender, none
 
-#   pay_calc_par_groups(df)
-#   pop_calc_par_groups(df)
+    pay_calc_par_groups(df)
+    pop_calc_par_groups(df)
     average_age_par_group(df)
     gender_par_groups(df)
     age_segment_par_groups(df)
