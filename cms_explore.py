@@ -56,7 +56,7 @@ def read_select_data(new_cols, fname, first=False):
             df = df.append(chunk[new_cols])
 
     print(" done")
-#   shape (986677, 9)
+#   shape (986677, 19)
     print("df %s shape, filename %s" % (df.shape, fname))
 
     print("df columns isnull sum\n%s" % df.isnull().sum())
