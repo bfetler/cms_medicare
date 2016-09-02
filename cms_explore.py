@@ -6,7 +6,6 @@ import numpy as np
 import pandas as pd
 
 from sklearn.feature_extraction import DictVectorizer
-from nlp_process import vectorize_group
 
 from plot_methods import make_plotdir, print_all_rows, make_hist_plots, plot_hists, \
         make_bar_plot, make_scatter_plot, make_group_bar_plots
@@ -24,9 +23,6 @@ from plot_methods import make_plotdir, print_all_rows, make_hist_plots, plot_his
 #    other columns: 
 #      total_medicare_payment_amt vs. total_submitted_chrg_amt
 #        vs. total_med_medicare_payment_amt (may not include drugs)
-# beneficiary_cc_afib_percent beneficiary_cc_cancer_percent beneficiary_cc_hypert_percent
-# beneficiary_cc_strk_percent (abbreviations for disease?)
-#    try NLP to find word associations w/ high or low cost, e.g. surgery
 
 def get_select_columns():
     "try to select interesting columns, rather than all 70"
@@ -216,7 +212,6 @@ def pay_calc_par_groups(df):
     plotdir = make_plotdir(plotdir='cms_cost_plots/')
     agg_fns = ['count','median','mean','std']
     p_group = calc_par_group(df, agg_fns, ['provider_type'], ['pay_per_person','pay_per_service'])
-#   vectorize_group(p_group['pay_per_service'])
 
     print('\ntop pay_per_service')
     p_sort = filter_group_by_var(p_group['pay_per_service'], agg_fns, stat='median')
