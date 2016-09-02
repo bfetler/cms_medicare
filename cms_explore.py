@@ -5,6 +5,8 @@ import os, sys
 import numpy as np
 import pandas as pd
 
+# from calc_by_states import calc_by_states
+
 from plot_methods import make_plotdir, print_all_rows, make_hist_plots, plot_hists, \
         make_bar_plot, make_scatter_plot, make_group_bar_plots
 
@@ -131,11 +133,12 @@ def filter_group_by_var(p_group, agg_fns, stat='median'):
     print_all_rows(p_sort, agg_fns)
     return p_sort
 
-def calc_par_group(df, agg_fns, pars, cols):
+def calc_par_group(df, agg_fns, pars, cols, print_out=True):
     "aggregate function grouped by provider_type or gender"
     par_group = df.groupby(pars)[cols].agg(agg_fns)
-    print('alphabetical group by %s, %s stats' % (pars, cols))
-    print_all_rows(par_group, cols)
+    if print_out:
+        print('alphabetical group by %s, %s stats' % (pars, cols))
+        print_all_rows(par_group, cols)
     return par_group
 
 def average_age_par_group(df):
@@ -225,6 +228,19 @@ def pay_calc_par_groups(df):
     g_group = calc_par_group(df, agg_fns, ['provider_type','nppes_provider_gender'], ['pay_per_person'])
     g_group = process_by_var(plotdir, g_group, col='pay_per_person', var='nppes_provider_gender')
 
+def calc_by_states(df):
+    "calc parameters by state"
+#   plotdir = make_plotdir(plotdir='cms_state_plots/')
+    agg_fns = ['count','median']
+    p_group = calc_par_group(df, agg_fns, ['provider_type','nppes_provider_state'], ['pay_per_person','pay_per_service'], print_out=False)
+
+#   print('index\n', p_group.index)
+#   p_group['avg_age'] = p_group['total_age']['sum'] / p_group['total_unique_benes']['sum']
+    im = p_group.ix['Internal Medicine']
+    print('Internal Medicine\n', im)
+    print('Internal Medicine, Pay Per Service Median\n', im['pay_per_service']['median'])
+
+
 def main():
     fname = 'data/Medicare_Physician_and_Other_Supplier_NPI_Aggregate_CY2014.txt'
     new_cols = get_select_columns()
@@ -236,18 +252,20 @@ def main():
         df = read_select_data(new_cols, fname)
 
 # hist plots very varied, log scale usually helps $ and population data
-    make_hist_plots(df, 'pay_per_service', 'provider_type', plotdir=make_plotdir())
-    make_hist_plots(df, 'pay_per_person', 'provider_type', plotdir=make_plotdir())
-    make_hist_plots(df, 'beneficiary_average_age', 'provider_type', plotdir=make_plotdir('bene_average_age_plots/'))
-    make_hist_plots(df, 'Beneficiary_Average_Risk_Score', 'provider_type', plotdir=make_plotdir('bene_risk_plots/'))
-    make_hist_plots(df, 'pay_per_person', 'provider_type', plotdir=make_plotdir('cms_hist_gender_plots/'), split_var='nppes_provider_gender')
+#   make_hist_plots(df, 'pay_per_service', 'provider_type', plotdir=make_plotdir())
+#   make_hist_plots(df, 'pay_per_person', 'provider_type', plotdir=make_plotdir())
+#   make_hist_plots(df, 'beneficiary_average_age', 'provider_type', plotdir=make_plotdir('bene_average_age_plots/'))
+#   make_hist_plots(df, 'Beneficiary_Average_Risk_Score', 'provider_type', plotdir=make_plotdir('bene_risk_plots/'))
+#   make_hist_plots(df, 'pay_per_person', 'provider_type', plotdir=make_plotdir('cms_hist_gender_plots/'), split_var='nppes_provider_gender')
 # many facility provider_types have only one gender, none
 
-    pay_calc_par_groups(df)
-    pop_calc_par_groups(df)
-    average_age_par_group(df)
-    gender_par_groups(df)
-    age_segment_par_groups(df)
+#   pay_calc_par_groups(df)
+#   pop_calc_par_groups(df)
+#   average_age_par_group(df)
+#   gender_par_groups(df)
+#   age_segment_par_groups(df)
+
+    calc_by_states(df)
 
 if __name__ == '__main__':
     main()
