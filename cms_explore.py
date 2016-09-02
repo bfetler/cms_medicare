@@ -5,8 +5,6 @@ import os, sys
 import numpy as np
 import pandas as pd
 
-from sklearn.feature_extraction import DictVectorizer
-
 from plot_methods import make_plotdir, print_all_rows, make_hist_plots, plot_hists, \
         make_bar_plot, make_scatter_plot, make_group_bar_plots
 
