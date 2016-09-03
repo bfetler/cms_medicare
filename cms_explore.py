@@ -6,6 +6,7 @@ import numpy as np
 import pandas as pd
 
 # from calc_by_states import calc_by_states
+from state_maps import make_state_map
 
 from plot_methods import make_plotdir, print_all_rows, make_hist_plots, plot_hists, \
         make_bar_plot, make_scatter_plot, make_group_bar_plots
@@ -230,15 +231,19 @@ def pay_calc_par_groups(df):
 
 def calc_by_states(df):
     "calc parameters by state"
-#   plotdir = make_plotdir(plotdir='cms_state_plots/')
+    plotdir = make_plotdir(plotdir='cms_state_plots/')
     agg_fns = ['count','median']
     p_group = calc_par_group(df, agg_fns, ['provider_type','nppes_provider_state'], ['pay_per_person','pay_per_service'], print_out=False)
 
 #   print('index\n', p_group.index)
 #   p_group['avg_age'] = p_group['total_age']['sum'] / p_group['total_unique_benes']['sum']
-    im = p_group.ix['Internal Medicine']
+#   im = p_group.ix['Internal Medicine']
+    im = (p_group.ix['Internal Medicine']['pay_per_service']['median']).copy()
     print('Internal Medicine\n', im)
-    print('Internal Medicine, Pay Per Service Median\n', im['pay_per_service']['median'])
+    mmin, mmax = (0.9*im.min(), 1.1*im.max())  # should all be same scale?
+    print('min %g, max %g' % (mmin, mmax))  # should all be same scale?
+#   print('Internal Medicine, Pay Per Service Median\n', im['pay_per_service']['median'])
+    make_state_map(im, mmin, mmax, plotdir, 'cost_per_service_internal_medicine', 'Internal Medicine, Median Cost Per Service')
 
 
 def main():
