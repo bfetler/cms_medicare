@@ -1,7 +1,6 @@
 # make state maps from input data
 # use Basemap
 
-import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.basemap import Basemap as Basemap
 from matplotlib.colors import rgb2hex
@@ -19,7 +18,7 @@ def get_full_states():
         'California':     {'abbr':'CA'},
         'Colorado':       {'abbr':'CO'},
         'Connecticut':    {'abbr':'CT'},
-        'District of Columbia': {'abbr':'DC'},
+#       'District of Columbia': {'abbr':'DC'},
         'Delaware':       {'abbr':'DE'},
         'Florida':        {'abbr':'FL'},
         'Georgia':        {'abbr':'GA'},
@@ -80,9 +79,10 @@ def set_colors(df, states, mmin, mmax):
     cmap = plt.cm.plasma
 #   cmap = plt.cm.hot
 #   cmap = plt.cm.coolwarm
+# issue for rare providers: state may not be in df.ix
     for state,val in states.items():
         dval = df.ix[states[state]['abbr']]
-        states[state]['color'] = rgb2hex(cmap(1.0 - np.sqrt((dval-mmin)/(mmax-mmin)))[:3])
+        states[state]['color'] = rgb2hex(cmap(1.0 - pow((dval-mmin)/(mmax-mmin), 1.0))[:3])
     return states
 
 def plot_map(m, states, plotdir, fname, label):
@@ -92,7 +92,7 @@ def plot_map(m, states, plotdir, fname, label):
     ax = f.add_subplot(111)
     for shapedict, seg in zip(m.states_info, m.states):
         statename = shapedict['NAME']
-        if statename not in ['Puerto Rico']:
+        if statename not in ['District of Columbia','Puerto Rico']:
             color = states[statename]['color']
             poly = Polygon(seg,facecolor=color,edgecolor=color)
             ax.add_patch(poly)
@@ -103,15 +103,12 @@ def plot_map(m, states, plotdir, fname, label):
     plt.savefig(pname)
     print('saved plot %s' % pname)
 
-def make_state_map(df, mmin, mmax, plotdir, fname, label):
+def make_state_map(m, df, mmin, mmax, plotdir, fname, label):
     "make state map from data frame"
     print('make state map: %s' % label)
-    print('WY\n', df.ix['WY'], type(df))
-    m = get_basemap()
-    print(m.states_info[0].keys())
     states = get_full_states()
     states = set_colors(df, states, mmin, mmax)
-    print('states', states)
+#   print('states', states)
     plot_map(m, states, plotdir, fname, label)
 
 
