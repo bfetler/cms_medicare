@@ -239,14 +239,12 @@ def calc_by_states(df):
     bmap = get_basemap()  # read file once for all maps
 #   print(bmap.states_info[0].keys())
     im = p_group.ix['Internal Medicine']['pay_per_service']['median']
-#   print('Internal Medicine\n', im)
+    print('Internal Medicine\n', im)
     mmin, mmax = (0.9*im.min(), 1.1*im.max())  # should all be same scale?
-#   print('min %g, max %g' % (mmin, mmax))  # should all be same scale?
-#   print('Internal Medicine, Pay Per Service Median\n', im['pay_per_service']['median'])
     make_state_map(bmap, im, mmin, mmax, plotdir, 'cost_per_service_internal_medicine', 'Internal Medicine, Median Cost Per Service')
 
     im = p_group.ix['General Surgery']['pay_per_service']['median']
-#   print('General Surgery\n', im)
+    print('General Surgery\n', im)
     mmin, mmax = (0.9*im.min(), 1.1*im.max())  # should all be same scale?
     make_state_map(bmap, im, mmin, mmax, plotdir, 'cost_per_service_general_surgery', 'General Surgery, Median Cost Per Service')
 
