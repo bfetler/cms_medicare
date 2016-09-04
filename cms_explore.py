@@ -240,17 +240,19 @@ def calc_by_states(df):
 #   print(bmap.states_info[0].keys())
     im = p_group.ix['Internal Medicine']['pay_per_service']['median']
     print('Internal Medicine\n', im)
-    mmin, mmax = (0.9*im.min(), 1.1*im.max())  # should all be same scale?
+    mmin, mmax = 1.0, 2.7
+#   mmin, mmax = (0.9*im.min(), 1.1*im.max())  # should all be same scale
+    print('min %g, max %g; calc min %g, max %g' % (mmin, mmax, im.min(), im.max()))
     make_state_map(bmap, im, mmin, mmax, plotdir, 'cost_per_service_internal_medicine', 'Internal Medicine, Median Cost Per Service')
 
     im = p_group.ix['General Surgery']['pay_per_service']['median']
     print('General Surgery\n', im)
-    mmin, mmax = (0.9*im.min(), 1.1*im.max())  # should all be same scale?
+    print('min %g, max %g; calc min %g, max %g' % (mmin, mmax, im.min(), im.max()))
     make_state_map(bmap, im, mmin, mmax, plotdir, 'cost_per_service_general_surgery', 'General Surgery, Median Cost Per Service')
 
     im = p_group.ix['Physical Therapist']['pay_per_service']['median']
     print('Physical Therapist\n', im)
-    mmin, mmax = (0.9*im.min(), 1.1*im.max())  # should all be same scale?
+    print('min %g, max %g; calc min %g, max %g' % (mmin, mmax, im.min(), im.max()))
     make_state_map(bmap, im, mmin, mmax, plotdir, 'cost_per_service_physical_therapist', 'Physical Therapist, Median Cost Per Service')
 
 

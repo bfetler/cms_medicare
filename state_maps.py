@@ -78,7 +78,7 @@ def set_colors(df, states, mmin, mmax):
     "set colors for each state"
     cmap = plt.cm.plasma
 #   cmap = plt.cm.hot
-#   cmap = plt.cm.coolwarm
+#   cmap = plt.cm.gist_heat
 # issue for rare providers: state may not be in df.ix
     for state,val in states.items():
         dval = df.ix[states[state]['abbr']]
