@@ -4727,6 +4727,7 @@ WY    1.702586
 XX    1.792341
 ZZ    1.809080
 Name: median, dtype: float64
+min 1, max 2.7; calc min 1.59852, max 1.89365
 make state map: Internal Medicine, Median Cost Per Service
 saved plot cms_state_plots/map_cost_per_service_internal_medicine.png
 General Surgery
@@ -4790,6 +4791,7 @@ WV    2.050588
 WY    2.161079
 ZZ    2.309129
 Name: median, dtype: float64
+min 1, max 2.7; calc min 1.81928, max 2.30913
 make state map: General Surgery, Median Cost Per Service
 saved plot cms_state_plots/map_cost_per_service_general_surgery.png
 Physical Therapist
@@ -4851,6 +4853,7 @@ WI    1.315112
 WV    1.266464
 WY    1.316808
 Name: median, dtype: float64
+min 1, max 2.7; calc min 1.16402, max 1.44237
 make state map: Physical Therapist, Median Cost Per Service
 saved plot cms_state_plots/map_cost_per_service_physical_therapist.png
 
