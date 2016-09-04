@@ -265,18 +265,18 @@ def main():
         df = read_select_data(new_cols, fname)
 
 # hist plots very varied, log scale usually helps $ and population data
-#   make_hist_plots(df, 'pay_per_service', 'provider_type', plotdir=make_plotdir())
-#   make_hist_plots(df, 'pay_per_person', 'provider_type', plotdir=make_plotdir())
-#   make_hist_plots(df, 'beneficiary_average_age', 'provider_type', plotdir=make_plotdir('bene_average_age_plots/'))
-#   make_hist_plots(df, 'Beneficiary_Average_Risk_Score', 'provider_type', plotdir=make_plotdir('bene_risk_plots/'))
-#   make_hist_plots(df, 'pay_per_person', 'provider_type', plotdir=make_plotdir('cms_hist_gender_plots/'), split_var='nppes_provider_gender')
+    make_hist_plots(df, 'pay_per_service', 'provider_type', plotdir=make_plotdir())
+    make_hist_plots(df, 'pay_per_person', 'provider_type', plotdir=make_plotdir())
+    make_hist_plots(df, 'beneficiary_average_age', 'provider_type', plotdir=make_plotdir('bene_average_age_plots/'))
+    make_hist_plots(df, 'Beneficiary_Average_Risk_Score', 'provider_type', plotdir=make_plotdir('bene_risk_plots/'))
+    make_hist_plots(df, 'pay_per_person', 'provider_type', plotdir=make_plotdir('cms_hist_gender_plots/'), split_var='nppes_provider_gender')
 # many facility provider_types have only one gender, none
 
-#   pay_calc_par_groups(df)
-#   pop_calc_par_groups(df)
-#   average_age_par_group(df)
-#   gender_par_groups(df)
-#   age_segment_par_groups(df)
+    pay_calc_par_groups(df)
+    pop_calc_par_groups(df)
+    average_age_par_group(df)
+    gender_par_groups(df)
+    age_segment_par_groups(df)
 
     calc_by_states(df)
 
