@@ -80,6 +80,23 @@ The total medicare payment by provider type is shown below.  This gives some ide
 
 <img src="https://github.com/bfetler/cms_medicare/blob/master/cms_pop_plots/bar_total_medicare_payment_amt.png" alt="bar plot total payment" />
 
+#### Medicare Payment By State
+
+Absolute cost per service of each provider type is shown above in the figure "Median Log10 Pay Per Service".
+
+To show relative cost, maps of median cost per service by state were created for three common types of providers:
++ General Surgery (expensive)
++ Internal Medicine (intermediate cost)
++ Physical Therapist (inexpensive)
+
+A median color of red was used for each map, with more expensive states trending purple and less expensive states trending yellow.
+
+<img src="https://github.com/bfetler/cms_medicare/blob/master/cms_state_plots/map_cost_per_service_general_surgery.png" alt="median cost per service by state for general surgery" />
+
+<img src="https://github.com/bfetler/cms_medicare/blob/master/cms_state_plots/map_cost_per_service_internal_medicine.png" alt="median cost per service by state for internal medicine" />
+
+<img src="https://github.com/bfetler/cms_medicare/blob/master/cms_state_plots/map_cost_per_service_physical_therapist.png" alt="median cost per service by state for physical therapist" />
+
 #### Provider Gender
 
 We further analyzed the data by provider gender, with some types of facilities categorized as neither.  In general, we find some specialties have a sizeable gender gap, while others do not.  This somewhat reflects traditional roles in society, with more female nurses and more male surgeons.  
