@@ -74,12 +74,23 @@ def get_basemap():
 #   print(shp_info)
     return m
 
-def set_colors(df, states, mmin, mmax):
+def set_colors(df, states, minmax=None):
     "set colors for each state"
     cmap = plt.cm.plasma
 #   cmap = plt.cm.hot
 #   cmap = plt.cm.gist_heat
 # issue for rare providers: state may not be in df.ix
+    if minmax:
+        mmin = minmax[0]
+        mmax = minmax[1]
+    else:
+#       mmin, mmax = (df.min(), df.max())
+#       mmin, mmax = (0.9*df.min(), 1.1*df.max())
+        mmin, mmax = (0.95*df.min(), 1.05*df.max())
+        mmed = df.median()
+        mdiff = max(mmax-mmed, mmed-mmin)
+        mmin, mmax = mmed - mdiff, mmed + mdiff
+    print('min max med', mmin, mmax, mmed)
     for state,val in states.items():
         dval = df.ix[states[state]['abbr']]
         states[state]['color'] = rgb2hex(cmap(1.0 - pow((dval-mmin)/(mmax-mmin), 1.0))[:3])
@@ -103,11 +114,11 @@ def plot_map(m, states, plotdir, fname, label):
     plt.savefig(pname)
     print('saved plot %s' % pname)
 
-def make_state_map(m, df, mmin, mmax, plotdir, fname, label):
+def make_state_map(m, df, plotdir, fname, label, minmax=None):
     "make state map from data frame"
     print('make state map: %s' % label)
     states = get_full_states()
-    states = set_colors(df, states, mmin, mmax)
+    states = set_colors(df, states, minmax)
 #   print('states', states)
     plot_map(m, states, plotdir, fname, label)
 
