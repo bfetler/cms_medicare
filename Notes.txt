@@ -16,9 +16,10 @@ Interesting Questions:
    try fit of cost by provider_type, state, zip_code
       (if specialty doesn't exist in zip, state may predict)
       use kNN to find zips near each other, using (lat,long) 
-        to find e.g. 5 NN, use as predictors if specialty missing
-        from zip
+        to find e.g. 9 NN, use as predictors if specialty missing
+        from zip (if missing from all 9, expand further?)
+        use k-means (?)
       or use (lat,long) of zips as continuous variables in
-        prediction, e.g. SVM (is SVM continuous version of SVC?)
+        prediction, e.g. SVR (regression version of SVC)
         with non-linear kernel
-        
+
