@@ -1,6 +1,7 @@
 # explore center for medicare services (CMS) data
 
 import os, sys
+from re import compile as re_compile
 
 import numpy as np
 import pandas as pd
@@ -234,30 +235,26 @@ def calc_by_states(df):
     plotdir = make_plotdir(plotdir='cms_state_plots/')
     agg_fns = ['count','median']
     p_group = calc_par_group(df, agg_fns, ['provider_type','nppes_provider_state'], ['pay_per_person','pay_per_service'], print_out=False)
-#   print('index\n', p_group.index)
+#   print('index level provider_types\n', p_group.index.levels[0])
 
     bmap = get_basemap()  # read file once for all maps
-#   print(bmap.states_info[0].keys())
-    im = p_group.ix['Internal Medicine']['pay_per_service']['median']
-#   print('Internal Medicine\n', im)
 #   minmax = (1.0, 2.7)
-    make_state_map(bmap, im, plotdir, 'cost_per_service_internal_medicine', 'Internal Medicine, Median Cost Per Service')
+#   im = p_group.ix['Internal Medicine']['pay_per_service']['median']
+#   print('%s\n' % provider, im)
+#   make_state_map(bmap, im, plotdir, 'cost_per_service_internal_medicine', 'Internal Medicine, Median Cost Per Service')
 
-    im = p_group.ix['General Surgery']['pay_per_service']['median']
-#   print('General Surgery\n', im)
-    make_state_map(bmap, im, plotdir, 'cost_per_service_general_surgery', 'General Surgery, Median Cost Per Service')
+#   im = p_group.ix['General Surgery']['pay_per_service']['median']
+#   print('%s\n' % provider, im)
+#   make_state_map(bmap, im, plotdir, 'cost_per_service_general_surgery', 'General Surgery, Median Cost Per Service')
 
-    im = p_group.ix['Radiation Therapy']['pay_per_service']['median']
-#   print('Radiation Therapy\n', im)
-    make_state_map(bmap, im, plotdir, 'cost_per_service_radiation_therapy', 'Radiation Therapy, Median Cost Per Service')
+#   im = p_group.ix['Physical Therapist']['pay_per_service']['median']
+#   print('%s\n' % provider, im)
+#   make_state_map(bmap, im, plotdir, 'cost_per_service_physical_therapist', 'Physical Therapist, Median Cost Per Service')
 
-    im = p_group.ix['Radiation Oncology']['pay_per_service']['median']
-#   print('Radiation Oncology\n', im)
-    make_state_map(bmap, im, plotdir, 'cost_per_service_radiation_oncology', 'Radiation Oncology, Median Cost Per Service')
-
-    im = p_group.ix['Physical Therapist']['pay_per_service']['median']
-#   print('Physical Therapist\n', im)
-    make_state_map(bmap, im, plotdir, 'cost_per_service_physical_therapist', 'Physical Therapist, Median Cost Per Service')
+    patr = re_compile('[ (/)]+')
+    for provider in p_group.index.levels[0]:
+        im = p_group.ix[provider]['pay_per_service']['median']
+        make_state_map(bmap, im, plotdir, 'cost_per_service_%s' % '_'.join(patr.split(provider.lower())), '%s, Median Cost Per Service' % provider)
 
 
 def main():
