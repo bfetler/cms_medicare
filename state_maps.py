@@ -92,8 +92,11 @@ def set_colors(df, states, minmax=None):
         mmin, mmax = mmed - mdiff, mmed + mdiff
     print('min max med', mmin, mmax, mmed)
     for state,val in states.items():
-        dval = df.ix[states[state]['abbr']]
-        states[state]['color'] = rgb2hex(cmap(1.0 - pow((dval-mmin)/(mmax-mmin), 1.0))[:3])
+        if states[state]['abbr'] in df.index:
+            dval = df.ix[states[state]['abbr']]
+            states[state]['color'] = rgb2hex(cmap(1.0 - pow((dval-mmin)/(mmax-mmin), 1.0))[:3])
+        else:
+            states[state]['color'] = '#FFFFFF'
     return states
 
 def plot_map(m, states, plotdir, fname, label):
