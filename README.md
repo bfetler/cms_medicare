@@ -15,8 +15,8 @@ The file contains annual data from over 980,000 physicians and other healthcare 
 
 ### Preliminary Analysis
 To get an idea of actual health care costs for consumers, we did a preliminary analysis of the total Medicare payment amount per service and per beneficiary.  Typically, a beneficiary has supplemental insurance to cover the remainder of the claims, which often pays 20% of the approved Medicare payment.  Extra costs are typically fixed at a fraction of the approved payment.  We calculated two extra columns:
-+ payment per service = log10( total Medicare payment amount / total number of services )
-+ payment per person = log10( total Medicare payment amount / total number of beneficiaries )
++ payment per service = log10 ( total Medicare payment amount / total number of services )
++ payment per person = log10 ( total Medicare payment amount / total number of beneficiaries )
 
 We find a log scale gives data closer to a normal distribution, and use log base 10 for numerical convenience.  Grouping the payments by the 91 provider types in the data, we find a lot of variation for each provider type.  Histograms for all provider types are given in __cms_hist_plots/__.  A histogram of some specialties is shown below.  
 
@@ -70,11 +70,11 @@ For consumers, the payment per person is probably of most interest, since a pati
 
 #### Medicare Total Beneficiaries and Payment
 
-The total number of medicare beneficiaries by provider type is shown below.  This gives some idea of the most and least popular care options provided by Medicare.  Diagnostic Radiology, Internal Medicine, Clinical Laboratory and Cardiology are in the top five.
+The total number of medicare beneficiaries by provider type is shown below.  This gives some idea of the most and least popular care options provided by Medicare.  Diagnostic Radiology, Internal Medicine, Clinical Laboratory and Cardiology are in the top five most popular.
 
 <img src="https://github.com/bfetler/cms_medicare/blob/master/cms_pop_plots/bar_total_unique_benes_sum.png" alt="bar plot total beneficiaries" />
 
-The total medicare payment by provider type is shown below.  This gives some idea of the most and least expensive care provided by Medicare.  Internal Medicine, Ophthalmology, Clinical Laboratory and Cardiology are in the top five.
+The total medicare payment by provider type is shown below.  This gives some idea of the most and least expensive care provided by Medicare.  Internal Medicine, Ophthalmology, Clinical Laboratory and Cardiology are in the top five most expensive.
 
 <img src="https://github.com/bfetler/cms_medicare/blob/master/cms_pop_plots/bar_total_medicare_payment_amt.png" alt="bar plot total payment" />
 
@@ -82,7 +82,7 @@ The total medicare payment by provider type is shown below.  This gives some ide
 
 Absolute cost per service of each provider type is shown above in the figure "Median Log10 Pay Per Service".
 
-To show relative cost, maps of median cost per service by state were created for all provider types.  Three common provider types are shown in the figures below:
+To show relative cost, maps of median cost per service by state were created for provider types.  Three common provider types are shown in the figures below:
 + General Surgery (expensive)
 + Internal Medicine (intermediate cost)
 + Physical Therapist (inexpensive)
