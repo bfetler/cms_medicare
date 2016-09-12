@@ -232,7 +232,7 @@ def pay_calc_par_groups(df):
 
 def calc_by_states(df):
     "calc parameters by state"
-    plotdir = make_plotdir(plotdir='cms_state_plots/')
+    plotdir = make_plotdir(plotdir='cms_state_service_plots/')
     agg_fns = ['count','median']
     p_group = calc_par_group(df, agg_fns, ['provider_type','nppes_provider_state'], ['pay_per_person','pay_per_service'], print_out=False)
 #   print('index level provider_types\n', p_group.index.levels[0])
@@ -252,9 +252,14 @@ def calc_by_states(df):
 #   make_state_map(bmap, im, plotdir, 'cost_per_service_physical_therapist', 'Physical Therapist, Median Cost Per Service')
 
     patr = re_compile('[ (/)]+')
+#   for provider in p_group.index.levels[0]:
+#       im = p_group.ix[provider]['pay_per_service']['median']
+#       make_state_map(bmap, im, plotdir, 'cost_per_service_%s' % '_'.join(patr.split(provider.lower())), '%s, Median Cost Per Service' % provider)
+
+    plotdir = make_plotdir(plotdir='cms_state_person_plots/')
     for provider in p_group.index.levels[0]:
-        im = p_group.ix[provider]['pay_per_service']['median']
-        make_state_map(bmap, im, plotdir, 'cost_per_service_%s' % '_'.join(patr.split(provider.lower())), '%s, Median Cost Per Service' % provider)
+        im = p_group.ix[provider]['pay_per_person']['median']
+        make_state_map(bmap, im, plotdir, 'cost_per_person_%s' % '_'.join(patr.split(provider.lower())), '%s, Median Cost Per Person' % provider)
 
 
 def main():

@@ -4856,4 +4856,555 @@ Name: median, dtype: float64
 min 1, max 2.7; calc min 1.16402, max 1.44237
 make state map: Physical Therapist, Median Cost Per Service
 saved plot cms_state_plots/map_cost_per_service_physical_therapist.png
+make state map: Addiction Medicine, Median Cost Per Service
+min max med 1.33528124016 2.19789251427 1.7665868772149693
+saved plot cms_state_plots/map_cost_per_service_addiction_medicine.png
+make state map: All Other Suppliers, Median Cost Per Service
+min max med -0.488889711271 3.16634917587 1.3387297322977103
+saved plot cms_state_plots/map_cost_per_service_all_other_suppliers.png
+make state map: Allergy/Immunology, Median Cost Per Service
+min max med 0.740916245259 1.45304026852 1.0969782568887725
+saved plot cms_state_plots/map_cost_per_service_allergy_immunology.png
+make state map: Ambulance Service Supplier, Median Cost Per Service
+min max med 1.00368862631 1.81671257083 1.4102005985713593
+saved plot cms_state_plots/map_cost_per_service_ambulance_service_supplier.png
+make state map: Ambulatory Surgical Center, Median Cost Per Service
+min max med 2.32936314362 3.01571829076 2.6725407171910542
+saved plot cms_state_plots/map_cost_per_service_ambulatory_surgical_center.png
+make state map: Anesthesiologist Assistants, Median Cost Per Service
+min max med 1.81530940257 2.2466587364 2.0309840694853634
+saved plot cms_state_plots/map_cost_per_service_anesthesiologist_assistants.png
+make state map: Anesthesiology, Median Cost Per Service
+min max med 1.76660439106 2.45946743741 2.1130359142348354
+saved plot cms_state_plots/map_cost_per_service_anesthesiology.png
+make state map: Audiologist (billing independently), Median Cost Per Service
+min max med 1.177701778 1.46783082447 1.3227663012336897
+saved plot cms_state_plots/map_cost_per_service_audiologist_billing_independently_.png
+make state map: CRNA, Median Cost Per Service
+min max med 1.71076306747 2.46177179257 2.0862674300167248
+saved plot cms_state_plots/map_cost_per_service_crna.png
+make state map: Cardiac Electrophysiology, Median Cost Per Service
+min max med 1.35475113746 2.23417914007 1.7944651387672237
+saved plot cms_state_plots/map_cost_per_service_cardiac_electrophysiology.png
+make state map: Cardiac Surgery, Median Cost Per Service
+min max med 1.8679742801 3.25579773233 2.561886006216801
+saved plot cms_state_plots/map_cost_per_service_cardiac_surgery.png
+make state map: Cardiology, Median Cost Per Service
+min max med 1.47021363606 1.99047600755 1.7303448218017314
+saved plot cms_state_plots/map_cost_per_service_cardiology.png
+make state map: Centralized Flu, Median Cost Per Service
+min max med 1.07342067249 1.59701851168 1.335219592083905
+saved plot cms_state_plots/map_cost_per_service_centralized_flu.png
+make state map: Certified Clinical Nurse Specialist, Median Cost Per Service
+min max med 1.35286204402 2.06451887008 1.7086904570508379
+saved plot cms_state_plots/map_cost_per_service_certified_clinical_nurse_specialist.png
+make state map: Certified Nurse Midwife, Median Cost Per Service
+min max med 0.809202660869 2.33524320212 1.5722229314949165
+saved plot cms_state_plots/map_cost_per_service_certified_nurse_midwife.png
+make state map: Chiropractic, Median Cost Per Service
+min max med 1.24251081156 1.59572498954 1.4191179005505012
+saved plot cms_state_plots/map_cost_per_service_chiropractic.png
+make state map: Clinical Laboratory, Median Cost Per Service
+min max med 0.36889794258 1.74693377972 1.057915861152177
+saved plot cms_state_plots/map_cost_per_service_clinical_laboratory.png
+make state map: Clinical Psychologist, Median Cost Per Service
+min max med 1.6269379822 2.07018855153 1.8485632668660834
+saved plot cms_state_plots/map_cost_per_service_clinical_psychologist.png
+make state map: Colorectal Surgery (formerly proctology), Median Cost Per Service
+min max med 1.9652710625 2.43209229055 2.1986816765235835
+saved plot cms_state_plots/map_cost_per_service_colorectal_surgery_formerly_proctology_.png
+make state map: Critical Care (Intensivists), Median Cost Per Service
+min max med 1.61757843209 2.51033329244 2.0639558622662637
+/Users/bfetler/anaconda/envs/pyana3/lib/python3.5/site-packages/matplotlib/pyplot.py:516: RuntimeWarning: More than 20 figures have been opened. Figures created through the pyplot interface (`matplotlib.pyplot.figure`) are retained until explicitly closed and may consume too much memory. (To control this warning, see the rcParam `figure.max_open_warning`).
+  max_open_warning, RuntimeWarning)
+saved plot cms_state_plots/map_cost_per_service_critical_care_intensivists_.png
+make state map: Dermatology, Median Cost Per Service
+min max med 1.38718302818 1.84976558405 1.6184743061162228
+saved plot cms_state_plots/map_cost_per_service_dermatology.png
+make state map: Diagnostic Radiology, Median Cost Per Service
+min max med 0.892169285556 1.84636581345 1.3692675495014133
+saved plot cms_state_plots/map_cost_per_service_diagnostic_radiology.png
+make state map: Emergency Medicine, Median Cost Per Service
+min max med 1.59521529239 2.26311374197 1.929164517182315
+saved plot cms_state_plots/map_cost_per_service_emergency_medicine.png
+make state map: Endocrinology, Median Cost Per Service
+min max med 1.49571739373 1.96427571036 1.7299965520402496
+saved plot cms_state_plots/map_cost_per_service_endocrinology.png
+make state map: Family Practice, Median Cost Per Service
+min max med 1.31378502631 1.91536164686 1.6145733365808774
+saved plot cms_state_plots/map_cost_per_service_family_practice.png
+make state map: Gastroenterology, Median Cost Per Service
+min max med 1.78802317644 2.19341034024 1.9907167583387881
+saved plot cms_state_plots/map_cost_per_service_gastroenterology.png
+make state map: General Practice, Median Cost Per Service
+min max med 1.08275751393 2.20071492368 1.6417362188077376
+saved plot cms_state_plots/map_cost_per_service_general_practice.png
+make state map: General Surgery, Median Cost Per Service
+min max med 1.72831574059 2.57689884948 2.152607295034473
+saved plot cms_state_plots/map_cost_per_service_general_surgery.png
+make state map: Geriatric Medicine, Median Cost Per Service
+min max med 1.58748839779 2.06866345803 1.8280759279094667
+saved plot cms_state_plots/map_cost_per_service_geriatric_medicine.png
+make state map: Geriatric Psychiatry, Median Cost Per Service
+min max med 1.50222995727 2.07893359327 1.7905817752733646
+saved plot cms_state_plots/map_cost_per_service_geriatric_psychiatry.png
+make state map: Gynecological/Oncology, Median Cost Per Service
+min max med 1.14757700405 3.03789357975 2.09273529190256
+saved plot cms_state_plots/map_cost_per_service_gynecological_oncology.png
+make state map: Hand Surgery, Median Cost Per Service
+min max med 1.37640519424 2.34015990292 1.8582825485802101
+saved plot cms_state_plots/map_cost_per_service_hand_surgery.png
+make state map: Hematology, Median Cost Per Service
+min max med 0.678135361921 2.89562498851 1.7868801752145715
+saved plot cms_state_plots/map_cost_per_service_hematology.png
+make state map: Hematology/Oncology, Median Cost Per Service
+min max med 0.816804025196 2.26615273974 1.5414783824664027
+saved plot cms_state_plots/map_cost_per_service_hematology_oncology.png
+make state map: Hospice and Palliative Care, Median Cost Per Service
+min max med 1.6642932596 2.20720723395 1.9357502467784375
+saved plot cms_state_plots/map_cost_per_service_hospice_and_palliative_care.png
+make state map: Independent Diagnostic Testing Facility, Median Cost Per Service
+min max med 1.2321658485 2.77601520104 2.0040905247701737
+saved plot cms_state_plots/map_cost_per_service_independent_diagnostic_testing_facility.png
+make state map: Infectious Disease, Median Cost Per Service
+min max med 0.156748216641 3.50596186149 1.831355039064277
+saved plot cms_state_plots/map_cost_per_service_infectious_disease.png
+make state map: Internal Medicine, Median Cost Per Service
+min max med 1.51859464109 2.02525784739 1.771926244239257
+saved plot cms_state_plots/map_cost_per_service_internal_medicine.png
+make state map: Interventional Cardiology, Median Cost Per Service
+min max med 1.48332701016 1.63946669543 1.5613968527951247
+saved plot cms_state_plots/map_cost_per_service_interventional_cardiology.png
+make state map: Interventional Pain Management, Median Cost Per Service
+min max med 0.874393610366 2.59887694942 1.736635279891712
+saved plot cms_state_plots/map_cost_per_service_interventional_pain_management.png
+make state map: Interventional Radiology, Median Cost Per Service
+min max med 0.80505428749 2.72550755749 1.7652809224909598
+saved plot cms_state_plots/map_cost_per_service_interventional_radiology.png
+make state map: Licensed Clinical Social Worker, Median Cost Per Service
+min max med 1.41942229494 2.03673492508 1.7280786100130063
+saved plot cms_state_plots/map_cost_per_service_licensed_clinical_social_worker.png
+make state map: Mammographic Screening Center, Median Cost Per Service
+min max med 1.30743017319 2.34666964511 1.8270499091519694
+saved plot cms_state_plots/map_cost_per_service_mammographic_screening_center.png
+make state map: Mass Immunization Roster Biller, Median Cost Per Service
+min max med 1.11147831249 1.61050917292 1.3609937427059
+saved plot cms_state_plots/map_cost_per_service_mass_immunization_roster_biller.png
+make state map: Maxillofacial Surgery, Median Cost Per Service
+min max med 1.65048741636 2.40512868495 2.0278080506565273
+saved plot cms_state_plots/map_cost_per_service_maxillofacial_surgery.png
+make state map: Medical Oncology, Median Cost Per Service
+min max med 0.650912084531 2.69506708033 1.6729895824310723
+saved plot cms_state_plots/map_cost_per_service_medical_oncology.png
+make state map: Multispecialty Clinic/Group Practice, Median Cost Per Service
+min max med 0.277643267789 2.68428591981 1.4809645938014226
+saved plot cms_state_plots/map_cost_per_service_multispecialty_clinic_group_practice.png
+make state map: Nephrology, Median Cost Per Service
+min max med 1.56083805625 2.19493070134 1.8778843787928998
+saved plot cms_state_plots/map_cost_per_service_nephrology.png
+make state map: Neurology, Median Cost Per Service
+min max med 1.44446163205 2.23936123954 1.841911435794092
+saved plot cms_state_plots/map_cost_per_service_neurology.png
+make state map: Neuropsychiatry, Median Cost Per Service
+min max med 1.50878491537 2.22302235271 1.8659036340424908
+saved plot cms_state_plots/map_cost_per_service_neuropsychiatry.png
+make state map: Neurosurgery, Median Cost Per Service
+min max med 2.01586480302 2.68780200894 2.351833405981261
+saved plot cms_state_plots/map_cost_per_service_neurosurgery.png
+make state map: Nuclear Medicine, Median Cost Per Service
+min max med 0.934717937431 2.48855982402 1.711638880724493
+saved plot cms_state_plots/map_cost_per_service_nuclear_medicine.png
+make state map: Nurse Practitioner, Median Cost Per Service
+min max med 1.31338758053 1.91596972396 1.6146786522416194
+saved plot cms_state_plots/map_cost_per_service_nurse_practitioner.png
+make state map: Obstetrics/Gynecology, Median Cost Per Service
+min max med 1.44619460028 2.10972466775 1.7779596340138228
+saved plot cms_state_plots/map_cost_per_service_obstetrics_gynecology.png
+make state map: Occupational therapist, Median Cost Per Service
+min max med 1.11018713417 1.54722487581 1.3287060049908883
+saved plot cms_state_plots/map_cost_per_service_occupational_therapist.png
+make state map: Ophthalmology, Median Cost Per Service
+min max med 1.63057170752 2.27529684139 1.952934274454378
+saved plot cms_state_plots/map_cost_per_service_ophthalmology.png
+make state map: Optometry, Median Cost Per Service
+min max med 1.07108294947 2.4630861466 1.767084548037793
+saved plot cms_state_plots/map_cost_per_service_optometry.png
+make state map: Oral Surgery (dentists only), Median Cost Per Service
+min max med 1.70250583863 2.25596272806 1.979234283345833
+saved plot cms_state_plots/map_cost_per_service_oral_surgery_dentists_only_.png
+make state map: Orthopedic Surgery, Median Cost Per Service
+min max med 1.26752250046 2.47267495597 1.870098728216571
+saved plot cms_state_plots/map_cost_per_service_orthopedic_surgery.png
+make state map: Osteopathic Manipulative Medicine, Median Cost Per Service
+min max med 1.26029022699 2.13964833737 1.6999692821806294
+saved plot cms_state_plots/map_cost_per_service_osteopathic_manipulative_medicine.png
+make state map: Otolaryngology, Median Cost Per Service
+min max med 1.32133529552 2.31251495979 1.816925127655888
+saved plot cms_state_plots/map_cost_per_service_otolaryngology.png
+make state map: Pain Management, Median Cost Per Service
+min max med 1.381187023 2.11566252652 1.7484247747624726
+saved plot cms_state_plots/map_cost_per_service_pain_management.png
+make state map: Pathology, Median Cost Per Service
+min max med 1.15853045989 1.74557744552 1.4520539527016467
+saved plot cms_state_plots/map_cost_per_service_pathology.png
+make state map: Pediatric Medicine, Median Cost Per Service
+min max med 0.891774981144 2.5041150014 1.6979449912724611
+saved plot cms_state_plots/map_cost_per_service_pediatric_medicine.png
+make state map: Peripheral Vascular Disease, Median Cost Per Service
+min max med 1.31185216873 2.56880760258 1.9403298856530462
+saved plot cms_state_plots/map_cost_per_service_peripheral_vascular_disease.png
+make state map: Pharmacy, Median Cost Per Service
+min max med 1.12395304244 1.51560994133 1.3197814918862527
+saved plot cms_state_plots/map_cost_per_service_pharmacy.png
+make state map: Physical Medicine and Rehabilitation, Median Cost Per Service
+min max med 1.47808771475 2.03556411387 1.7568259143121945
+saved plot cms_state_plots/map_cost_per_service_physical_medicine_and_rehabilitation.png
+make state map: Physical Therapist, Median Cost Per Service
+min max med 1.10259324778 1.51449327574 1.3085432617594726
+saved plot cms_state_plots/map_cost_per_service_physical_therapist.png
+make state map: Physician Assistant, Median Cost Per Service
+min max med 1.33342613466 1.99969671372 1.6665614241913602
+saved plot cms_state_plots/map_cost_per_service_physician_assistant.png
+make state map: Plastic and Reconstructive Surgery, Median Cost Per Service
+min max med 1.82813057647 2.57889011767 2.203510347065987
+saved plot cms_state_plots/map_cost_per_service_plastic_and_reconstructive_surgery.png
+make state map: Podiatry, Median Cost Per Service
+min max med 1.44666068522 1.85042594052 1.6485433128712401
+saved plot cms_state_plots/map_cost_per_service_podiatry.png
+make state map: Portable X-ray, Median Cost Per Service
+min max med 1.14507873848 2.05857906168 1.601828900077407
+saved plot cms_state_plots/map_cost_per_service_portable_x-ray.png
+make state map: Preventive Medicine, Median Cost Per Service
+min max med 1.01139649821 2.35614507438 1.683770786292849
+saved plot cms_state_plots/map_cost_per_service_preventive_medicine.png
+make state map: Psychiatry, Median Cost Per Service
+min max med 1.52598038754 1.99733727721 1.7616588323755686
+saved plot cms_state_plots/map_cost_per_service_psychiatry.png
+make state map: Psychologist (billing independently), Median Cost Per Service
+min max med 1.49886661578 2.27508889245 1.8869777541182062
+saved plot cms_state_plots/map_cost_per_service_psychologist_billing_independently_.png
+make state map: Public Health Welfare Agency, Median Cost Per Service
+min max med 0.247044639216 2.41306280147 1.330053720344464
+saved plot cms_state_plots/map_cost_per_service_public_health_welfare_agency.png
+make state map: Pulmonary Disease, Median Cost Per Service
+min max med 1.44810434401 2.2238783616 1.8359913528016938
+saved plot cms_state_plots/map_cost_per_service_pulmonary_disease.png
+make state map: Radiation Oncology, Median Cost Per Service
+min max med 1.37222715449 2.31674819067 1.8444876725785586
+saved plot cms_state_plots/map_cost_per_service_radiation_oncology.png
+make state map: Radiation Therapy, Median Cost Per Service
+min max med 1.72199533085 2.66531083163 2.193653081241382
+saved plot cms_state_plots/map_cost_per_service_radiation_therapy.png
+make state map: Registered Dietician/Nutrition Professional, Median Cost Per Service
+min max med 1.25351157702 1.61893052321 1.4362210501151267
+saved plot cms_state_plots/map_cost_per_service_registered_dietician_nutrition_professional.png
+make state map: Rheumatology, Median Cost Per Service
+min max med 1.15397293809 1.88109592549 1.5175344317893078
+saved plot cms_state_plots/map_cost_per_service_rheumatology.png
+make state map: Sleep Medicine, Median Cost Per Service
+min max med 1.26174593278 2.56894416964 1.915345051210431
+saved plot cms_state_plots/map_cost_per_service_sleep_medicine.png
+make state map: Slide Preparation Facility, Median Cost Per Service
+min max med 1.22673027211 1.5418505424 1.384290407254077
+saved plot cms_state_plots/map_cost_per_service_slide_preparation_facility.png
+make state map: Speech Language Pathologist, Median Cost Per Service
+min max med 1.24729656876 2.34554515615 1.7964208624536195
+saved plot cms_state_plots/map_cost_per_service_speech_language_pathologist.png
+make state map: Sports Medicine, Median Cost Per Service
+min max med 1.02584735515 2.2710674644 1.648457409777561
+saved plot cms_state_plots/map_cost_per_service_sports_medicine.png
+make state map: Surgical Oncology, Median Cost Per Service
+min max med 1.74370133943 2.67296572619 2.208333532811005
+saved plot cms_state_plots/map_cost_per_service_surgical_oncology.png
+make state map: Thoracic Surgery, Median Cost Per Service
+min max med 1.58284774554 3.29771299306 2.4402803693010484
+saved plot cms_state_plots/map_cost_per_service_thoracic_surgery.png
+make state map: Unknown Physician Specialty Code, Median Cost Per Service
+min max med 1.05141279265 2.5977989275 1.8246058600773853
+saved plot cms_state_plots/map_cost_per_service_unknown_physician_specialty_code.png
+make state map: Unknown Supplier/Provider, Median Cost Per Service
+min max med 0.479781372235 3.30337478446 1.8915780783491003
+saved plot cms_state_plots/map_cost_per_service_unknown_supplier_provider.png
+make state map: Urology, Median Cost Per Service
+min max med 1.12020661318 2.38778618366 1.753996398420564
+saved plot cms_state_plots/map_cost_per_service_urology.png
+make state map: Vascular Surgery, Median Cost Per Service
+min max med 1.67398540068 2.45807225719 2.0660288289374273
+saved plot cms_state_plots/map_cost_per_service_vascular_surgery.png
+
+make state map: Addiction Medicine, Median Cost Per Person
+min max med 1.51301103211 3.62394621591 2.5684786240132373
+saved plot cms_state_person_plots/map_cost_per_person_addiction_medicine.png
+make state map: All Other Suppliers, Median Cost Per Person
+min max med -0.544549305697 3.90739901655 1.6814248554240678
+saved plot cms_state_person_plots/map_cost_per_person_all_other_suppliers.png
+make state map: Allergy/Immunology, Median Cost Per Person
+min max med 1.23773965615 3.6039170761 2.420828366126387
+saved plot cms_state_person_plots/map_cost_per_person_allergy_immunology.png
+make state map: Ambulance Service Supplier, Median Cost Per Person
+min max med 1.36100876579 4.24115903908 2.8010839024357352
+saved plot cms_state_person_plots/map_cost_per_person_ambulance_service_supplier.png
+make state map: Ambulatory Surgical Center, Median Cost Per Person
+min max med 2.44110982644 3.45869890988 2.949904368159769
+saved plot cms_state_person_plots/map_cost_per_person_ambulatory_surgical_center.png
+make state map: Anesthesiologist Assistants, Median Cost Per Person
+min max med 1.84619682715 2.2755739231 2.0608853751250966
+saved plot cms_state_person_plots/map_cost_per_person_anesthesiologist_assistants.png
+make state map: Anesthesiology, Median Cost Per Person
+min max med 1.8527018808 2.59869163099 2.2256967558928973
+saved plot cms_state_person_plots/map_cost_per_person_anesthesiology.png
+make state map: Audiologist (billing independently), Median Cost Per Person
+min max med 1.18478207258 2.02531087104 1.605046471813667
+saved plot cms_state_person_plots/map_cost_per_person_audiologist_billing_independently_.png
+make state map: CRNA, Median Cost Per Person
+min max med 1.72632607721 2.49585990315 2.111092990178008
+saved plot cms_state_person_plots/map_cost_per_person_crna.png
+make state map: Cardiac Electrophysiology, Median Cost Per Person
+min max med 1.72724722967 2.93067948742 2.3289633585417033
+saved plot cms_state_person_plots/map_cost_per_person_cardiac_electrophysiology.png
+make state map: Cardiac Surgery, Median Cost Per Person
+min max med 2.13894550814 3.7739067392 2.9564261236692184
+saved plot cms_state_person_plots/map_cost_per_person_cardiac_surgery.png
+make state map: Cardiology, Median Cost Per Person
+min max med 1.74833875246 2.6210061791 2.184672465778308
+saved plot cms_state_person_plots/map_cost_per_person_cardiology.png
+make state map: Centralized Flu, Median Cost Per Person
+min max med 1.35939916837 1.96779538341 1.6635972758928306
+saved plot cms_state_person_plots/map_cost_per_person_centralized_flu.png
+make state map: Certified Clinical Nurse Specialist, Median Cost Per Person
+min max med 1.18342644024 3.2219132228 2.202669831518766
+saved plot cms_state_person_plots/map_cost_per_person_certified_clinical_nurse_specialist.png
+make state map: Certified Nurse Midwife, Median Cost Per Person
+min max med 1.36143759223 2.38708525871 1.8742614254682397
+saved plot cms_state_person_plots/map_cost_per_person_certified_nurse_midwife.png
+make state map: Chiropractic, Median Cost Per Person
+min max med 1.98117877666 2.66898753275 2.325083154708239
+saved plot cms_state_person_plots/map_cost_per_person_chiropractic.png
+make state map: Clinical Laboratory, Median Cost Per Person
+min max med 1.36246833497 2.61563640529 1.989052370125548
+saved plot cms_state_person_plots/map_cost_per_person_clinical_laboratory.png
+make state map: Clinical Psychologist, Median Cost Per Person
+min max med 2.30633333589 3.1549100952 2.730621715544284
+saved plot cms_state_person_plots/map_cost_per_person_clinical_psychologist.png
+make state map: Colorectal Surgery (formerly proctology), Median Cost Per Person
+min max med 2.24116080506 2.94110877193 2.5911347884959026
+saved plot cms_state_person_plots/map_cost_per_person_colorectal_surgery_formerly_proctology_.png
+make state map: Critical Care (Intensivists), Median Cost Per Person
+min max med 1.95647687409 3.01589141641 2.486184145248795
+/Users/bfetler/anaconda/envs/pyana3/lib/python3.5/site-packages/matplotlib/pyplot.py:516: RuntimeWarning: More than 20 figures have been opened. Figures created through the pyplot interface (`matplotlib.pyplot.figure`) are retained until explicitly closed and may consume too much memory. (To control this warning, see the rcParam `figure.max_open_warning`).
+  max_open_warning, RuntimeWarning)
+saved plot cms_state_person_plots/map_cost_per_person_critical_care_intensivists_.png
+make state map: Dermatology, Median Cost Per Person
+min max med 1.99719973566 2.663926619 2.3305631773288686
+saved plot cms_state_person_plots/map_cost_per_person_dermatology.png
+make state map: Diagnostic Radiology, Median Cost Per Person
+min max med 1.06648134257 2.21759822233 1.6420397824507214
+saved plot cms_state_person_plots/map_cost_per_person_diagnostic_radiology.png
+make state map: Emergency Medicine, Median Cost Per Person
+min max med 1.81638588052 2.35417505383 2.085280467175372
+saved plot cms_state_person_plots/map_cost_per_person_emergency_medicine.png
+make state map: Endocrinology, Median Cost Per Person
+min max med 1.8336260584 2.58372777769 2.208676918043211
+saved plot cms_state_person_plots/map_cost_per_person_endocrinology.png
+make state map: Family Practice, Median Cost Per Person
+min max med 1.65539146026 2.81651927208 2.2359553661729703
+saved plot cms_state_person_plots/map_cost_per_person_family_practice.png
+make state map: Gastroenterology, Median Cost Per Person
+min max med 2.0391343266 2.64527330592 2.342203816259787
+saved plot cms_state_person_plots/map_cost_per_person_gastroenterology.png
+make state map: General Practice, Median Cost Per Person
+min max med 1.38875071955 3.15219486525 2.270472792397408
+saved plot cms_state_person_plots/map_cost_per_person_general_practice.png
+make state map: General Surgery, Median Cost Per Person
+min max med 2.02218802968 3.03505825022 2.5286231399504517
+saved plot cms_state_person_plots/map_cost_per_person_general_surgery.png
+make state map: Geriatric Medicine, Median Cost Per Person
+min max med 1.9555035888 2.66684113356 2.3111723611764994
+saved plot cms_state_person_plots/map_cost_per_person_geriatric_medicine.png
+make state map: Geriatric Psychiatry, Median Cost Per Person
+min max med 1.7778165183 3.0506541842 2.414235351248794
+saved plot cms_state_person_plots/map_cost_per_person_geriatric_psychiatry.png
+make state map: Gynecological/Oncology, Median Cost Per Person
+min max med 1.99504383423 3.21961942547 2.607331629848357
+saved plot cms_state_person_plots/map_cost_per_person_gynecological_oncology.png
+make state map: Hand Surgery, Median Cost Per Person
+min max med 2.21116897176 2.83868897139 2.524928971575034
+saved plot cms_state_person_plots/map_cost_per_person_hand_surgery.png
+make state map: Hematology, Median Cost Per Person
+min max med 1.25284138701 3.56729144137 2.4100664141943793
+saved plot cms_state_person_plots/map_cost_per_person_hematology.png
+make state map: Hematology/Oncology, Median Cost Per Person
+min max med 1.28890841386 3.81973432327 2.5543213685635706
+saved plot cms_state_person_plots/map_cost_per_person_hematology_oncology.png
+make state map: Hospice and Palliative Care, Median Cost Per Person
+min max med 1.94998172485 2.60962580843 2.279803766639654
+saved plot cms_state_person_plots/map_cost_per_person_hospice_and_palliative_care.png
+make state map: Independent Diagnostic Testing Facility, Median Cost Per Person
+min max med 1.72986077239 2.98212457845 2.355992675417119
+saved plot cms_state_person_plots/map_cost_per_person_independent_diagnostic_testing_facility.png
+make state map: Infectious Disease, Median Cost Per Person
+min max med 1.77568088205 2.97859609024 2.377138486146455
+saved plot cms_state_person_plots/map_cost_per_person_infectious_disease.png
+make state map: Internal Medicine, Median Cost Per Person
+min max med 1.2695364688 3.36040096776 2.314968718279935
+saved plot cms_state_person_plots/map_cost_per_person_internal_medicine.png
+make state map: Interventional Cardiology, Median Cost Per Person
+min max med 2.40774660198 2.66119361271 2.5344701073462046
+saved plot cms_state_person_plots/map_cost_per_person_interventional_cardiology.png
+make state map: Interventional Pain Management, Median Cost Per Person
+min max med 1.23075392664 3.97332147393 2.6020377002835353
+saved plot cms_state_person_plots/map_cost_per_person_interventional_pain_management.png
+make state map: Interventional Radiology, Median Cost Per Person
+min max med 1.17098036779 3.16328830866 2.1671343382271204
+saved plot cms_state_person_plots/map_cost_per_person_interventional_radiology.png
+make state map: Licensed Clinical Social Worker, Median Cost Per Person
+min max med 2.15831836951 3.03582032136 2.5970693454342877
+saved plot cms_state_person_plots/map_cost_per_person_licensed_clinical_social_worker.png
+make state map: Mammographic Screening Center, Median Cost Per Person
+min max med 1.59340866908 2.6089209438 2.101164806437374
+saved plot cms_state_person_plots/map_cost_per_person_mammographic_screening_center.png
+make state map: Mass Immunization Roster Biller, Median Cost Per Person
+min max med 1.36896252287 1.99344320223 1.6812028625507145
+saved plot cms_state_person_plots/map_cost_per_person_mass_immunization_roster_biller.png
+make state map: Maxillofacial Surgery, Median Cost Per Person
+min max med 1.75347314475 2.77541576444 2.2644444545920996
+saved plot cms_state_person_plots/map_cost_per_person_maxillofacial_surgery.png
+make state map: Medical Oncology, Median Cost Per Person
+min max med 1.01344660613 3.97230092504 2.4928737655832447
+saved plot cms_state_person_plots/map_cost_per_person_medical_oncology.png
+make state map: Multispecialty Clinic/Group Practice, Median Cost Per Person
+min max med 0.931161821247 2.83445371738 1.8828077693126404
+saved plot cms_state_person_plots/map_cost_per_person_multispecialty_clinic_group_practice.png
+make state map: Nephrology, Median Cost Per Person
+min max med 2.02158301725 3.14232746984 2.5819552435450404
+saved plot cms_state_person_plots/map_cost_per_person_nephrology.png
+make state map: Neurology, Median Cost Per Person
+min max med 1.67587527329 2.92095075588 2.298413014587389
+saved plot cms_state_person_plots/map_cost_per_person_neurology.png
+make state map: Neuropsychiatry, Median Cost Per Person
+min max med 1.80425094874 3.10187261458 2.453061781662334
+saved plot cms_state_person_plots/map_cost_per_person_neuropsychiatry.png
+make state map: Neurosurgery, Median Cost Per Person
+min max med 2.33513687665 3.1403554075 2.737746142071336
+saved plot cms_state_person_plots/map_cost_per_person_neurosurgery.png
+make state map: Nuclear Medicine, Median Cost Per Person
+min max med 0.346467540461 3.30592254177 1.826195041114598
+saved plot cms_state_person_plots/map_cost_per_person_nuclear_medicine.png
+make state map: Nurse Practitioner, Median Cost Per Person
+min max med 1.62977610693 2.27856498177 1.9541705443524584
+saved plot cms_state_person_plots/map_cost_per_person_nurse_practitioner.png
+make state map: Obstetrics/Gynecology, Median Cost Per Person
+min max med 1.84945511483 2.48960521707 2.169530165946281
+saved plot cms_state_person_plots/map_cost_per_person_obstetrics_gynecology.png
+make state map: Occupational therapist, Median Cost Per Person
+min max med 2.02140995561 3.19403360931 2.607721782460816
+saved plot cms_state_person_plots/map_cost_per_person_occupational_therapist.png
+make state map: Ophthalmology, Median Cost Per Person
+min max med 1.96268158602 2.91433935998 2.4385104729972764
+saved plot cms_state_person_plots/map_cost_per_person_ophthalmology.png
+make state map: Optometry, Median Cost Per Person
+min max med 1.59617293781 2.40933544512 2.002754191466689
+saved plot cms_state_person_plots/map_cost_per_person_optometry.png
+make state map: Oral Surgery (dentists only), Median Cost Per Person
+min max med 1.83529594134 2.56916991641 2.2022329288751874
+saved plot cms_state_person_plots/map_cost_per_person_oral_surgery_dentists_only_.png
+make state map: Orthopedic Surgery, Median Cost Per Person
+min max med 2.27349043965 2.85445175401 2.563971096826878
+saved plot cms_state_person_plots/map_cost_per_person_orthopedic_surgery.png
+make state map: Osteopathic Manipulative Medicine, Median Cost Per Person
+min max med 1.53937720824 3.31791260602 2.428644907128441
+saved plot cms_state_person_plots/map_cost_per_person_osteopathic_manipulative_medicine.png
+make state map: Otolaryngology, Median Cost Per Person
+min max med 1.51022796241 3.12728657414 2.3187572682752373
+saved plot cms_state_person_plots/map_cost_per_person_otolaryngology.png
+make state map: Pain Management, Median Cost Per Person
+min max med 2.0792812511 2.94484237804 2.5120618145697486
+saved plot cms_state_person_plots/map_cost_per_person_pain_management.png
+make state map: Pathology, Median Cost Per Person
+min max med 1.37617410608 2.41816501993 1.8971695630065954
+saved plot cms_state_person_plots/map_cost_per_person_pathology.png
+make state map: Pediatric Medicine, Median Cost Per Person
+min max med 1.666900126 2.61615519622 2.1415276611143925
+saved plot cms_state_person_plots/map_cost_per_person_pediatric_medicine.png
+make state map: Peripheral Vascular Disease, Median Cost Per Person
+min max med 1.43721859031 3.37315623405 2.4051874121801156
+saved plot cms_state_person_plots/map_cost_per_person_peripheral_vascular_disease.png
+make state map: Pharmacy, Median Cost Per Person
+min max med 1.43827373989 1.8432365903 1.640755165093526
+saved plot cms_state_person_plots/map_cost_per_person_pharmacy.png
+make state map: Physical Medicine and Rehabilitation, Median Cost Per Person
+min max med 2.01848462516 2.95436637986 2.48642550251295
+saved plot cms_state_person_plots/map_cost_per_person_physical_medicine_and_rehabilitation.png
+make state map: Physical Therapist, Median Cost Per Person
+min max med 2.15966615577 3.25383200472 2.706749080241698
+saved plot cms_state_person_plots/map_cost_per_person_physical_therapist.png
+make state map: Physician Assistant, Median Cost Per Person
+min max med 1.4426204847 2.46755648657 1.9550884856331252
+saved plot cms_state_person_plots/map_cost_per_person_physician_assistant.png
+make state map: Plastic and Reconstructive Surgery, Median Cost Per Person
+min max med 2.33954948799 3.01533585698 2.6774426724871834
+saved plot cms_state_person_plots/map_cost_per_person_plastic_and_reconstructive_surgery.png
+make state map: Podiatry, Median Cost Per Person
+min max med 1.91053369146 2.56808434336 2.239309017412298
+saved plot cms_state_person_plots/map_cost_per_person_podiatry.png
+make state map: Portable X-ray, Median Cost Per Person
+min max med 1.66549180081 2.92114788368 2.2933198422448404
+saved plot cms_state_person_plots/map_cost_per_person_portable_x-ray.png
+make state map: Preventive Medicine, Median Cost Per Person
+min max med 0.624651402735 3.72257079101 2.1736110968700726
+saved plot cms_state_person_plots/map_cost_per_person_preventive_medicine.png
+make state map: Psychiatry, Median Cost Per Person
+min max med 1.51855494434 3.20737267296 2.3629638086490345
+saved plot cms_state_person_plots/map_cost_per_person_psychiatry.png
+make state map: Psychologist (billing independently), Median Cost Per Person
+min max med 1.63768824968 3.9097899405 2.7737390950858583
+saved plot cms_state_person_plots/map_cost_per_person_psychologist_billing_independently_.png
+make state map: Public Health Welfare Agency, Median Cost Per Person
+min max med -0.212273468447 3.51806227137 1.6528944014596032
+saved plot cms_state_person_plots/map_cost_per_person_public_health_welfare_agency.png
+make state map: Pulmonary Disease, Median Cost Per Person
+min max med 1.98884933966 2.76944719389 2.37914826677176
+saved plot cms_state_person_plots/map_cost_per_person_pulmonary_disease.png
+make state map: Radiation Oncology, Median Cost Per Person
+min max med 2.15393999207 3.64598391869 2.8999619553810327
+saved plot cms_state_person_plots/map_cost_per_person_radiation_oncology.png
+make state map: Radiation Therapy, Median Cost Per Person
+min max med 3.41288884246 4.26317057279 3.8380297076277885
+saved plot cms_state_person_plots/map_cost_per_person_radiation_therapy.png
+make state map: Registered Dietician/Nutrition Professional, Median Cost Per Person
+min max med 1.66745504726 2.48032594783 2.0738904975460972
+saved plot cms_state_person_plots/map_cost_per_person_registered_dietician_nutrition_professional.png
+make state map: Rheumatology, Median Cost Per Person
+min max med 1.6750149868 3.23546159448 2.4552382906428676
+saved plot cms_state_person_plots/map_cost_per_person_rheumatology.png
+make state map: Sleep Medicine, Median Cost Per Person
+min max med 1.65058236361 2.80116811027 2.2258752369395753
+saved plot cms_state_person_plots/map_cost_per_person_sleep_medicine.png
+make state map: Slide Preparation Facility, Median Cost Per Person
+min max med 1.3000366548 1.99512215397 1.6475794043858139
+saved plot cms_state_person_plots/map_cost_per_person_slide_preparation_facility.png
+make state map: Speech Language Pathologist, Median Cost Per Person
+min max med 1.89394567753 3.25608708057 2.5750163790511547
+saved plot cms_state_person_plots/map_cost_per_person_speech_language_pathologist.png
+make state map: Sports Medicine, Median Cost Per Person
+min max med 1.91024338263 2.85139173382 2.380817558227458
+saved plot cms_state_person_plots/map_cost_per_person_sports_medicine.png
+make state map: Surgical Oncology, Median Cost Per Person
+min max med 2.07380740844 3.14121634267 2.60751187555637
+saved plot cms_state_person_plots/map_cost_per_person_surgical_oncology.png
+make state map: Thoracic Surgery, Median Cost Per Person
+min max med 2.16861806379 3.51184605421 2.8402320590025445
+saved plot cms_state_person_plots/map_cost_per_person_thoracic_surgery.png
+make state map: Unknown Physician Specialty Code, Median Cost Per Person
+min max med 1.21031578826 3.35059490968 2.2804553489690407
+saved plot cms_state_person_plots/map_cost_per_person_unknown_physician_specialty_code.png
+make state map: Unknown Supplier/Provider, Median Cost Per Person
+min max med 0.460372155232 3.85458982318 2.157480989207008
+saved plot cms_state_person_plots/map_cost_per_person_unknown_supplier_provider.png
+make state map: Urology, Median Cost Per Person
+min max med 2.18431014738 2.71145361746 2.4478818824205892
+saved plot cms_state_person_plots/map_cost_per_person_urology.png
+make state map: Vascular Surgery, Median Cost Per Person
+min max med 2.05576860782 3.06686500544 2.5613168066284775
+saved plot cms_state_person_plots/map_cost_per_person_vascular_surgery.png
 
