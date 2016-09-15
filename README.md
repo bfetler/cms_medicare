@@ -91,13 +91,13 @@ The absolute cost per person may seem counterintuitive, but is due to the number
 
 Below, a median color of red was used for each map, showing relative cost by state.  More expensive states trend purple, while less expensive states trend yellow.
 
+<img src="https://github.com/bfetler/cms_medicare/blob/master/cms_state_person_plots/map_cost_per_person_physical_therapist.png" alt="median cost per person by state for physical therapist" />
+
 <img src="https://github.com/bfetler/cms_medicare/blob/master/cms_state_person_plots/map_cost_per_person_general_surgery.png" alt="median cost per person by state for general surgery" />
 
 <img src="https://github.com/bfetler/cms_medicare/blob/master/cms_state_person_plots/map_cost_per_person_internal_medicine.png" alt="median cost per person by state for internal medicine" />
 
-<img src="https://github.com/bfetler/cms_medicare/blob/master/cms_state_person_plots/map_cost_per_person_physical_therapist.png" alt="median cost per person by state for physical therapist" />
-
-Some of the western states such as Utah and Montana appear to be more expensive for some surgeries, while the northeast and Florida are moderately expensive.
+Some of the western states such as Utah and Montana appear to be expensive for Surgery, while the northeast and Florida appear to be expensive for Physical Therapy.
 
 #### Provider Gender
 
