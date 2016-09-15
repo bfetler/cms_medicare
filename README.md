@@ -97,7 +97,7 @@ Below, a median color of red was used for each map, showing relative cost by sta
 
 <img src="https://github.com/bfetler/cms_medicare/blob/master/cms_state_person_plots/map_cost_per_person_internal_medicine.png" alt="median cost per person by state for internal medicine" />
 
-Some of the western states such as Utah and Montana appear to be expensive for Surgery, while the northeast and Florida appear to be expensive for Physical Therapy.
+Some of the western states such as Utah and Montana appear to be expensive for Surgery, while the northeast, California and Florida appear to be generally expensive.
 
 #### Provider Gender
 
