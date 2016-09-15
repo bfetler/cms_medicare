@@ -80,14 +80,16 @@ The total medicare payment by provider type is shown below.  This gives some ide
 
 #### Medicare Payment By State
 
-Absolute cost per service of each provider type is shown above in the figure "Median Log10 Pay Per Person".
+Absolute cost per person of each provider type is shown above in the figure "Median Log10 Pay Per Person".
 
-To show relative cost, maps of median cost per service by state were created for provider types.  Three common provider types are shown in the figures below:
-+ General Surgery (expensive)
-+ Internal Medicine (intermediate cost)
-+ Physical Therapist (inexpensive)
+To show relative cost, maps of median cost per person by state were created for provider types.  Three common provider types are summarized below:
++ Physical Therapist (expensive, $509 USD)
++ General Surgery (intermediate, $338 USD)
++ Internal Medicine (inexpensive, $207 USD)
 
-A median color of red was used for each map, with more expensive states trending purple and less expensive states trending yellow.
+The absolute cost per person may seem counterintuitive, but is due to the number of sessions for treatment.  For example, General Surgery takes on average 2.4 sessions, while Physical Therapy takes 25 sessions.  
+
+Below, a median color of red was used for each map, showing relative cost by state.  More expensive states trend purple, while less expensive states trend yellow.
 
 <img src="https://github.com/bfetler/cms_medicare/blob/master/cms_state_person_plots/map_cost_per_person_general_surgery.png" alt="median cost per person by state for general surgery" />
 
