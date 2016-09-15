@@ -80,7 +80,7 @@ The total medicare payment by provider type is shown below.  This gives some ide
 
 #### Medicare Payment By State
 
-Absolute cost per service of each provider type is shown above in the figure "Median Log10 Pay Per Service".
+Absolute cost per service of each provider type is shown above in the figure "Median Log10 Pay Per Person".
 
 To show relative cost, maps of median cost per service by state were created for provider types.  Three common provider types are shown in the figures below:
 + General Surgery (expensive)
@@ -89,13 +89,13 @@ To show relative cost, maps of median cost per service by state were created for
 
 A median color of red was used for each map, with more expensive states trending purple and less expensive states trending yellow.
 
-<img src="https://github.com/bfetler/cms_medicare/blob/master/cms_state_plots/map_cost_per_service_general_surgery.png" alt="median cost per service by state for general surgery" />
+<img src="https://github.com/bfetler/cms_medicare/blob/master/cms_state_person_plots/map_cost_per_person_general_surgery.png" alt="median cost per person by state for general surgery" />
 
-<img src="https://github.com/bfetler/cms_medicare/blob/master/cms_state_plots/map_cost_per_service_internal_medicine.png" alt="median cost per service by state for internal medicine" />
+<img src="https://github.com/bfetler/cms_medicare/blob/master/cms_state_person_plots/map_cost_per_person_internal_medicine.png" alt="median cost per person by state for internal medicine" />
 
-<img src="https://github.com/bfetler/cms_medicare/blob/master/cms_state_plots/map_cost_per_service_physical_therapist.png" alt="median cost per service by state for physical therapist" />
+<img src="https://github.com/bfetler/cms_medicare/blob/master/cms_state_person_plots/map_cost_per_person_physical_therapist.png" alt="median cost per person by state for physical therapist" />
 
-Some of the western states such as Colorado appear to be more expensive for some procedures, while the northeast and Florida are moderately expensive.
+Some of the western states such as Utah and Montana appear to be more expensive for some surgeries, while the northeast and Florida are moderately expensive.
 
 #### Provider Gender
 
@@ -119,7 +119,7 @@ We have data on average patient age, and age broken into four categories, which 
 
 <img src="https://github.com/bfetler/cms_medicare/blob/master/cms_pop_plots/bar_beneficiary_average_age.png" alt="beneficiary average age by provider" />
 
-Apparently psychiatry is needed more by seniors in their mid-50's, while Radiation Oncology is more common in the mid-70's.  
+Apparently Psychiatry is needed more by people in their mid-50's, while Radiation Oncology is more common in the mid-70's.  
 
 <img src="https://github.com/bfetler/cms_medicare/blob/master/bene_average_age_plots/hist_beneficiary_average_age_group7.png" alt="beneficiary age subgroup" />
 
