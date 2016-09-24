@@ -8,6 +8,7 @@ import pandas as pd
 
 # from calc_by_states import calc_by_states
 from state_maps import make_state_map, get_basemap
+from zip_calc import calc_zip_group
 
 from plot_methods import make_plotdir, print_all_rows, make_hist_plots, plot_hists, \
         make_bar_plot, make_scatter_plot, make_group_bar_plots
@@ -35,7 +36,7 @@ def get_select_columns():
           total_submitted_chrg_amt    total_med_submitted_chrg_amt
  	  total_medicare_payment_amt  total_med_medicare_payment_amt
     '''
-    new_cols = [ 'provider_type','nppes_provider_gender','nppes_provider_state','total_services','total_unique_benes','total_submitted_chrg_amt','total_medicare_payment_amt','beneficiary_average_age','Beneficiary_Average_Risk_Score', 'total_med_medicare_payment_amt', 'total_med_services','total_drug_medicare_payment_amt','total_drug_services','beneficiary_female_count','beneficiary_male_count','beneficiary_age_less_65_count','beneficiary_age_65_74_count','beneficiary_age_75_84_count','beneficiary_age_greater_84_count' ]
+    new_cols = [ 'provider_type','nppes_provider_gender','nppes_provider_state','nppes_provider_zip','total_services','total_unique_benes','total_submitted_chrg_amt','total_medicare_payment_amt','beneficiary_average_age','Beneficiary_Average_Risk_Score', 'total_med_medicare_payment_amt', 'total_med_services','total_drug_medicare_payment_amt','total_drug_services','beneficiary_female_count','beneficiary_male_count','beneficiary_age_less_65_count','beneficiary_age_65_74_count','beneficiary_age_75_84_count','beneficiary_age_greater_84_count' ]
     return new_cols
 
 def read_select_data(new_cols, fname, first=False):
@@ -261,6 +262,23 @@ def calc_by_states(df):
         im = p_group.ix[provider]['pay_per_person']['median']
         make_state_map(bmap, im, plotdir, 'cost_per_person_%s' % '_'.join(patr.split(provider.lower())), '%s, Median Cost Per Person' % provider)
 
+def calc_by_zip(df):
+    "calc parameters by zip code"
+    plotdir = make_plotdir(plotdir='cms_zip_person_plots/')
+
+# first validate by state, as a mock of zip
+    agg_fns = ['count','median']
+    p_group = calc_par_group(df, agg_fns, ['provider_type','nppes_provider_state'], ['pay_per_person','pay_per_service'], print_out=False)
+#   print('index level provider_types\n', p_group.index.levels[0])
+
+#   bmap = get_basemap()  # read file once for all maps
+#   im = p_group.ix['Cardiology']['pay_per_person']['median']
+#   make_state_map(bmap, im, plotdir, 'zip_cardiology_per_person', '%s, Median Cost Per Person' % 'Cardiology')
+#   im = p_group.ix['Cardiology']['pay_per_person']['count']
+#   make_state_map(bmap, im, plotdir, 'zip_cardiology_per_person_count', '%s, Median Count Per Person' % 'Cardiology')
+    im_group = p_group.ix['Cardiology']['pay_per_person']
+    calc_zip_group(im_group, 'Cardiology')
+
 
 def main():
     fname = 'data/Medicare_Physician_and_Other_Supplier_NPI_Aggregate_CY2014.txt'
@@ -286,7 +304,8 @@ def main():
 #   gender_par_groups(df)
 #   age_segment_par_groups(df)
 
-    calc_by_states(df)
+#   calc_by_states(df)
+    calc_by_zip(df)
 
 if __name__ == '__main__':
     main()
