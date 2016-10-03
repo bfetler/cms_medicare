@@ -94,9 +94,12 @@ def read_select_data(new_cols, fname, first=False):
 
     return df
 
-def get_col(df, col):
-    "get a series from dataframe for a particular column"
-    return df[col].dropna()
+def get_col(df, col, log=False):
+    "get a series from dataframe for a particular column, w/ option to take log of series"
+    series = df[col].dropna()
+    if log:
+        series = np.log10(series)
+    return series
 
 def process_by_var(plotdir, dfgroup, col, var='nppes_provider_gender'):
     "process dataframe group by variable, usually gender"
@@ -190,14 +193,14 @@ def pop_calc_par_groups(df):
 
     print('\ntop total_services count')  # count of number of providers, not patients
     p_sort = filter_group_by_var(p_group['total_services'], agg_fns, stat='count')
-    make_bar_plot(get_col(p_sort,'count'), plotdir, 'total_services_count', 'Count Total Services')
+    make_bar_plot(get_col(p_sort,'count',log=True), plotdir, 'total_services_count', 'Log10 Count Total Services', xlim=(0.1,5))
     print('\ntop total_services sum')
     p_sort = filter_group_by_var(p_group['total_services'], agg_fns, stat='sum')
-    make_bar_plot(get_col(p_sort,'sum'), plotdir, 'total_services_sum', 'Sum Total Services')
+    make_bar_plot(get_col(p_sort,'sum',log=True), plotdir, 'total_services_sum', 'Log10 Sum Total Services', xlim=(1,9))
 
     print('\ntop total_unique_benes sum')
     p_sort = filter_group_by_var(p_group['total_unique_benes'], agg_fns, stat='sum')
-    make_bar_plot(get_col(p_sort,'sum'), plotdir, 'total_unique_benes_sum', 'Sum Total Beneficiaries')
+    make_bar_plot(get_col(p_sort,'sum',log=True), plotdir, 'total_unique_benes_sum', 'Log10 Sum Total Beneficiaries', xlim=(1,8))
 
     print('\ntop beneficiary_average_age median')
     p_sort = filter_group_by_var(p_group['beneficiary_average_age'], agg_fns, stat='median')
@@ -205,11 +208,11 @@ def pop_calc_par_groups(df):
 
     print('\ntop total_medicare_payment_amt median')
     p_sort = filter_group_by_var(p_group['total_medicare_payment_amt'], agg_fns, stat='median')
-    make_bar_plot(get_col(p_sort,'median'), plotdir, 'median_medicare_payment_amt', 'Median Medicare Payment Amount Per Provider')
+    make_bar_plot(get_col(p_sort,'median',log=True), plotdir, 'median_medicare_payment_amt', 'Log10 Median Medicare Payment Amount Per Provider', xlim=(1,6))
 
     print('\ntop total_medicare_payment_amt')
     p_sort = filter_group_by_var(p_group['total_medicare_payment_amt'], agg_fns, stat='sum')
-    make_bar_plot(get_col(p_sort,'sum'), plotdir, 'total_medicare_payment_amt', 'Total Medicare Payment Amount')
+    make_bar_plot(get_col(p_sort,'sum',log=True), plotdir, 'total_medicare_payment_amt', 'Log10 Total Medicare Payment Amount', xlim=(1,10))
 
 def pay_calc_par_groups(df):
     "calculate series of grouped pay parameters, printed by column"
@@ -299,13 +302,13 @@ def main():
 # many facility provider_types have only one gender, none
 
 #   pay_calc_par_groups(df)
-#   pop_calc_par_groups(df)
+    pop_calc_par_groups(df)
 #   average_age_par_group(df)
 #   gender_par_groups(df)
 #   age_segment_par_groups(df)
 
 #   calc_by_states(df)
-    calc_by_zip(df)
+#   calc_by_zip(df)
 
 if __name__ == '__main__':
     main()
